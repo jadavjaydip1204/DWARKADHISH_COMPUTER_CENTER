@@ -1,0 +1,1590 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="DWARKADHISH COMPUTER CENTER - Digital Portal, Online Services, Government Forms">
+<title>DWARKADHISH COMPUTER CENTER - Digital Portal</title>
+
+<!-- Google Fonts (Premium Fonts) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- FontAwesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+:root {
+  --primary: #0f766e;
+  --nav-active: #2563eb; 
+  --dark: #102a43;
+  --light: #f8fafc;
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --gold: #d97706;
+}
+
+/* Dark Mode Variables */
+body.dark-theme {
+  --bg-color: #0f172a;
+  --card-bg: #1e293b;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --border-color: #334155;
+  --dark: #f8fafc;
+  --gold: #fbbf24;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "Poppins", "Hind Vadodara", sans-serif;
+  background: var(--bg-color);
+  color: var(--text-main);
+  line-height: 1.7;
+  transition: background 0.3s, color 0.3s;
+  overflow: hidden; /* Prevent scrolling while loader is active */
+}
+
+/* -------------------------------------------------------------
+   PREMIUM WELCOME LOADER SCREEN (FAST & LARGE LOGO)
+------------------------------------------------------------- */
+#welcomeLoader {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #1e293b 0%, #0b1120 100%);
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease-out, visibility 0.3s ease-out;
+}
+
+.loader-content {
+  text-align: center;
+  animation: scaleUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.loader-logo-box {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: #ffffff;
+  margin: 0 auto 20px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 4px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 50px rgba(15, 118, 110, 0.6), inset 0 0 25px rgba(0,0,0,0.05);
+  position: relative;
+}
+
+.loader-logo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 15px;
+  animation: pulseLogo 1s infinite alternate;
+}
+
+.loader-content h2 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #ffffff;
+  text-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+.loader-content p {
+  margin: 5px 0 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+/* Premium Spinner */
+.spinner {
+  margin-top: 35px;
+  width: 45px;
+  height: 45px;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-top: 4px solid var(--gold);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  display: inline-block;
+  box-shadow: 0 0 15px rgba(217, 119, 6, 0.4);
+}
+
+@keyframes scaleUp {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes pulseLogo {
+  0% { transform: scale(0.95); box-shadow: 0 0 30px rgba(15, 118, 110, 0.4); }
+  100% { transform: scale(1.05); box-shadow: 0 0 60px rgba(15, 118, 110, 0.8); }
+}
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+a { text-decoration: none; color: inherit; }
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; }
+
+/* Topbar */
+.topbar { background: #0b1120; color: #cbd5e1; padding: 8px 5%; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; font-size: 13px; font-weight: 500; letter-spacing: 0.5px; position: relative; z-index: 60; }
+
+/* Header & Floating Nav */
+.header-wrapper { position: sticky; top: 10px; z-index: 50; padding: 0 4%; margin-top: 12px; display: flex; justify-content: center; pointer-events: none; }
+.floating-nav-container { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.5); padding: 8px 18px; border-radius: 16px; display: flex; align-items: center; gap: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05); pointer-events: auto; transition: 0.3s; width: 100%; max-width: 1280px; justify-content: space-between; }
+body.dark-theme .floating-nav-container { background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
+
+/* Brand */
+.brand { display: flex; align-items: center; gap: 12px; margin-right: auto; }
+.logo { width: 45px; height: 45px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); display: grid; place-items: center; background: white; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+.logo img { width: 100%; height: 100%; object-fit: contain; }
+.brand-text { display: flex; flex-direction: column; justify-content: center; line-height: 1.1; }
+.brand h2 { margin: 0; font-size: 19px; font-weight: 800; letter-spacing: 0px; white-space: nowrap; }
+.text-dark { color: var(--text-main); transition: color 0.3s; }
+.text-gold { color: var(--gold); transition: color 0.3s; }
+.brand small { color: var(--text-muted); font-size: 10px; font-weight: 600; letter-spacing: 3px; margin-top: 2px; text-transform: uppercase; white-space: nowrap; transition: color 0.3s; }
+
+/* Navigation Links */
+nav { display: flex; align-items: center; gap: 8px; }
+.nav-link { padding: 8px 16px; border-radius: 8px; font-size: 14.5px; font-weight: 600; color: var(--text-muted); transition: 0.3s; position: relative; white-space: nowrap; pointer-events: auto; }
+.nav-link::after { content: ''; position: absolute; width: 0; height: 3px; bottom: 0; left: 50%; transform: translateX(-50%); background-color: var(--nav-active); transition: 0.3s; border-radius: 3px; }
+.nav-link:hover { color: var(--text-main); background: rgba(0,0,0,0.03); }
+.nav-link:hover::after { width: 60%; }
+body.dark-theme .nav-link:hover { background: rgba(255,255,255,0.05); }
+.nav-link.active { color: var(--nav-active); background: transparent; }
+.nav-link.active::after { width: 60%; }
+.nav-btn { pointer-events: auto; background: linear-gradient(135deg, var(--nav-active), #4f46e5); color: white; padding: 8px 18px; border-radius: 8px; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 8px; transition: 0.3s; margin-left: 10px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25); white-space: nowrap; }
+.nav-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(37, 99, 235, 0.4); }
+
+/* Controls (Lang & Theme) */
+.nav-controls { display: flex; align-items: center; gap: 12px; border-left: 2px solid var(--border-color); padding-left: 18px; pointer-events: auto; }
+.language-switch { display: flex; background: var(--bg-color); border-radius: 8px; padding: 3px; border: 1px solid var(--border-color); }
+.language-switch button { background: transparent; color: var(--text-muted); border: none; padding: 5px 12px; border-radius: 6px; font-size: 12.5px; font-weight: 700; transition: .2s; }
+.language-switch button.active { background: white; color: var(--text-main); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+body.dark-theme .language-switch button.active { background: #334155; color: white; }
+.theme-toggle { width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-main); display: grid; place-items: center; font-size: 16px; transition: 0.3s; }
+.theme-toggle:hover { background: var(--border-color); }
+.menu-btn { display: none; background: none; border: none; font-size: 24px; color: var(--text-main); pointer-events: auto; }
+
+/* Buttons General */
+.btn { border: 0; border-radius: 9px; padding: 11px 22px; display: inline-block; text-align: center; font-weight: 600; cursor: pointer; }
+.btn-primary { background: var(--nav-active); color: white; transition: 0.3s; box-shadow: 0 4px 15px rgba(37,99,235,0.3); }
+.btn-primary:hover { background: #1e40af; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,99,235,0.4); }
+
+/* Hero Section */
+.hero { position: relative; padding: 110px 5% 70px; background: linear-gradient(135deg, #0f172a, #0f766e); color: white; overflow: hidden; margin-top: -95px; z-index: 1; }
+.hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(rgba(255,255,255,0.08) 2px, transparent 2px); background-size: 30px 30px; z-index: -1; }
+.hero-inner { position: relative; z-index: 10; max-width: 1200px; margin: auto; display: grid; grid-template-columns: 1.2fr 0.8fr; align-items: center; gap: 40px; padding-top: 10px; }
+.pill { display: inline-block; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 6px 15px; border-radius: 30px; font-size: 13px; font-weight: 500; }
+.hero h1 { font-size: clamp(28px, 4vw, 50px); line-height: 1.2; margin: 18px 0; font-weight: 800; }
+.hero p { color: #e2f4f3; max-width: 650px; font-size: 17px; margin-bottom: 30px;}
+
+.hero-image-wrapper { position: relative; display: flex; justify-content: center; align-items: center; }
+.hero-logo-box { width: 100%; max-width: 380px; aspect-ratio: 1/1; background: white; border-radius: 50%; display: grid; place-items: center; overflow: hidden; border: 8px solid rgba(255,255,255,0.15); box-shadow: 0 0 60px rgba(15,118,110,0.4), inset 0 0 20px rgba(0,0,0,0.05); animation: floatHeroLogo 4s ease-in-out infinite; padding: 20px; }
+.hero-logo-box img { width: 100%; height: 100%; object-fit: contain; }
+.hero-image-wrapper::before { content: ''; position: absolute; width: 420px; height: 420px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.2); animation: pulseRing 3s infinite alternate; z-index: -1; }
+.hero-image-wrapper::after { content: ''; position: absolute; width: 460px; height: 460px; border-radius: 50%; border: 1px dashed rgba(255,255,255,0.1); animation: spinRing 20s linear infinite; z-index: -1; }
+
+@keyframes floatHeroLogo { 0% { transform: translateY(0px); box-shadow: 0 0 60px rgba(15,118,110,0.4); } 50% { transform: translateY(-15px); box-shadow: 0 20px 70px rgba(15,118,110,0.6); } 100% { transform: translateY(0px); box-shadow: 0 0 60px rgba(15,118,110,0.4); } }
+@keyframes pulseRing { from { transform: scale(0.95); opacity: 0.5; } to { transform: scale(1.05); opacity: 1; } }
+@keyframes spinRing { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 0 5%; margin-top: -30px; position: relative; z-index: 10; }
+.stat { background: var(--card-bg); padding: 22px 10px; text-align: center; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid var(--border-color); }
+.stat strong { display: block; color: var(--primary); font-size: 28px; font-weight: 700; }
+.stat span { font-size: 14px; font-weight: 500; }
+
+section { padding: 60px 5%; }
+.container { max-width: 1200px; margin: auto; }
+.section-head { margin-bottom: 35px; text-align: center; }
+.section-head small { color: var(--nav-active); font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; font-size: 13px; }
+.section-head h2 { color: var(--text-main); font-size: 34px; margin: 8px 0; font-weight: 800; }
+
+/* -------------------------------------------------------------
+   MAIN BOARD TOGGLE SWITCH 
+------------------------------------------------------------- */
+.main-tab-container {
+  display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; margin-top: 20px;
+}
+.main-tab-btn {
+  padding: 12px 25px;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex; align-items: center; gap: 8px;
+  transition: 0.3s;
+}
+.main-tab-btn.active {
+  background: #1e293b; color: white;
+  border: 2px solid #1e293b; border-radius: 8px;
+  font-weight: 700; font-size: 16px;
+  box-shadow: 0 4px 15px rgba(30, 41, 59, 0.2);
+}
+.main-tab-btn.inactive {
+  background: white; color: #1e293b;
+  border: 1px solid #cbd5e1; border-radius: 30px;
+  font-weight: 700; font-size: 16px;
+}
+body.dark-theme .main-tab-btn.inactive {
+  background: transparent; color: #f8fafc; border-color: #475569;
+}
+body.dark-theme .main-tab-btn.active {
+  background: var(--nav-active); border-color: var(--nav-active);
+}
+
+/* General Card Design */
+.universal-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; align-items: stretch; }
+.universal-card { 
+  background: var(--card-bg); padding: 25px; border-radius: 16px; 
+  border: 1px solid var(--border-color); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+  display: flex; flex-direction: column; align-items: flex-start; cursor: pointer;
+  position: relative; overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+  height: 100%;
+}
+
+.universal-card::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; 
+  background: linear-gradient(90deg, var(--nav-active), #4f46e5); 
+  opacity: 0; transition: 0.4s;
+}
+
+.universal-card:hover::before { opacity: 1; }
+
+.universal-card:hover { 
+  transform: translateY(-8px); 
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08); 
+  border-color: transparent; 
+}
+
+/* Icon Design */
+.universal-icon { 
+  width: 55px; height: 55px; 
+  background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(79,70,229,0.1)); 
+  color: var(--nav-active); display: grid; place-items: center; 
+  border-radius: 14px; font-size: 24px; transition: 0.4s; margin-bottom: 16px; 
+}
+.universal-card:hover .universal-icon { 
+  background: linear-gradient(135deg, var(--nav-active), #4f46e5); color: white; 
+  transform: scale(1.1) rotate(5deg); box-shadow: 0 8px 15px rgba(37, 99, 235, 0.3);
+}
+
+.universal-card h3 { margin: 10px 0 8px; font-size: 19px; font-weight: 700; color: var(--text-main); line-height: 1.3; }
+.universal-card p { font-size: 14.5px; color: var(--text-muted); margin: 0 0 20px; flex: 1; }
+
+.universal-link { color: var(--nav-active); font-size: 14.5px; font-weight: 700; transition: 0.3s; display: flex; align-items: center; gap: 6px; margin-top: auto; }
+.universal-card:hover .universal-link { color: var(--dark); gap: 12px; }
+
+/* Updates specific tags */
+.card-header-tags { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 10px; }
+.update-tag { background: #e0f2fe; color: #0284c7; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 4px; letter-spacing: 0.5px; text-transform: uppercase; }
+.update-date { color: #94a3b8; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+body.dark-theme .update-tag { background: rgba(2, 132, 199, 0.2); color: #38bdf8; }
+
+/* Services Area specifics */
+.search-area { display: flex; gap: 10px; margin: 25px 0 40px; max-width: 900px; margin-left: auto; margin-right: auto; }
+.search-area input { flex: 1; min-width: 0; padding: 16px 25px; border: 1px solid var(--border-color); border-radius: 12px; background: var(--card-bg); color: var(--text-main); outline: none; font-size: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+.search-area input:focus { border-color: var(--nav-active); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
+
+/* Updates Filters */
+.updates-filter-container { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; }
+.update-filter-btn { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-muted); padding: 10px 20px; border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer; transition: 0.3s; display:flex; align-items:center; gap:8px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+.update-filter-btn:hover { border-color: var(--nav-active); color: var(--text-main); }
+.update-filter-btn.active { background: #1e293b; color: white; border-color: #1e293b; }
+body.dark-theme .update-filter-btn.active { background: var(--nav-active); border-color: var(--nav-active); }
+
+.empty { grid-column: 1/-1; background: var(--card-bg); padding: 40px; border-radius: 12px; text-align: center; font-weight: 500; border: 1px solid var(--border-color); font-size: 18px; }
+
+/* About Section */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+.about-panel { background: linear-gradient(135deg, rgba(15,118,110,0.1), rgba(37,99,235,0.1)); padding: 40px; border-radius: 24px; min-height: 250px; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 1px solid var(--border-color); }
+.big-icon { font-size: 65px; color: var(--nav-active); margin-bottom: 15px; }
+.check-list { padding-left: 0; list-style: none; margin-top: 20px; }
+.check-list li { margin: 12px 0; font-weight: 500; display: flex; align-items: center; gap: 10px; }
+.check-list li i { color: #10b981; }
+
+/* Contact Forms */
+.contact-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 30px; }
+.contact-card, .form-card { background: var(--card-bg); border-radius: 16px; padding: 30px; border: 1px solid var(--border-color); box-shadow: 0 10px 40px rgba(0,0,0,0.02); }
+.contact-card h3, .form-card h3 { font-size: 22px; font-weight: 700; margin-top: 0; margin-bottom: 20px; color: var(--text-main); }
+.contact-item { padding: 15px 0; border-bottom: 1px solid var(--border-color); }
+.contact-item strong { color: var(--primary); font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+.contact-item p { margin: 5px 0 0; font-size: 16px; font-weight: 600; color: var(--text-main); }
+.form-card label { display: block; margin: 15px 0 8px; font-weight: 600; font-size: 14px; color: var(--text-main); }
+.form-card input, .form-card select, .form-card textarea { width: 100%; padding: 14px; border: 1px solid var(--border-color); border-radius: 10px; background: var(--bg-color); color: var(--text-main); outline: none; transition: 0.3s; font-family: inherit; }
+.form-card input:focus, .form-card select:focus, .form-card textarea:focus { border-color: var(--nav-active); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
+.form-card textarea { min-height: 110px; resize: vertical; }
+
+footer { background: #0b1120; color: white; padding: 50px 5% 30px; }
+.footer-grid { max-width: 1200px; margin: auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 30px; }
+footer h3 { font-size: 18px; margin-bottom: 20px; font-weight: 600; }
+footer p, footer a { color: #94a3b8; font-size: 15px; transition: 0.2s; }
+footer a { display: block; margin: 10px 0; }
+footer a:hover { color: white; padding-left: 5px; }
+.copyright { max-width: 1200px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #94a3b8; text-align: center; }
+
+/* WhatsApp Icon */
+.whatsapp-float { position: fixed; right: 25px; bottom: 25px; z-index: 30; background: #25D366; width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 8px 25px rgba(37,211,102,0.4); display: flex; align-items: center; justify-content: center; transition: transform 0.3s; }
+.whatsapp-float:hover { transform: scale(1.15) rotate(-5deg); }
+.whatsapp-float i { font-size: 35px; color: white; }
+
+/* Scroll Animation CSS */
+.animate-up { opacity: 0; transform: translateY(40px); transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1); }
+.animate-up.in-view { opacity: 1; transform: translateY(0); }
+
+/* ----------------------------------------------------------------------
+   UNIFIED PROFESSIONAL DYNAMIC MODAL LOGIC
+----------------------------------------------------------------------- */
+.modal { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(15, 23, 42, 0.85); padding: 20px; overflow-y: auto; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
+.modal.show { display: flex; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* Modal Box */
+.modal-box { 
+  background: var(--bg-color); width: 100%; max-width: 600px; border-radius: 20px; 
+  padding: 40px 35px; max-height: 92vh; overflow-y: auto; transform: translateY(0); 
+  animation: slideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+  box-shadow: 0 25px 60px rgba(0,0,0,0.25); border: 1px solid var(--border-color); 
+}
+@keyframes slideIn { from { transform: translateY(30px) scale(0.95); opacity: 0; } to { transform: translateY(0) scale(1); opacity: 1; } }
+
+.modal-header { display: flex; justify-content: space-between; gap: 15px; align-items: flex-start; border-bottom: 2px dashed var(--border-color); padding-bottom: 20px; margin-bottom: 25px; }
+.modal-header h2 { margin: 0; color: var(--text-main); font-size: 26px; font-weight: 800; line-height: 1.2; display: flex; align-items: center; gap: 10px;}
+.close-btn { border: 0; background: rgba(239, 68, 68, 0.1); border-radius: 12px; width: 42px; height: 42px; color: #ef4444; font-size: 20px; flex-shrink: 0; transition: 0.3s; display: grid; place-items: center; cursor: pointer; }
+.close-btn:hover { background: #ef4444; color: white; transform: rotate(90deg); }
+
+/* Unified Tabs */
+.modal-tabs { display: flex; gap: 10px; background: var(--bg-color); padding: 8px; border-radius: 14px; border: 1px solid var(--border-color); margin-bottom: 25px; justify-content: center; }
+body.dark-theme .modal-tabs { background: var(--card-bg); }
+.modal-tab-btn { flex: 1; border: none; background: transparent; padding: 12px; border-radius: 10px; font-weight: 700; font-size: 14.5px; color: var(--text-muted); cursor: pointer; transition: 0.3s; display: flex; justify-content: center; align-items: center; gap: 8px; }
+.modal-tab-btn.active { background: linear-gradient(135deg, var(--nav-active), #4f46e5); color: white; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25); }
+
+/* Unified Banner */
+.modal-banner { border-radius: 14px; padding: 25px 20px; text-align: center; color: white; margin-bottom: 25px; background: linear-gradient(135deg, var(--nav-active), #4f46e5); box-shadow: 0 8px 25px rgba(37, 99, 235, 0.2); position: relative; overflow: hidden; }
+.modal-banner::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.1) 10%, transparent 60%); opacity: 0.5; pointer-events: none; }
+.modal-banner h3 { margin: 0 0 5px; font-size: 22px; font-weight: 800; letter-spacing: 0.5px; position: relative; z-index: 2; }
+.modal-banner p { margin: 0; font-size: 14px; font-weight: 500; opacity: 0.9; position: relative; z-index: 2; }
+
+/* -------------------------------------------------------------
+   PROFESSIONAL DOCUMENTS LIST
+------------------------------------------------------------- */
+.document-list { padding-left: 0; list-style: none; margin-bottom: 30px; display: flex; flex-direction: column; gap: 12px; }
+.document-list li { 
+  margin: 0; padding: 14px 18px; background: var(--card-bg); 
+  border-radius: 14px; display: flex; align-items: center; gap: 16px; 
+  box-shadow: 0 4px 15px rgba(0,0,0,0.02); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--border-color);
+  position: relative; overflow: hidden;
+}
+.document-list li:hover { 
+  transform: translateY(-3px); 
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.1);
+  border-color: rgba(37, 99, 235, 0.3);
+}
+.document-list li::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px;
+  background: var(--nav-active); opacity: 0; transition: 0.3s;
+}
+.document-list li:hover::before { opacity: 1; }
+
+.doc-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(79, 70, 229, 0.15));
+  color: var(--nav-active); display: grid; place-items: center;
+  font-size: 20px; transition: 0.4s; flex-shrink: 0;
+}
+.document-list li:hover .doc-icon {
+  background: linear-gradient(135deg, var(--nav-active), #4f46e5); color: white;
+  transform: scale(1.1) rotate(5deg);
+}
+.doc-text { font-weight: 600; font-size: 15px; color: var(--text-main); flex: 1; line-height: 1.4; }
+.doc-check { 
+  color: #10b981; font-size: 18px; opacity: 0; transform: scale(0.5); transition: 0.3s;
+}
+.document-list li:hover .doc-check { opacity: 1; transform: scale(1); }
+
+body.dark-theme .document-list li { background: var(--card-bg); border-color: var(--border-color); }
+
+/* Any One Info Text */
+.any-one-text { 
+  font-weight: 700; color: var(--gold); margin: 20px 0 15px; font-size: 15px; 
+  background: rgba(217, 119, 6, 0.1); padding: 12px 18px; border-radius: 10px; border-left: 4px solid var(--gold);
+}
+
+/* -------------------------------------------------------------
+   PROFESSIONAL JOB BOXES
+------------------------------------------------------------- */
+.jobs-grid { display: none; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 30px; }
+.jobs-grid.active { display: grid; animation: slideIn 0.4s ease; }
+.job-box { 
+  border-radius: 14px; padding: 20px 15px; text-align: center; 
+  background: var(--card-bg); color: var(--text-main); 
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03); border: 1px solid var(--border-color);
+  transition: 0.3s; cursor: pointer; position: relative; overflow: hidden;
+}
+.job-box::before {
+  content: ''; position: absolute; left: 0; top: 0; width: 4px; height: 100%;
+  background: linear-gradient(180deg, var(--nav-active), #4f46e5); opacity: 0; transition: 0.3s;
+}
+.job-box:hover::before { opacity: 1; }
+.job-box:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(37,99,235,0.1); border-color: var(--nav-active); }
+.job-box h4 { margin: 0 0 10px; font-size: 16px; font-weight: 800; line-height: 1.3; }
+.job-box span { font-size: 13px; font-weight: 700; background: rgba(37,99,235,0.1); color: var(--nav-active); padding: 5px 12px; border-radius: 20px; display: inline-block; }
+
+/* Unified Submit Button */
+.modal-btn-primary { width: 100%; background: linear-gradient(135deg, var(--nav-active), #4f46e5) !important; color: white; padding: 16px; border-radius: 14px; font-size: 16px; font-weight: 700; border: 0; transition: 0.3s; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 10px; box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3); margin-top: 10px;}
+.modal-btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(37, 99, 235, 0.4); }
+
+/* Responsive adjustments */
+@media(max-width: 1080px) {
+  .floating-nav-container { flex-direction: column; width: 100%; padding: 15px; border-radius: 20px; justify-content: center; }
+  .header-wrapper { padding: 10px 4%; }
+  .brand { margin-bottom: 10px; width: 100%; justify-content: center; margin-right: 0; }
+  .brand h2 { white-space: normal; text-align: center; }
+  nav { display: none; width: 100%; flex-direction: column; }
+  nav.open { display: flex; }
+  .nav-controls { border-left: none; border-top: 1px solid var(--border-color); padding-top: 15px; padding-left: 0; width: 100%; justify-content: center; }
+  .menu-btn { display: block; position: absolute; right: 20px; top: 25px; }
+  .universal-grid { grid-template-columns: repeat(3, 1fr); }
+  .hero-inner { grid-template-columns: 1fr; text-align: center; }
+  .hero-buttons { justify-content: center; }
+}
+@media(max-width:850px) {
+  .universal-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media(max-width:650px) {
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .universal-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
+  .about-grid, .contact-grid, .footer-grid { grid-template-columns: 1fr; }
+  .modal-box { padding: 30px 20px; }
+  .brand h2 { font-size: 17px; }
+  .nav-link::after { display: none; }
+  .jobs-grid { grid-template-columns: 1fr; }
+  .modal-tabs { flex-direction: column; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ==========================================
+     WELCOME LOADER SCREEN (FAST & PREMIUM)
+=========================================== -->
+<div id="welcomeLoader">
+  <div class="loader-content">
+    <div class="loader-logo-box">
+      <img src="LOGO.jpg" alt="Logo" onerror="this.style.display='none';">
+    </div>
+    <h2>DWARKADHISH</h2>
+    <p>COMPUTER CENTER</p>
+    <div class="spinner"></div>
+  </div>
+</div>
+
+<div class="topbar">
+  <span data-en="Welcome to DWARKADHISH COMPUTER CENTER" data-gu="DWARKADHISH COMPUTER CENTER માં આપનું સ્વાગત છે">DWARKADHISH COMPUTER CENTER માં આપનું સ્વાગત છે</span>
+  <span><i class="fa-brands fa-whatsapp"></i> Call / WhatsApp: 9537362607</span>
+</div>
+
+<!-- FLOATING NAVBAR -->
+<div class="header-wrapper">
+  <div class="floating-nav-container">
+    
+    <a href="#" class="brand" onclick="navClick(document.getElementById('navHome'), 'home')">
+      <div class="logo"><img src="LOGO.jpg" alt="Logo" onerror="this.style.display='none';this.parentElement.textContent='DCC';"></div>
+      <div class="brand-text">
+        <h2><span class="text-dark">DWARKADHISH</span> <span class="text-gold">COMPUTER CENTER</span></h2>
+        <small>DIGITAL PORTAL</small>
+      </div>
+    </a>
+
+    <button class="menu-btn" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
+
+    <nav id="mainNav">
+      <a href="#" class="nav-link active" id="navHome" data-en="Home" data-gu="હોમ" onclick="navClick(this, 'home')">હોમ</a>
+      <a href="#" class="nav-link" id="navServices" data-en="Services" data-gu="સેવાઓ" onclick="navClick(this, 'services')">સેવાઓ</a>
+      <a href="#" class="nav-link" id="navUpdates" data-en="Updates & Jobs" data-gu="અપડેટ્સ & જોબ્સ" onclick="navClick(this, 'updates')">અપડેટ્સ & જોબ્સ</a>
+      <a href="#about" class="nav-link" data-en="About" data-gu="અમારા વિશે" onclick="navClick(this, 'other'); setTimeout(()=>document.getElementById('about').scrollIntoView({behavior: 'smooth'}), 100);">અમારા વિશે</a>
+      <a href="#contact" class="nav-link" data-en="Contact" data-gu="સંપર્ક" onclick="navClick(this, 'other'); setTimeout(()=>document.getElementById('contact').scrollIntoView({behavior: 'smooth'}), 100);">સંપર્ક</a>
+      <a href="#registration" class="nav-btn" data-en="Registration" data-gu="સેવા વિનંતી" onclick="navClick(this, 'other'); setTimeout(()=>document.getElementById('registration').scrollIntoView({behavior: 'smooth'}), 100);">Registration</a>
+    </nav>
+
+    <div class="nav-controls">
+      <div class="language-switch">
+        <button id="langEnglish" onclick="setLanguage('en')">EN</button>
+        <button id="langGujarati" onclick="setLanguage('gu')">GU</button>
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" aria-label="Toggle Dark Mode">🌙</button>
+    </div>
+    
+  </div>
+</div>
+
+<main>
+  <!-- HOME PAGE SECTION -->
+  <div id="homeSection">
+    <section class="hero" id="home">
+      <div class="hero-inner">
+        <div class="animate-up">
+          <span class="pill" data-en="YOUR DIGITAL SERVICE CENTER" data-gu="તમારું ડિજિટલ સેવા કેન્દ્ર">તમારું ડિજિટલ સેવા કેન્દ્ર</span>
+          <h1>DWARKADHISH<br><span class="text-gold">COMPUTER CENTER</span></h1>
+          <h2 data-en="All your digital needs in one place" data-gu="તમારી દરેક ડિજિટલ જરૂરિયાત એક જ જગ્યાએ">તમારી દરેક ડિજિટલ જરૂરિયાત એક જ જગ્યાએ</h2>
+          <div class="hero-buttons">
+            <button class="btn btn-primary" onclick="navClick(document.getElementById('navServices'), 'services')" data-en="Explore Services" data-gu="બધી સેવાઓ જુઓ">બધી સેવાઓ જુઓ</button>
+          </div>
+        </div>
+        
+        <div class="hero-image-wrapper animate-up" style="transition-delay: 0.2s;">
+          <div class="hero-logo-box">
+            <img src="LOGO.jpg" alt="Dwarkadhish Logo" onerror="this.style.display='none';">
+          </div>
+        </div>
+        
+      </div>
+    </section>
+
+    <div class="stats animate-up">
+      <div class="stat"><strong>24+</strong><span data-en="Services" data-gu="ડિજિટલ સેવાઓ">ડિજિટલ સેવાઓ</span></div>
+      <div class="stat"><strong>24/7</strong><span data-en="Access" data-gu="વેબસાઇટ ઉપલબ્ધતા">વેબસાઇટ ઉપલબ્ધતા</span></div>
+      <div class="stat"><strong>10+</strong><span data-en="Categories" data-gu="શ્રેણીઓ">શ્રેણીઓ</span></div>
+      <div class="stat"><strong>1</strong><span data-en="Portal" data-gu="પોર્ટલ">પોર્ટલ</span></div>
+    </div>
+
+    <!-- QUICK LINKS TOGGLE -->
+    <div class="container animate-up" style="margin-top: 40px; margin-bottom: 20px;">
+      <div class="main-tab-container">
+        <button class="main-tab-btn active" onclick="navClick(document.getElementById('navUpdates'), 'updates')" data-en="<i class='fa-solid fa-bullhorn' style='color:#f43f5e'></i> Latest Updates" data-gu="<i class='fa-solid fa-bullhorn' style='color:#f43f5e'></i> તાજા સમાચાર"><i class="fa-solid fa-bullhorn" style="color:#f43f5e"></i> તાજા સમાચાર</button>
+        <button class="main-tab-btn inactive" onclick="navClick(document.getElementById('navServices'), 'services')" data-en="<i class='fa-solid fa-bolt' style='color:#f59e0b'></i> Explore Services" data-gu="<i class='fa-solid fa-bolt' style='color:#f59e0b'></i> સેવાઓ જુઓ"><i class="fa-solid fa-bolt" style="color:#f59e0b"></i> સેવાઓ જુઓ</button>
+      </div>
+    </div>
+
+    <section class="about" id="about">
+      <div class="container about-grid">
+        <div class="animate-up">
+          <div class="section-head" style="text-align: left;">
+            <small data-en="KNOW MORE" data-gu="વધુ જાણો">વધુ જાણો</small>
+            <h2 data-en="About Us" data-gu="અમારા વિશે">અમારા વિશે</h2>
+          </div>
+          <p data-en="Welcome to DWARKADHISH COMPUTER CENTER. Our aim is to make digital services easy." data-gu="DWARKADHISH COMPUTER CENTER પર આપનું સ્વાગત છે. અમારો હેતુ ઓનલાઇન સેવાઓની માહિતી સરળતાથી ઉપલબ્ધ કરાવવાનો છે.">DWARKADHISH COMPUTER CENTER પર આપનું સ્વાગત છે. અમારો હેતુ ઓનલાઇન સેવાઓની માહિતી સરળતાથી ઉપલબ્ધ કરાવવાનો છે.</p>
+          <ul class="check-list">
+            <li data-en="✓ Information about various online services" data-gu="<i class='fa-solid fa-circle-check'></i> વિવિધ ઓનલાઇન સેવાઓની માહિતી"><i class="fa-solid fa-circle-check"></i> વિવિધ ઓનલાઇન સેવાઓની માહિતી</li>
+            <li data-en="✓ Government recruitment and admission updates" data-gu="<i class='fa-solid fa-circle-check'></i> સરકારી ભરતી અને એડમિશન અપડેટ્સ"><i class="fa-solid fa-circle-check"></i> સરકારી ભરતી અને એડમિશન અપડેટ્સ</li>
+            <li data-en="✓ Lists of required documents" data-gu="<i class='fa-solid fa-circle-check'></i> જરૂરી ડોક્યુમેન્ટ્સની યાદી"><i class="fa-solid fa-circle-check"></i> જરૂરી ડોક્યુમેન્ટ્સની યાદી</li>
+          </ul>
+        </div>
+        <div class="about-panel animate-up" style="transition-delay: 0.2s;">
+          <i class="fa-solid fa-laptop-code big-icon"></i>
+          <h2 data-en="Your Digital Service" data-gu="તમારી ડિજિટલ સેવા">તમારી ડિજિટલ સેવા</h2>
+          <p data-en="Fast, Reliable & Easy" data-gu="ઝડપી, ભરોસાપાત્ર અને સરળ">ઝડપી, ભરોસાપાત્ર અને સરળ</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" style="background:var(--bg-color)">
+      <div class="container">
+        <div class="section-head animate-up">
+          <small data-en="GET IN TOUCH" data-gu="અમારો સંપર્ક કરો">અમારો સંપર્ક કરો</small>
+          <h2 data-en="Contact Us" data-gu="સંપર્ક કરો">સંપર્ક કરો</h2>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-card animate-up">
+            <h3 data-en="Contact Details" data-gu="સંપર્કની વિગતો">સંપર્કની વિગતો</h3>
+            <div class="contact-item"><strong data-en="Mobile" data-gu="મોબાઇલ">મોબાઇલ / WhatsApp</strong><p><i class="fa-solid fa-phone"></i> 9537362607</p></div>
+            <div class="contact-item" style="border:none"><strong data-en="Email" data-gu="દુકાનનું નામ">દુકાનનું નામ</strong><p><i class="fa-solid fa-shop"></i> DWARKADHISH COMPUTER CENTER</p></div>
+            <a class="btn btn-primary" target="_blank" href="https://wa.me/919537362607" style="margin-top:20px; display:inline-block; background: #168b50;" data-en="WhatsApp Us" data-gu="<i class='fa-brands fa-whatsapp'></i> WhatsApp કરો"><i class="fa-brands fa-whatsapp"></i> WhatsApp કરો</a>
+          </div>
+          <div class="form-card animate-up" id="registration" style="transition-delay: 0.2s;">
+            <h3 data-en="Service Registration" data-gu="સેવા માટે નોંધણી">સેવા માટે નોંધણી</h3>
+            <form onsubmit="sendRequest(event)">
+              <label data-en="Full Name *" data-gu="પૂરું નામ *">પૂરું નામ *</label>
+              <input id="customerName" required placeholder="તમારું નામ લખો" data-en-placeholder="Enter your name" data-gu-placeholder="તમારું નામ લખો">
+              <label data-en="Mobile *" data-gu="મોબાઇલ નંબર *">મોબાઇલ નંબર *</label>
+              <input id="customerMobile" type="tel" pattern="[0-9]{10}" required placeholder="10 અંકનો નંબર" data-en-placeholder="10 digit number" data-gu-placeholder="10 અંકનો નંબર">
+              <label data-en="Select Service *" data-gu="સેવા પસંદ કરો *">સેવા પસંદ કરો *</label>
+              <select id="serviceChoice" required></select>
+              <label data-en="Details" data-gu="વધુ માહિતી (જો હોય તો)">વધુ માહિતી (જો હોય તો)</label>
+              <textarea id="customerMessage" placeholder="તમારે કઈ સેવા જોઈએ છે તે લખો" data-en-placeholder="Write your query..." data-gu-placeholder="તમારે કઈ સેવા જોઈએ છે તે લખો"></textarea>
+              <button type="submit" class="btn btn-primary" style="width:100%;margin-top:15px; font-size:16px; background:var(--nav-active)" data-en="Send Request" data-gu="વિનંતી મોકલો <i class='fa-solid fa-paper-plane'></i>">વિનંતી મોકલો <i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- SERVICES PAGE SECTION -->
+  <div id="servicesSection" style="display: none; padding-top: 40px;">
+    <section id="services-page">
+      <div class="container">
+        <div class="section-head animate-up">
+          <small data-en="OUR SERVICES" data-gu="અમારી સેવાઓ">અમારી સેવાઓ</small>
+          <h2 data-en="Digital Services" data-gu="ડિજિટલ સેવાઓ">ડિજિટલ સેવાઓ</h2>
+        </div>
+
+        <div class="search-area animate-up">
+          <input type="search" id="serviceSearch" oninput="renderServices()" placeholder="PAN, Aadhaar..." data-en-placeholder="Search Services..." data-gu-placeholder="PAN, આધાર શોધો...">
+        </div>
+
+        <div class="universal-grid" id="servicesGrid"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- UPDATES PAGE SECTION -->
+  <div id="updatesSection" style="display: none; padding-top: 40px;">
+    <section id="updates-page">
+      <div class="container">
+        <div class="section-head animate-up">
+          <small data-en="LATEST NEWS" data-gu="તાજા સમાચાર">તાજા સમાચાર</small>
+          <h2 data-en="Latest Updates & Jobs" data-gu="<i class='fa-solid fa-bullhorn' style='color:#e11d48'></i> અગત્યના અપડેટ્સ"><i class="fa-solid fa-bullhorn" style="color:#e11d48"></i> અગત્યના અપડેટ્સ</h2>
+        </div>
+        
+        <div class="updates-filter-container animate-up">
+          <button class="update-filter-btn active" onclick="setUpdateFilter('All', this)" data-en="All" data-gu="બધા">બધા</button>
+          <button class="update-filter-btn" onclick="setUpdateFilter('Jobs', this)" data-en="<i class='fa-solid fa-briefcase'></i> Jobs" data-gu="<i class='fa-solid fa-briefcase'></i> જોબ્સ"><i class="fa-solid fa-briefcase"></i> જોબ્સ</button>
+          <button class="update-filter-btn" onclick="setUpdateFilter('Education', this)" data-en="<i class='fa-solid fa-graduation-cap'></i> Education" data-gu="<i class='fa-solid fa-graduation-cap'></i> શિક્ષણ"><i class="fa-solid fa-graduation-cap"></i> શિક્ષણ</button>
+          <button class="update-filter-btn" onclick="setUpdateFilter('Scheme', this)" data-en="<i class='fa-solid fa-landmark'></i> Scheme" data-gu="<i class='fa-solid fa-landmark'></i> યોજના"><i class="fa-solid fa-landmark"></i> યોજના</button>
+          <button class="update-filter-btn" onclick="setUpdateFilter('Forms', this)" data-en="<i class='fa-solid fa-file-lines'></i> Forms" data-gu="<i class='fa-solid fa-file-lines'></i> ફોર્મ્સ"><i class="fa-solid fa-file-lines"></i> ફોર્મ્સ</button>
+        </div>
+
+        <div class="universal-grid" id="updatesGrid"></div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <h3 style="color:white;">DWARKADHISH COMPUTER CENTER</h3>
+      <p data-en="Online services, government forms, recruitment info, admissions and scholarships." data-gu="ઓનલાઇન સેવાઓ, સરકારી ફોર્મ, ભરતીની માહિતી, એડમિશન અને સ્કોલરશિપ.">ઓનલાઇન સેવાઓ, સરકારી ફોર્મ, ભરતીની માહિતી, એડમિશન અને સ્કોલરશિપ.</p>
+    </div>
+    <div>
+      <h3 data-en="Quick Links" data-gu="ઝડપી લિંક્સ">ઝડપી લિંક્સ</h3>
+      <a href="#" onclick="navClick(document.getElementById('navHome'), 'home')" data-en="Home" data-gu="હોમ">હોમ</a>
+      <a href="#" onclick="navClick(document.getElementById('navServices'), 'services')" data-en="Services" data-gu="સેવાઓ">સેવાઓ</a>
+      <a href="#contact" onclick="navClick(document.getElementById('navHome'), 'other'); setTimeout(()=>document.getElementById('contact').scrollIntoView({behavior: 'smooth'}), 100);" data-en="Contact" data-gu="સંપર્ક">સંપર્ક</a>
+    </div>
+  </div>
+  <div class="copyright">© <span id="currentYear"></span> DWARKADHISH COMPUTER CENTER. <span data-en="All Rights Reserved." data-gu="તમામ હકો અનામત.">તમામ હકો અનામત.</span></div>
+</footer>
+
+<a class="whatsapp-float" target="_blank" href="https://wa.me/919537362607" aria-label="WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!-- UNIVERSAL DYNAMIC MODAL -->
+<div class="modal" id="dynamicModal" onclick="if(event.target.id==='dynamicModal') closeDynamicModal()">
+  <div class="modal-box">
+    <div class="modal-header">
+      <h2 id="dynamicModalTitle">Title</h2>
+      <button class="close-btn" onclick="closeDynamicModal()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    
+    <div id="dynamicModalTabs" class="modal-tabs" style="display:none;"></div>
+    <div id="dynamicModalBanner" class="modal-banner" style="display:none;"></div>
+    <div id="dynamicModalJobs" class="jobs-grid"></div>
+
+    <ul class="document-list" id="dynamicModalDocs" style="display:none;"></ul>
+    <div id="anyOneText" class="any-one-text" style="display:none;">અને નીચેનામાંથી કોઈપણ ૧ (Any One):</div>
+    <ul class="document-list" id="dynamicModalOptionalDocs" style="display:none;"></ul>
+    
+    <button id="dynamicModalBtn" class="modal-btn-primary" onclick="alert('ડોક્યુમેન્ટ્સ જમા થયા પછી માહિતી અહીં જોવા મળશે.')">Button Text</button>
+  </div>
+</div>
+
+<script>
+let currentLanguage = "gu";
+let activeFilter = "All";
+let selectedService = "";
+let isDarkMode = false;
+
+/* --- UI Helper Function to Generate Professional List Items --- */
+function buildDocsHtml(docsArray, defaultIcon = 'fa-file-lines') {
+  return docsArray.map(doc => {
+    const text = doc.text ? doc.text : doc;
+    const icon = doc.icon ? doc.icon : defaultIcon;
+    return `<li>
+      <div class="doc-icon"><i class="fa-solid ${icon}"></i></div>
+      <span class="doc-text">${text}</span>
+      <div class="doc-check"><i class="fa-solid fa-circle-check"></i></div>
+    </li>`;
+  }).join('');
+}
+
+/* --- WhatsApp Helper Function --- */
+function sendWhatsAppInquiry(serviceName) {
+  const msg = currentLanguage === "en" 
+    ? `Hello, I want to inquire about *${serviceName}*. Please give me some more information.` 
+    : `નમસ્તે, મારે *${serviceName}* વિશે થોડીક વધારે માહિતી જોઈએ છે.`;
+  window.open("https://wa.me/919537362607?text=" + encodeURIComponent(msg), "_blank");
+  closeDynamicModal();
+}
+
+/* --- EXACT 24 SERVICES --- */
+const services = [
+  { name:"PAN કાર્ડ", en:"PAN Card", icon:'<i class="fa-solid fa-id-card-clip"></i>', category:"Government", desc:"PAN Card application અને એજન્સીની માહિતી.", enDesc:"New PAN Card applications and correction services.", docs:[], enDocs:[] },
+  { name:"આધાર કાર્ડ", en:"Aadhaar", icon:'<i class="fa-solid fa-id-card"></i>', category:"Government", desc:"Aadhaar સંબંધિત services અને updates.", enDesc:"Information and online services related to Aadhaar Card.", docs:[], enDocs:[] },
+  { name:"ચૂંટણી કાર્ડ", en:"Voter ID Card", icon:'<i class="fa-solid fa-address-card"></i>', category:"Government", desc:"નવું ચૂંટણી કાર્ડ અને સુધારાની માહિતી.", enDesc:"Information about Voter ID applications and corrections.", docs:[], enDocs:[] },
+  { name:"e-Shram કાર્ડ", en:"E-Shram", icon:'<i class="fa-solid fa-helmet-safety"></i>', category:"Government", desc:"E-Shram Card સંબંધિત માહિતી.", enDesc:"Information about e-Shram Card.", docs:[], enDocs:[] },
+  { name:"Ayushman Card", en:"Ayushman", icon:'<i class="fa-solid fa-notes-medical"></i>', category:"Government", desc:"Ayushman Card સંબંધિત information.", enDesc:"Information about the Ayushman Bharat scheme.", docs:[], enDocs:[] },
+  { name:"આવકનો દાખલો", en:"Income Certificate", icon:'<i class="fa-solid fa-file-invoice-dollar"></i>', category:"Government", desc:"Income Certificate માટે જરૂરી ડોક્યુમેન્ટ્સ.", enDesc:"Information about documents required for an Income Certificate.", docs:[], enDocs:[] },
+  { name:"નોન-ક્રિમી લેયર", en:"Non-Creamy Layer", icon:'<i class="fa-solid fa-file-shield"></i>', category:"Government", desc:"નોન-ક્રીમીલેયર સર્ટિફિકેટ કઢાવવાની માહિતી.", enDesc:"Required supporting documents for a Non-Creamy Layer Certificate.", docs:[], enDocs:[] },
+  { name:"જાતિનો દાખલો", en:"Caste Certificate", icon:'<i class="fa-solid fa-users"></i>', category:"Government", desc:"Caste Certificate માટેની જરૂરી માહિતી.", enDesc:"Application and supporting-document information for a Caste Certificate.", docs:["આધાર કાર્ડ ([Aadhaar Redacted])","રેશન કાર્ડ","શાળા છોડ્યાનું પ્રમાણપત્ર","જાતિનો આધાર"], enDocs:["Aadhaar Card ([Aadhaar Redacted])","Ration Card","School Leaving Certificate","Caste-related supporting proof"] },
+  { name:"EWS પ્રમાણપત્ર", en:"EWS Certificate", icon:'<i class="fa-solid fa-building-columns"></i>', category:"Government", desc:"આર્થિક રીતે નબળા વર્ગ (EWS) નું સર્ટિફિકેટ.", enDesc:"Information about EWS Certificate applications.", docs:[], enDocs:[] },
+  { name:"PF ની સેવાઓ", en:"PF Services", icon:'<i class="fa-solid fa-piggy-bank"></i>', category:"Government", desc:"UAN Activation, PF ઉપાડવા અને KYC.", enDesc:"UAN Activation, PF withdrawal and KYC.", docs:[], enDocs:[] },
+  { name:"મેરેજ સર્ટિફિકેટ", en:"Marriage Certificate", icon:'<i class="fa-solid fa-heart"></i>', category:"Government", desc:"લગ્ન નોંધણી/પ્રમાણપત્ર કઢાવવા માટે.", enDesc:"Information about documents required for a Marriage Certificate.", docs:[], enDocs:[] },
+  { name:"પોલીસ ક્લિયરન્સ", en:"Police Clearance", icon:'<i class="fa-solid fa-user-shield"></i>', category:"Government", desc:"Police Clearance Certificate (PCC) માહિતી.", enDesc:"General information about Police Clearance applications.", docs:[], enDocs:[] },
+  { name:"રેશન કાર્ડ", en:"Ration Card", icon:'<i class="fa-solid fa-book"></i>', category:"Government", desc:"રેશનકાર્ડમાં નામ ચડાવવા / કમી કરવા.", enDesc:"Services to add or remove names and update Ration Card details.", docs:[], enDocs:[] },
+  { name:"રિઝ્યુમે / CV", en:"Resume (CV)", icon:'<i class="fa-solid fa-file-pdf"></i>', category:"Education", desc:"નોકરી માટે પ્રોફેશનલ રિઝ્યુમે / CV બનાવવા.", enDesc:"Resume preparation service for job applications.", docs:[], enDocs:[] },
+  { name:"ઉદ્યોગ આધાર / MSME", en:"Udyog Aadhaar", icon:'<i class="fa-solid fa-city"></i>', category:"Government", desc:"Udyog Aadhaar (MSME) રજીસ્ટ્રેશન.", enDesc:"Information about MSME / Udyam registration.", docs:[], enDocs:[] },
+  { name:"૭/૧૨ અને ૮-અ ઉતારા", en:"Land Records", icon:'<i class="fa-solid fa-map"></i>', category:"Government", desc:"જમીનના ૭/૧૨ અને ૮-અ ના ઉતારા.", enDesc:"Details needed to access land records.", docs:[], enDocs:[] },
+  { name:"વહાલી દીકરી યોજના", en:"Vahali Dikri Yojana", icon:'<i class="fa-solid fa-child-dress"></i>', category:"Government", desc:"દીકરીઓ માટે સરકારની આર્થિક સહાય યોજના.", enDesc:"Information about documents required for the Vahali Dikri Scheme.", docs:[], enDocs:[] },
+  { name:"Indian Passport", en:"Indian Passport", icon:'<i class="fa-solid fa-passport"></i>', category:"Government", desc:"નવો પાસપોર્ટ કઢાવવા માટે.", enDesc:"Information about new passport applications.", docs:[], enDocs:[] },
+  { name:"વાહન વીમો", en:"Vehicle Insurance", icon:'<i class="fa-solid fa-motorcycle"></i>', category:"Government", desc:"બાઇક કે ફોરવીલર માટે કંપનીના વીમા.", enDesc:"Information about vehicle insurance.", docs:[], enDocs:[] },
+  { name:"સરકારી ભરતી", en:"Government Jobs", icon:'<i class="fa-solid fa-briefcase"></i>', category:"Education", desc:"નવી Government Recruitment updates.", enDesc:"Information about new government vacancies and notifications.", docs:[], enDocs:[] },
+  { name:"Admission", en:"Admission", icon:'<i class="fa-solid fa-graduation-cap"></i>', category:"Education", desc:"ITI, Diploma, College admission updates.", enDesc:"ITI, Diploma, College Admission details.", docs:[], enDocs:[] },
+  { name:"Scholarship", en:"Scholarship", icon:'<i class="fa-solid fa-sack-dollar"></i>', category:"Education", desc:"Student scholarship અંગે schemes.", enDesc:"Digital Gujarat, MYSY, NSP scholarship details.", docs:[], enDocs:[] },
+  { name:"કુંવરબાઈનું મામેરું", en:"Kuvarbai Nu Mameru", icon:'<i class="fa-solid fa-hand-holding-heart"></i>', category:"Scheme", desc:"લગ્ન સહાય યોજના સંબંધિત માહિતી.", enDesc:"Marriage assistance scheme forms and documents.", docs:[], enDocs:[] },
+  { name:"ABHA હેલ્થ કાર્ડ", en:"ABHA Card", icon:'<i class="fa-solid fa-heart-pulse"></i>', category:"Government", desc:"ABHA (Health ID) Card બનાવવાની માહિતી.", enDesc:"Information about ABHA Health ID.", docs:[], enDocs:[] }
+];
+
+/* --- UPDATES DATA --- */
+const updatesData = [
+  { id: "jobs", title: "સરકારી ભરતી અપડેટ્સ", enTitle: "Government Job Updates", category: "Jobs", tag: "NEW", date: "24 AUG 2026", icon: '<i class="fa-solid fa-briefcase"></i>', desc: "નવી ભરતી અને Government Job Notification અહી publish કરી શકાય છે.", enDesc: "New government vacancies and notifications can be published here.", btnText: "વધુ વાંચો →", enBtnText: "Read More →", action: "openDynamicModal('jobs')" },
+  { id: "admission", title: "એડમિશન અપડેટ્સ", enTitle: "Admission Updates", category: "Education", tag: "NEW", date: "2026", icon: '<i class="fa-solid fa-graduation-cap"></i>', desc: "ITI, Diploma, College Admission સંબંધિત નવી જાહેરાતો.", enDesc: "New announcements related to ITI, Diploma, and College Admissions.", btnText: "વધુ વાંચો →", enBtnText: "Read More →", action: "openDynamicModal('admission')" },
+  { id: "scholarship", title: "સ્કોલરશિપ અપડેટ્સ", enTitle: "Scholarship Updates", category: "Education", tag: "LATEST", date: "2026", icon: '<i class="fa-solid fa-sack-dollar"></i>', desc: "Digital Gujarat, MYSY, NSP શિષ્યવૃત્તિ માટેની જાહેરાત.", enDesc: "Announcements for Digital Gujarat, MYSY, and NSP scholarships.", btnText: "વધુ વાંચો →", enBtnText: "Read More →", action: "openDynamicModal('scholarship')" },
+  { id: "kuvarbai", title: "કુંવરબાઈનું મામેરું", enTitle: "Kuvarbai Nu Mameru", category: "Scheme", tag: "OPEN", date: "2026", icon: '<i class="fa-solid fa-ring"></i>', desc: "લગ્ન સહાય યોજના ફોર્મ અને ડોક્યુમેન્ટ્સ.", enDesc: "Marriage assistance scheme forms and documents.", btnText: "અરજી / માહિતી →", enBtnText: "Apply / Details →", action: "openDynamicModal('service', 'કુંવરબાઈનું મામેરું')" },
+  { id: "aadhaar", title: "આધાર સેવાઓ", enTitle: "Aadhaar Services", category: "Forms", tag: "OFFICIAL", date: "UIDAI", icon: '<i class="fa-regular fa-id-card"></i>', desc: "આધાર કાર્ડ સંબંધિત માહિતી અને ઉપલબ્ધ ઓનલાઇન સેવાઓ માટે સત્તાવાર પોર્ટલ.", enDesc: "Official portal for Aadhaar card related information and online services.", btnText: "ઓફિશિયલ વેબસાઇટ ખોલો ↗", enBtnText: "Open Official Website ↗", action: "openDynamicModal('service', 'આધાર કાર્ડ')" },
+  { id: "pan", title: "પાન કાર્ડ / ઇન્કમ ટેક્સ", enTitle: "PAN Card / Income Tax", category: "Forms", tag: "OFFICIAL", date: "INCOMETAX", icon: '<i class="fa-regular fa-credit-card"></i>', desc: "PAN અને ઇન્કમ ટેક્સ સંબંધિત સત્તાવાર માહિતી તથા ઉપલબ્ધ સેવાઓ માટે મુલાકાત લો.", enDesc: "Visit for official information and services related to PAN and Income Tax.", btnText: "ઓફિશિયલ વેબસાઇટ ખોલો ↗", enBtnText: "Open Official Website ↗", action: "openDynamicModal('service', 'PAN કાર્ડ')" },
+  { id: "voter", title: "ચૂંટણી કાર્ડ સેવાઓ", enTitle: "Voter ID Services", category: "Forms", tag: "OFFICIAL", date: "ECI", icon: '<i class="fa-solid fa-check-to-slot"></i>', desc: "મતદાર ઓળખપત્ર અને મતદાર યાદી સંબંધિત ઓનલાઇન સેવાઓ માટે સત્તાવાર પોર્ટલ.", enDesc: "Official portal for Voter ID and electoral roll related online services.", btnText: "ઓફિશિયલ વેબસાઇટ ખોલો ↗", enBtnText: "Open Official Website ↗", action: "openDynamicModal('service', 'ચૂંટણી કાર્ડ')" },
+  { id: "passport", title: "પાસપોર્ટ સેવાઓ", enTitle: "Passport Services", category: "Forms", tag: "OFFICIAL", date: "PASSPORT", icon: '<i class="fa-solid fa-passport"></i>', desc: "પાસપોર્ટ અરજી, એપોઇન્ટમેન્ટ અને જરૂરી સુધારાઓ માટે સત્તાવાર વેબસાઇટ.", enDesc: "Official website for passport applications, appointments, and corrections.", btnText: "ઓફિશિયલ વેબસાઇટ ખોલો ↗", enBtnText: "Open Official Website ↗", action: "openDynamicModal('service', 'Indian Passport')" },
+  { id: "digilocker", title: "ડિજીલોકર ડોક્યુમેન્ટ્સ", enTitle: "DigiLocker Documents", category: "Forms", tag: "OFFICIAL", date: "DIGILOCKER", icon: '<i class="fa-solid fa-folder-open"></i>', desc: "ડિજિટલ દસ્તાવેજો મેળવવા અને સાચવવા માટે ભારત સરકારનું DigiLocker પોર્ટલ.", enDesc: "Government of India's DigiLocker portal to access and store digital documents.", btnText: "ઓફિશિયલ વેબસાઇટ ખોલો ↗", enBtnText: "Open Official Website ↗", action: "alertMsg()" },
+  { id: "digitalguj", title: "ડિજિટલ ગુજરાત સેવાઓ", enTitle: "Digital Gujarat Services", category: "Forms", tag: "OFFICIAL", date: "GUJARAT", icon: '<i class="fa-solid fa-landmark"></i>', desc: "ગુજરાત સરકારની વિવિધ નાગરિક સેવાઓ અને ઉપલબ્ધ ઓનલાઇન અરજીઓની માહિતી.", enDesc: "Information on various citizen services and online applications by Gujarat Govt.", btnText: "ઓફિશિયલ વેબસાઇટ ખોલો ↗", enBtnText: "Open Official Website ↗", action: "alertMsg()" }
+];
+
+/* Scroll Animations */
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('in-view'); } });
+}, { threshold: 0.1 });
+
+function observeElements() {
+  document.querySelectorAll('.animate-up:not(.in-view)').forEach(el => observer.observe(el));
+}
+
+function navClick(element, action) {
+  document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active'));
+  if(element && !element.classList.contains('nav-btn')){ element.classList.add('active'); }
+  
+  if (action === 'home' || action === 'other') {
+    document.getElementById('homeSection').style.display = 'block';
+    document.getElementById('servicesSection').style.display = 'none';
+    document.getElementById('updatesSection').style.display = 'none';
+    if(action === 'home') window.scrollTo(0, 0);
+  } else if (action === 'services') {
+    document.getElementById('homeSection').style.display = 'none';
+    document.getElementById('servicesSection').style.display = 'block';
+    document.getElementById('updatesSection').style.display = 'none';
+    
+    renderServices();
+    window.scrollTo(0, 0);
+  } else if (action === 'updates') {
+    document.getElementById('homeSection').style.display = 'none';
+    document.getElementById('servicesSection').style.display = 'none';
+    document.getElementById('updatesSection').style.display = 'block';
+    
+    activeUpdateFilter = 'All';
+    const btns = document.querySelectorAll(".update-filter-btn");
+    btns.forEach(btn => btn.classList.remove("active"));
+    if(btns.length > 0) btns[0].classList.add("active");
+    
+    renderUpdates();
+    window.scrollTo(0, 0);
+  }
+  
+  if(window.innerWidth <= 1050) { closeMenu(); }
+  setTimeout(observeElements, 100);
+}
+
+function setLanguage(lang) {
+  currentLanguage = lang;
+  document.documentElement.lang = lang;
+
+  document.getElementById("langEnglish").classList.toggle("active", lang === "en");
+  document.getElementById("langGujarati").classList.toggle("active", lang === "gu");
+
+  document.querySelectorAll("[data-en][data-gu]").forEach(el => {
+    if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') return; 
+    el.innerHTML = lang === "en" ? el.dataset.en : el.dataset.gu;
+  });
+
+  document.querySelectorAll("[data-en-placeholder][data-gu-placeholder]").forEach(el => {
+    el.placeholder = lang === "en" ? el.dataset.enPlaceholder : el.dataset.guPlaceholder;
+  });
+
+  updateServiceSelect();
+  renderServices();
+  renderUpdates();
+  try { localStorage.setItem("dcc-language", lang); } catch(e) {}
+}
+
+function getText(gu, en) { return currentLanguage === "en" ? en : gu; }
+
+function toggleTheme() {
+  isDarkMode = !isDarkMode;
+  const body = document.body;
+  const themeBtn = document.getElementById('themeBtn');
+  
+  if(isDarkMode) {
+    body.classList.add('dark-theme');
+    themeBtn.textContent = '☀️';
+    localStorage.setItem("dcc-theme", "dark");
+  } else {
+    body.classList.remove('dark-theme');
+    themeBtn.textContent = '🌙';
+    localStorage.setItem("dcc-theme", "light");
+  }
+}
+
+function updateServiceSelect() {
+  const select = document.getElementById("serviceChoice");
+  const previous = select.value;
+  select.innerHTML = "";
+  const first = document.createElement("option");
+  first.value = "";
+  first.textContent = getText("સેવા પસંદ કરો", "Select a service");
+  select.appendChild(first);
+
+  services.forEach(service => {
+    const option = document.createElement("option");
+    option.value = service.name;
+    option.textContent = currentLanguage === "en" ? service.en : service.name;
+    select.appendChild(option);
+  });
+  if (services.some(s => s.name === previous)) select.value = previous;
+}
+
+function renderGrid(containerId, dataArray, searchString = "") {
+  const grid = document.getElementById(containerId);
+  grid.innerHTML = "";
+  
+  const filtered = dataArray.filter(item => {
+    const s = searchString.toLowerCase();
+    return item.name.toLowerCase().includes(s) || 
+           item.en.toLowerCase().includes(s) || 
+           item.desc.toLowerCase().includes(s) || 
+           item.enDesc.toLowerCase().includes(s);
+  });
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="empty">${getText("કોઈ માહિતી મળી નથી.", "No information found.")}</div>`;
+    return;
+  }
+
+  filtered.forEach(item => {
+    const card = document.createElement("article");
+    card.className = "universal-card animate-up"; 
+    card.setAttribute('onclick', `openDynamicModal('service', '${item.name}')`);
+    card.innerHTML = `
+      <div class="universal-icon">${item.icon}</div>
+      <h3>${currentLanguage === "en" ? item.en : item.name}</h3>
+      <p>${currentLanguage === "en" ? item.enDesc : item.desc}</p>
+      <span class="universal-link">${getText("View Details <i class='fa-solid fa-arrow-right'></i>", "View Details <i class='fa-solid fa-arrow-right'></i>")}</span>
+    `;
+    grid.appendChild(card);
+  });
+  observeElements();
+}
+
+function renderServices() {
+  const searchInput = document.getElementById("serviceSearch");
+  const search = searchInput ? searchInput.value : "";
+  renderGrid("servicesGrid", services, search);
+}
+
+function setUpdateFilter(category, btn) {
+  activeUpdateFilter = category;
+  document.querySelectorAll(".update-filter-btn").forEach(item => item.classList.remove("active"));
+  btn.classList.add("active");
+  renderUpdates();
+}
+
+function renderUpdates() {
+  const grid = document.getElementById("updatesGrid");
+  grid.innerHTML = "";
+  
+  const filteredUpdates = updatesData.filter(u => activeUpdateFilter === "All" || u.category === activeUpdateFilter);
+
+  if(filteredUpdates.length === 0){
+      grid.innerHTML = `<div class="empty" style="grid-column:1/-1;">${getText("આ શ્રેણીમાં કોઈ માહિતી નથી.", "No updates found in this category.")}</div>`;
+      return;
+  }
+
+  filteredUpdates.forEach(u => {
+    const titleText = currentLanguage === "en" ? u.enTitle : u.title;
+    const descText = currentLanguage === "en" ? u.enDesc : u.desc;
+    const btnLabel = currentLanguage === "en" ? u.enBtnText : u.btnText;
+    
+    grid.innerHTML += `
+      <article class="universal-card animate-up" onclick="${u.action}">
+        <div class="card-header-tags">
+          <span class="update-tag">${u.tag}</span>
+          <span class="update-date">${u.date}</span>
+        </div>
+        <div class="universal-icon">${u.icon}</div>
+        <h3>${titleText}</h3>
+        <p>${descText}</p>
+        <span class="universal-link">${btnLabel}</span>
+      </article>
+    `;
+  });
+  observeElements();
+}
+
+function alertMsg() {
+  alert(getText("ડોક્યુમેન્ટ્સ જમા થયા પછી માહિતી અહીં જોવા મળશે.", "Information will be available here once documents are provided."));
+}
+
+/* ----- UNIVERSAL DYNAMIC MODAL LOGIC ----- */
+function openDynamicModal(type, serviceName = null) {
+  if (type === 'service') {
+    if (serviceName === "Admission") { type = 'admission'; }
+    else if (serviceName === "Scholarship") { type = 'scholarship'; }
+    else if (serviceName === "સરકારી ભરતી") { type = 'jobs'; }
+    else if (serviceName === "કુંવરબાઈનું મામેરું") { type = 'kuvarbai'; }
+  }
+
+  const modal = document.getElementById("dynamicModal");
+  const title = document.getElementById("dynamicModalTitle");
+  const tabs = document.getElementById("dynamicModalTabs");
+  const banner = document.getElementById("dynamicModalBanner");
+  const jobs = document.getElementById("dynamicModalJobs");
+  const docs = document.getElementById("dynamicModalDocs");
+  const optionalDocs = document.getElementById("dynamicModalOptionalDocs");
+  const anyOneText = document.getElementById("anyOneText");
+  const btn = document.getElementById("dynamicModalBtn");
+  
+  tabs.style.display = "none";
+  banner.style.display = "none";
+  jobs.style.display = "none";
+  docs.style.display = "none";
+  optionalDocs.style.display = "none";
+  anyOneText.style.display = "none";
+  btn.style.display = "flex";
+  
+  if (type === 'service' && serviceName) {
+    const service = services.find(s => s.name === serviceName);
+    if (!service) return;
+    selectedService = serviceName;
+    
+    title.innerHTML = service.icon + " <span style='color:var(--nav-active)'>" + (currentLanguage === "en" ? service.en : service.name) + "</span>";
+    
+    if (serviceName === "PAN કાર્ડ") {
+      tabs.style.display = "flex";
+      tabs.innerHTML = `
+        <button class="modal-tab-btn active" onclick="changePanTab('new', this)">1. New PAN</button>
+        <button class="modal-tab-btn" onclick="changePanTab('correction', this)">2. Correction</button>
+      `;
+      changePanTab('new', tabs.querySelector('.modal-tab-btn'));
+    } 
+    else if (serviceName === "આધાર કાર્ડ") {
+      tabs.style.display = "flex";
+      tabs.innerHTML = `
+        <button class="modal-tab-btn active" onclick="changeAadhaarTab('address', this)">1. Address</button>
+        <button class="modal-tab-btn" onclick="changeAadhaarTab('download', this)">2. Download</button>
+      `;
+      changeAadhaarTab('address', tabs.querySelector('.modal-tab-btn'));
+    }
+    else if (serviceName === "ચૂંટણી કાર્ડ") {
+      tabs.style.display = "flex";
+      tabs.innerHTML = `
+        <button class="modal-tab-btn active" onclick="changeVoterTab('new', this)"><i class="fa-solid fa-id-card"></i> નવું ચૂંટણી કાર્ડ</button>
+        <button class="modal-tab-btn" onclick="changeVoterTab('correction', this)"><i class="fa-solid fa-pen"></i> કાર્ડમાં સુધારો</button>
+      `;
+      changeVoterTab('new', tabs.querySelector('.modal-tab-btn'));
+    }
+    else if (serviceName === "e-Shram કાર્ડ") {
+      title.innerHTML = "👷 <span style='color:var(--nav-active)'>E-Shram Card</span>";
+      docs.style.display = "flex";
+      const d = [
+        {text: "આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},
+        {text: "બેંક પાસબુક (Bank Passbook)", icon: "fa-building-columns"},
+        {text: "આધાર સાથે લિંક મોબાઇલ નંબર", icon: "fa-mobile-screen"}
+      ];
+      docs.innerHTML = buildDocsHtml(d);
+      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+    }
+    else if (serviceName === "Ayushman Card") {
+      title.innerHTML = "🏥 <span style='color:var(--nav-active)'>Ayushman Card</span>";
+      docs.style.display = "flex";
+      const d = [
+        {text: "આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},
+        {text: "રેશન કાર્ડ (Ration Card)", icon: "fa-book"},
+        {text: "પાસપોર્ટ સાઇઝ ફોટો", icon: "fa-camera"}
+      ];
+      docs.innerHTML = buildDocsHtml(d);
+      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+    }
+    else if (serviceName === "આવકનો દાખલો") {
+      title.innerHTML = "📄 <span style='color:var(--nav-active)'>આવકનો દાખલો</span>";
+      banner.style.display = "block";
+      docs.style.display = "flex";
+      banner.innerHTML = `<h3>Income Certificate</h3><p>આવકનો દાખલો કાઢવા માટે જરૂરી પુરાવા</p>`;
+      const d = [
+        {text: "આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},
+        {text: "રેશન કાર્ડ (Ration Card)", icon: "fa-book"},
+        {text: "લાઇટ બિલ (Light Bill)", icon: "fa-lightbulb"}
+      ];
+      docs.innerHTML = buildDocsHtml(d);
+      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+    }
+    else if (serviceName === "નોન-ક્રિમી લેયર") {
+      title.innerHTML = "📜 <span style='color:var(--nav-active)'>Non-Creamy Layer</span>";
+      banner.style.display = "block";
+      docs.style.display = "flex";
+      banner.innerHTML = `<h3>નોન-ક્રીમીલેયર સર્ટિફિકેટ</h3><p>જરૂરી ડોક્યુમેન્ટ્સનું લિસ્ટ</p>`;
+      const d = [
+        {text: "વિદ્યાર્થી અને વાલીનું આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},
+        {text: "વિદ્યાર્થી અને વાલીનું LC (શાળા છોડ્યાનું પ્રમાણપત્ર)", icon: "fa-school"},
+        {text: "પિતાનો આવકનો દાખલો", icon: "fa-file-invoice-dollar"},
+        {text: "વિદ્યાર્થીની છેલ્લી માર્કશીટ", icon: "fa-graduation-cap"},
+        {text: "વાલીનું સોગંદનામું (Affidavit)", icon: "fa-scale-balanced"},
+        {text: "રેશનકાર્ડ", icon: "fa-book"},
+        {text: "વિદ્યાર્થીનો જાતિનો દાખલો", icon: "fa-scroll"}
+      ];
+      docs.innerHTML = buildDocsHtml(d);
+      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+    }
+    else if (serviceName === "જાતિનો દાખલો") {
+      title.innerHTML = "👫 <span style='color:var(--nav-active)'>જાતિનો દાખલો</span>";
+      banner.style.display = "block";
+      docs.style.display = "flex";
+      banner.innerHTML = `<h3>Caste Certificate</h3><p>જરૂરી ડોક્યુમેન્ટ્સનું લિસ્ટ</p>`;
+      const d = [
+        {text: "વિદ્યાર્થી અને વાલીનું આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},
+        {text: "વિદ્યાર્થીનું LC (શાળા છોડ્યાનું પ્રમાણપત્ર)", icon: "fa-school"},
+        {text: "પિતા/દાદા/કાકા/ફઈનું LC", icon: "fa-file-lines"},
+        {text: "રેશનકાર્ડ", icon: "fa-book"}
+      ];
+      docs.innerHTML = buildDocsHtml(d);
+      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+    }
+    else if (serviceName === "EWS પ્રમાણપત્ર") {
+      title.innerHTML = "🏛️ <span style='color:var(--nav-active)'>EWS Certificate</span>";
+      banner.style.display = "block";
+      docs.style.display = "flex";
+      banner.innerHTML = `<h3>આર્થિક નબળા વર્ગનું પ્રમાણપત્ર</h3><p>જરૂરી ડોક્યુમેન્ટ્સનું લિસ્ટ</p>`;
+      const d = [
+        {text: "વિદ્યાર્થી અને વાલીનું આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},
+        {text: "વિદ્યાર્થી અને વાલીનું LC (શાળા છોડ્યાનું પ્રમાણપત્ર)", icon: "fa-school"},
+        {text: "પિતાનો આવકનો દાખલો", icon: "fa-file-invoice-dollar"},
+        {text: "વિદ્યાર્થીની છેલ્લી માર્કશીટ", icon: "fa-graduation-cap"},
+        {text: "વાલીનું સોગંદનામું (Affidavit)", icon: "fa-scale-balanced"},
+        {text: "રેશનકાર્ડ", icon: "fa-book"}
+      ];
+      docs.innerHTML = buildDocsHtml(d);
+      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+    }
+    else if (serviceName === "પોલીસ ક્લિયરન્સ") {
+      title.innerHTML = "👮 <span style='color:var(--nav-active)'>પોલીસનો દાખલો</span>";
+      banner.style.display = "block";
+      docs.style.display = "flex";
+      banner.innerHTML = `<h3>Police Clearance Certificate</h3><p>PCC કાઢવા માટે જરૂરી ડોક્યુમેન્ટ્સ</p>`;
+      const d = [
+        {text: "આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},
+        {text: "પાસપોર્ટ સાઇઝ ફોટો (Passport Photo)", icon: "fa-camera"},
+        {text: "મોબાઇલ નંબર (Mobile No.)", icon: "fa-mobile-screen"}
+      ];
+      docs.innerHTML = buildDocsHtml(d);
+      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+    }
+    else if (serviceName === "રેશન કાર્ડ") {
+      tabs.style.display = "flex";
+      tabs.innerHTML = `
+        <button class="modal-tab-btn active" onclick="changeRationTab('add', this)"><i class="fa-solid fa-plus"></i> નામ ચડાવવા</button>
+        <button class="modal-tab-btn" onclick="changeRationTab('remove', this)"><i class="fa-solid fa-minus"></i> નામ કમી કરવા</button>
+      `;
+      changeRationTab('add', tabs.querySelector('.modal-tab-btn'));
+    }
+    else if (serviceName === "Indian Passport") {
+      title.innerHTML = "🛂 <span style='color:var(--nav-active)'>Indian Passport</span>";
+      banner.style.display = "block";
+      docs.style.display = "flex";
+      banner.innerHTML = `<h3>નવો પાસપોર્ટ એપ્લિકેશન</h3><p>ઇન્ડિયન પાસપોર્ટ કઢાવવા માટે જરૂરી પુરાવા</p>`;
+      const d = [
+        {text: "આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},
+        {text: "પાન કાર્ડ (PAN Card)", icon: "fa-id-card-clip"},
+        {text: "LC (શાળા છોડ્યાનું પ્રમાણપત્ર)", icon: "fa-school"},
+        {text: "જન્મ તારીખનો દાખલો (Birth Certificate)", icon: "fa-file-lines"},
+        {text: "મોબાઇલ નંબર (Mobile No.)", icon: "fa-mobile-screen"},
+        {text: "ઈમેલ આઈડી (Email ID)", icon: "fa-envelope-circle-check"}
+      ];
+      docs.innerHTML = buildDocsHtml(d);
+      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+    }
+    else if (serviceName === "વાહન વીમો") {
+      title.innerHTML = "🚙 <span style='color:var(--nav-active)'>Vehicle Insurance</span>";
+      docs.style.display = "flex";
+      const d = [
+        {text: "RC બુક (Registration Certificate)", icon: "fa-book-open"},
+        {text: "વાહન માલિકનો આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-user-tag"},
+        {text: "જૂની પોલિસી (જો હોય તો)", icon: "fa-file-shield"}
+      ];
+      docs.innerHTML = buildDocsHtml(d);
+      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+    }
+    else if (serviceName === "ઉદ્યોગ આધાર / MSME") {
+      title.innerHTML = "🏭 <span style='color:var(--nav-active)'>MSME Registration</span>";
+      docs.style.display = "flex";
+      const d = [
+        {text: "આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-address-card"},
+        {text: "PAN કાર્ડ", icon: "fa-credit-card"},
+        {text: "મોબાઇલ નંબર", icon: "fa-mobile"},
+        {text: "ઈમેઇલ ID", icon: "fa-envelope"},
+        {text: "બેંકની વિગતો", icon: "fa-building-columns"}
+      ];
+      docs.innerHTML = buildDocsHtml(d);
+      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+    }
+    else if (serviceName === "રિઝ્યુમે / CV") {
+      title.innerHTML = "📝 <span style='color:var(--nav-active)'>Resume / CV</span>";
+      docs.style.display = "flex";
+      const d = [
+        {text: "શૈક્ષણિક વિગતો (Education Details)", icon: "fa-graduation-cap"},
+        {text: "કામનો અનુભવ (જો હોય તો)", icon: "fa-briefcase"},
+        {text: "મોબાઇલ નંબર", icon: "fa-phone"},
+        {text: "ઈમેઇલ ID", icon: "fa-envelope"},
+        {text: "પાસપોર્ટ સાઇઝ ફોટો (જો જરૂરી હોય)", icon: "fa-image"}
+      ];
+      docs.innerHTML = buildDocsHtml(d);
+      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+    }
+    else if (serviceName === "૭/૧૨ અને ૮-અ ઉતારા") {
+      title.innerHTML = "🗺️ <span style='color:var(--nav-active)'>Land Records</span>";
+      docs.style.display = "flex";
+      const d = [
+        {text: "જિલ્લો (District)", icon: "fa-map"},
+        {text: "તાલુકો (Taluka)", icon: "fa-location-dot"},
+        {text: "ગામ (Village)", icon: "fa-house"},
+        {text: "સર્વે નંબર અથવા ખાતા નંબર", icon: "fa-hashtag"}
+      ];
+      docs.innerHTML = buildDocsHtml(d);
+      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+    }
+    else if (serviceName === "વહાલી દીકરી યોજના") {
+      title.innerHTML = "👧 <span style='color:var(--nav-active)'>Vahali Dikri Scheme</span>";
+      docs.style.display = "flex";
+      const d = [
+        {text: "દીકરીનો જન્મ દાખલો", icon: "fa-baby"},
+        {text: "માતા-પિતાના આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-user-group"},
+        {text: "આવકનો દાખલો", icon: "fa-file-invoice-dollar"},
+        {text: "રેશન કાર્ડ", icon: "fa-book"},
+        {text: "બેંક પાસબુક", icon: "fa-building-columns"},
+        {text: "સત્તાવાર નિયમ મુજબના અન્ય પુરાવા", icon: "fa-file-circle-plus"}
+      ];
+      docs.innerHTML = buildDocsHtml(d);
+      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+    }
+    else if (serviceName === "PF ની સેવાઓ") {
+      title.innerHTML = "🏦 <span style='color:var(--nav-active)'>PF Services</span>";
+      docs.style.display = "flex";
+      const d = [
+        {text: "UAN નંબર (UAN Number)", icon: "fa-hashtag"},
+        {text: "આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},
+        {text: "PAN કાર્ડ", icon: "fa-credit-card"},
+        {text: "બેંક પાસબુક (Bank Passbook)", icon: "fa-book-open"}
+      ];
+      docs.innerHTML = buildDocsHtml(d);
+      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+    }
+    else if (serviceName === "ABHA હેલ્થ કાર્ડ") {
+      title.innerHTML = "🩺 <span style='color:var(--nav-active)'>ABHA Health Card</span>";
+      banner.style.display = "block";
+      docs.style.display = "flex";
+      banner.innerHTML = `<h3>Ayushman Bharat Health Account</h3><p>ડિજિટલ હેલ્થ આઇડી કાર્ડ (Health ID)</p>`;
+      const d = [
+        {text: "આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},
+        {text: "આધાર સાથે લિંક મોબાઇલ નંબર", icon: "fa-mobile-screen"}
+      ];
+      docs.innerHTML = buildDocsHtml(d);
+      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+    }
+    else {
+      docs.style.display = "flex";
+      btn.innerHTML = getText("Request This Service", "Request This Service");
+      
+      const docsArray = currentLanguage === "en" ? service.enDocs : service.docs;
+      const cleanedDocs = docsArray.map(doc => {
+        let safeDoc = doc;
+        if(safeDoc.includes("આધાર કાર્ડ")) safeDoc = "આધાર કાર્ડ ([Aadhaar Redacted])";
+        if(safeDoc.includes("Aadhaar Card")) safeDoc = "Aadhaar Card ([Aadhaar Redacted])";
+        return safeDoc;
+      });
+      docs.innerHTML = buildDocsHtml(cleanedDocs);
+    }
+    
+    // Default onClick triggers WhatsApp message for specific service
+    btn.onclick = () => { 
+      sendWhatsAppInquiry(currentLanguage === "en" ? service.en : service.name);
+    };
+  }
+  else if (type === 'jobs') {
+    title.innerHTML = '<i class="fa-solid fa-briefcase" style="color:var(--nav-active)"></i> ' + getText("Latest Government Jobs", "Latest Government Jobs");
+    jobs.style.display = "grid";
+    jobs.classList.add("active");
+    btn.style.display = "none"; 
+    
+    jobs.innerHTML = `
+      <div class="job-box" onclick="sendWhatsAppInquiry('India Post Office GDS Job')">
+        <h4>India Post Office GDS</h4>
+        <span>(23757 Posts)</span>
+      </div>
+      <div class="job-box" onclick="sendWhatsAppInquiry('Exams Updates')">
+        <h4>Daily 5 Minutes Meditation</h4>
+        <span>& Crack Exams</span>
+      </div>
+      <div class="job-box" onclick="sendWhatsAppInquiry('SBI Clerk Online Form')">
+        <h4>SBI Clerk Online Form</h4>
+        <span>(9124 Posts)</span>
+      </div>
+      <div class="job-box" onclick="sendWhatsAppInquiry('Rajasthan Safai Karmchari Job')">
+        <h4>Rajasthan Safai Karmchari</h4>
+        <span>(24,752 Posts)</span>
+      </div>
+    `;
+  } 
+  else if (type === 'admission') {
+    title.innerHTML = '<i class="fa-solid fa-graduation-cap" style="color:var(--nav-active)"></i> ' + getText("Admission Portal", "Admission Portal");
+    tabs.style.display = "flex";
+    banner.style.display = "block";
+    docs.style.display = "flex";
+    
+    tabs.innerHTML = `
+      <button class="modal-tab-btn active" onclick="changeAdmissionTab('iti', this)"><i class="fa-solid fa-gear"></i> ITI</button>
+      <button class="modal-tab-btn" onclick="changeAdmissionTab('diploma', this)"><i class="fa-solid fa-scroll"></i> Diploma</button>
+      <button class="modal-tab-btn" onclick="changeAdmissionTab('college', this)"><i class="fa-solid fa-building-columns"></i> College</button>
+    `;
+    changeAdmissionTab('iti', tabs.querySelector('.modal-tab-btn'));
+  }
+  else if (type === 'scholarship') {
+    title.innerHTML = '<i class="fa-solid fa-sack-dollar" style="color:var(--nav-active)"></i> ' + getText("Scholarship Portal", "Scholarship Portal");
+    tabs.style.display = "flex";
+    banner.style.display = "block";
+    docs.style.display = "flex";
+    
+    tabs.innerHTML = `
+      <button class="modal-tab-btn active" onclick="changeScholarshipTab('digitalgujarat', this)"><i class="fa-solid fa-laptop"></i> Digital Gujarat</button>
+      <button class="modal-tab-btn" onclick="changeScholarshipTab('mysy', this)"><i class="fa-solid fa-graduation-cap"></i> MYSY</button>
+      <button class="modal-tab-btn" onclick="changeScholarshipTab('nsp', this)"><i class="fa-solid fa-building-columns"></i> NSP</button>
+    `;
+    changeScholarshipTab('digitalgujarat', tabs.querySelector('.modal-tab-btn'));
+  }
+  else if (type === 'kuvarbai') {
+    title.innerHTML = '<i class="fa-solid fa-ring" style="color:var(--nav-active)"></i> ' + getText("કુંવરબાઈનું મામેરું", "Kuvarbai Nu Mameru");
+    banner.style.display = "block";
+    docs.style.display = "flex";
+    banner.innerHTML = `<h3>લગ્ન સહાય યોજના</h3><p>ગુજરાત સરકાર દ્વારા આર્થિક સહાય</p>`;
+    
+    const k_docs = ["કન્યા અને યુવકનું આધાર કાર્ડ ([Aadhaar Redacted])","કન્યાના પિતાનું આધાર કાર્ડ ([Aadhaar Redacted])","કન્યાના પિતાનો આવકનો દાખલો","કન્યાની બેંક પાસબુક (Bank Passbook)","કન્યાનો પાસપોર્ટ સાઇઝ ફોટો","મેરેજ સર્ટિફિકેટ (લગ્ન પ્રમાણપત્ર)","રેશનકાર્ડ (Ration Card)"];
+    docs.innerHTML = buildDocsHtml(k_docs);
+    
+    btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+    btn.onclick = () => { 
+      sendWhatsAppInquiry(getText("કુંવરબાઈનું મામેરું", "Kuvarbai Nu Mameru"));
+    };
+  }
+
+  modal.classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+
+function closeDynamicModal() {
+  document.getElementById("dynamicModal").classList.remove("show");
+  document.body.style.overflow = "";
+}
+
+function changeRationTab(tab, btn) {
+  const tabs = document.querySelectorAll('#dynamicModalTabs .modal-tab-btn');
+  tabs.forEach(el => el.classList.remove('active'));
+  btn.classList.add('active');
+  
+  const banner = document.getElementById("dynamicModalBanner");
+  const docs = document.getElementById("dynamicModalDocs");
+  const applyBtn = document.getElementById("dynamicModalBtn");
+  
+  banner.style.display = "block";
+  docs.style.display = "flex";
+  
+  if(tab === 'add') {
+    banner.innerHTML = `<h3>રેશનકાર્ડમાં નામ ઉમેરો</h3><p>નવા સભ્યનું નામ ચડાવવા માટે પુરાવા</p>`;
+    const d = [
+      {text: "મુખ્ય વ્યક્તિ તેમજ અરજદારનું આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},
+      {text: "અરજદારનો પાસપોર્ટ સાઇઝ ફોટો", icon: "fa-camera"},
+      {text: "બાળકો માટે: આધાર કાર્ડ અને જન્મનું પ્રમાણપત્ર", icon: "fa-baby"},
+      {text: "લગ્ન બાદ: નામ કમીનો દાખલો અને લગ્ન કંકોત્રી/મેરેજ સર્ટિફિકેટ", icon: "fa-ring"}
+    ];
+    docs.innerHTML = buildDocsHtml(d);
+  } 
+  else {
+    banner.innerHTML = `<h3>રેશનકાર્ડમાંથી નામ કમી</h3><p>નામ કમી કરવા માટે જરૂરી પુરાવા</p>`;
+    const d = [
+      {text: "ઓરિજિનલ રેશન કાર્ડ", icon: "fa-book"},
+      {text: "જેનું નામ કમી કરવાનું છે તેનું આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},
+      {text: "લગ્ન થયા હોય તો: મેરેજ સર્ટિફિકેટ", icon: "fa-ring"},
+      {text: "મૃત્યુના કિસ્સામાં: મરણનો દાખલો", icon: "fa-file-medical"}
+    ];
+    docs.innerHTML = buildDocsHtml(d);
+  }
+  
+  applyBtn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+  applyBtn.onclick = () => { sendWhatsAppInquiry(tab === 'add' ? "રેશનકાર્ડમાં નામ ઉમેરવા" : "રેશનકાર્ડમાંથી નામ કમી કરવા"); };
+}
+
+function changePanTab(tab, btn) {
+  const tabs = document.querySelectorAll('#dynamicModalTabs .modal-tab-btn');
+  tabs.forEach(el => el.classList.remove('active'));
+  btn.classList.add('active');
+  
+  const docs = document.getElementById("dynamicModalDocs");
+  const optionalDocs = document.getElementById("dynamicModalOptionalDocs");
+  const anyOneText = document.getElementById("anyOneText");
+  const applyBtn = document.getElementById("dynamicModalBtn");
+  
+  docs.style.display = "flex";
+  applyBtn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+  
+  if(tab === 'new') {
+    anyOneText.style.display = "block";
+    optionalDocs.style.display = "flex";
+    const d = [
+      {text: "આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},
+      {text: "પાસપોર્ટ સાઇઝ ફોટો (Passport Photo)", icon: "fa-camera"},
+      {text: "સહી (Signature)", icon: "fa-pen-nib"},
+      {text: "મોબાઇલ નંબર (Mobile No)", icon: "fa-mobile-screen"},
+      {text: "ઇમેલ આઇડી (Email ID)", icon: "fa-envelope"}
+    ];
+    docs.innerHTML = buildDocsHtml(d);
+    
+    const od = ["ચૂંટણી કાર્ડ (Voter ID)","ઇ-શ્રમ કાર્ડ (E-Shram Card)","જન્મનો દાખલો (Birth Certificate)"];
+    optionalDocs.innerHTML = buildDocsHtml(od, 'fa-caret-right');
+  } 
+  else {
+    anyOneText.style.display = "none";
+    optionalDocs.style.display = "none";
+    const d = [
+      {text: "આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},
+      {text: "જૂનું પાન કાર્ડ (Old PAN Card)", icon: "fa-id-card-clip"},
+      {text: "પાસપોર્ટ સાઇઝ ફોટો (Passport Photo)", icon: "fa-camera"},
+      {text: "સહી (Signature)", icon: "fa-pen-nib"}
+    ];
+    docs.innerHTML = buildDocsHtml(d);
+  }
+  applyBtn.onclick = () => { sendWhatsAppInquiry(tab === 'new' ? "New PAN Card" : "PAN Card Correction"); };
+}
+
+function changeAadhaarTab(tab, btn) {
+  const tabs = document.querySelectorAll('#dynamicModalTabs .modal-tab-btn');
+  tabs.forEach(el => el.classList.remove('active'));
+  btn.classList.add('active');
+  
+  const docs = document.getElementById("dynamicModalDocs");
+  const optionalDocs = document.getElementById("dynamicModalOptionalDocs");
+  const anyOneText = document.getElementById("anyOneText");
+  const applyBtn = document.getElementById("dynamicModalBtn");
+  
+  docs.style.display = "flex";
+  applyBtn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+  
+  if(tab === 'address') {
+    anyOneText.style.display = "block";
+    anyOneText.innerHTML = "નોંધ: સરનામામાં સુધારો કરવા માટે આધાર સાથે મોબાઇલ નંબર લીંક હોવો જરૂરી છે.";
+    optionalDocs.style.display = "none";
+    const d = [
+      {text: "લાઇટ બિલ (Light Bill)", icon: "fa-lightbulb"},
+      {text: "રેશન કાર્ડ (Ration Card)", icon: "fa-book"},
+      {text: "પરિવારના કોઈ પણ સભ્યનું આધાર કાર્ડ", icon: "fa-users"}
+    ];
+    docs.innerHTML = buildDocsHtml(d);
+  } 
+  else {
+    anyOneText.style.display = "none";
+    optionalDocs.style.display = "none";
+    const d = [
+      {text: "જૂનું આધાર કાર્ડ અથવા આધાર નંબર", icon: "fa-id-card"},
+      {text: "આધાર સાથે લિંક મોબાઇલ નંબર", icon: "fa-mobile-screen"}
+    ];
+    docs.innerHTML = buildDocsHtml(d);
+  }
+  applyBtn.onclick = () => { sendWhatsAppInquiry(tab === 'address' ? "Aadhaar Address Change" : "Aadhaar Download"); };
+}
+
+function changeVoterTab(tab, btn) {
+  const tabs = document.querySelectorAll('#dynamicModalTabs .modal-tab-btn');
+  tabs.forEach(el => el.classList.remove('active'));
+  btn.classList.add('active');
+  
+  const banner = document.getElementById("dynamicModalBanner");
+  const docs = document.getElementById("dynamicModalDocs");
+  const optionalDocs = document.getElementById("dynamicModalOptionalDocs");
+  const anyOneText = document.getElementById("anyOneText");
+  const applyBtn = document.getElementById("dynamicModalBtn");
+  
+  banner.style.display = "block";
+  docs.style.display = "flex";
+  anyOneText.style.display = "none";
+  optionalDocs.style.display = "none";
+  
+  if(tab === 'new') {
+    banner.innerHTML = `<h3>નવું ચૂંટણી કાર્ડ (New Voter ID)</h3><p>નવું ચૂંટણી કાર્ડ કઢાવવા માટે જરૂરી પુરાવા</p>`;
+    const d = [
+      {text: "આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},
+      {text: "પાસપોર્ટ સાઇઝ ફોટો (Passport Photo)", icon: "fa-camera"},
+      {text: "જન્મ તારીખનો દાખલો (Birth Certificate)", icon: "fa-file-lines"},
+      {text: "લાઇટ બિલ (Light Bill)", icon: "fa-lightbulb"},
+      {text: "LC (શાળા છોડ્યાનું પ્રમાણપત્ર)", icon: "fa-school"},
+      {text: "મોબાઇલ નંબર (Mobile No.)", icon: "fa-mobile-screen"}
+    ];
+    docs.innerHTML = buildDocsHtml(d);
+  } 
+  else {
+    banner.innerHTML = `<h3>ચૂંટણી કાર્ડમાં સુધારો</h3><p>ચૂંટણી કાર્ડમાં ભૂલ સુધારવા માટે જરૂરી ડોક્યુમેન્ટ્સ</p>`;
+    const d = [
+      {text: "આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},
+      {text: "જૂનું ચૂંટણી કાર્ડ (Old Voter ID)", icon: "fa-check-to-slot"},
+      {text: "પાસપોર્ટ સાઇઝ ફોટો", icon: "fa-camera"},
+      {text: "જન્મ તારીખનો દાખલો", icon: "fa-file-lines"},
+      {text: "લાઇટ બિલ (Light Bill)", icon: "fa-lightbulb"},
+      {text: "LC (શાળા છોડ્યાનું પ્રમાણપત્ર)", icon: "fa-school"},
+      {text: "મોબાઇલ નંબર", icon: "fa-mobile-screen"}
+    ];
+    docs.innerHTML = buildDocsHtml(d);
+  }
+  
+  applyBtn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+  applyBtn.onclick = () => { sendWhatsAppInquiry(tab === 'new' ? "New Voter ID" : "Voter ID Correction"); };
+}
+
+function changeAdmissionTab(tab, btn) {
+  document.querySelectorAll('#dynamicModalTabs .modal-tab-btn').forEach(el => el.classList.remove('active'));
+  btn.classList.add('active');
+  
+  const banner = document.getElementById("dynamicModalBanner");
+  const docs = document.getElementById("dynamicModalDocs");
+  const applyBtn = document.getElementById("dynamicModalBtn");
+  
+  if(tab === 'iti') {
+    banner.innerHTML = `<h3>ITI Admission 2026</h3><p>10th Pass / 8th Pass Admission</p>`;
+    applyBtn.innerHTML = "Apply for ITI on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+    const d = ["૧૦મા / ૮મા ધોરણની માર્કશીટ (Marksheet)","શાળા છોડ્યાનું પ્રમાણપત્ર (School L.C.)","આધાર કાર્ડ ([Aadhaar Redacted])","બેંક પાસબુક (Bank Passbook)","જાતિનો દાખલો (જો લાગુ પડે)","પાસપોર્ટ સાઇઝ ફોટો અને સહી"];
+    docs.innerHTML = buildDocsHtml(d);
+  } 
+  else if(tab === 'diploma') {
+    banner.innerHTML = `<h3>Diploma Admission 2026</h3><p>Polytechnic Admission After 10th / 12th</p>`;
+    applyBtn.innerHTML = "Apply for Diploma on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+    const d = ["૧૦મા / ૧૨મા ધોરણની માર્કશીટ","શાળા છોડ્યાનું પ્રમાણપત્ર (School L.C.)","આધાર કાર્ડ ([Aadhaar Redacted])","આવકનો દાખલો (Income Certificate)","જાતિનો દાખલો / Non-Creamy Layer","પાસપોર્ટ સાઇઝ ફોટો અને સહી"];
+    docs.innerHTML = buildDocsHtml(d);
+  }
+  else if(tab === 'college') {
+    banner.innerHTML = `<h3>College Admission 2026</h3><p>BA / B.Com / B.Sc / BCA / BBA</p>`;
+    applyBtn.innerHTML = "Apply for College on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+    const d = ["૧૨મા ધોરણની માર્કશીટ (12th Marksheet)","શાળા છોડ્યાનું પ્રમાણપત્ર (School L.C.)","આધાર કાર્ડ ([Aadhaar Redacted])","બેંક પાસબુક (Bank Passbook)","જાતિ અને આવકનો દાખલો (જો લાગુ પડે)","પાસપોર્ટ સાઇઝ ફોટો અને સહી"];
+    docs.innerHTML = buildDocsHtml(d);
+  }
+  
+  applyBtn.onclick = () => { 
+    const tabName = tab === 'iti' ? "ITI Admission" : tab === 'diploma' ? "Diploma Admission" : "College Admission";
+    sendWhatsAppInquiry(tabName);
+  };
+}
+
+function changeScholarshipTab(tab, btn) {
+  document.querySelectorAll('#dynamicModalTabs .modal-tab-btn').forEach(el => el.classList.remove('active'));
+  btn.classList.add('active');
+  
+  const banner = document.getElementById("dynamicModalBanner");
+  const docs = document.getElementById("dynamicModalDocs");
+  const applyBtn = document.getElementById("dynamicModalBtn");
+  
+  if(tab === 'digitalgujarat') {
+    banner.innerHTML = `<h3>Digital Gujarat Scholarship</h3><p>Gujarat State Government Scholarship</p>`;
+    applyBtn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+    const d = ["ધો. 10, 11 અને 12 ની કોલેજ માર્કશીટ","પાસપોર્ટ સાઇઝ ફોટો","જાતિનો દાખલો (OBC, SC, ST માટે)","આવકનો દાખલો","આધાર કાર્ડ ([Aadhaar Redacted])","બેંક પાસબુક","ફી ભર્યાની પહોંચ","LC (શાળા છોડ્યાનું પ્રમાણપત્ર)","રેશનકાર્ડ"];
+    docs.innerHTML = buildDocsHtml(d, 'fa-file-invoice');
+  } 
+  else if(tab === 'mysy') {
+    banner.innerHTML = `<h3>MYSY Scholarship</h3><p>Mukhyamantri Yuva Swavalamban Yojana</p>`;
+    applyBtn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+    const d = ["ધો. 10, 11 અને 12 ની કોલેજ માર્કશીટ","પાસપોર્ટ સાઇઝ ફોટો","જાતિનો દાખલો (OBC, SC, ST માટે)","આવકનો દાખલો","આધાર કાર્ડ ([Aadhaar Redacted])","બેંક પાસબુક","ફી ભર્યાની પહોંચ","LC (શાળા છોડ્યાનું પ્રમાણપત્ર)","રેશનકાર્ડ"];
+    docs.innerHTML = buildDocsHtml(d, 'fa-file-invoice');
+  }
+  else if(tab === 'nsp') {
+    banner.innerHTML = `<h3>NSP Scholarship</h3><p>National Scholarship Portal (Central Govt)</p>`;
+    applyBtn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+    const d = ["ધો. 10, 11 અને 12 ની કોલેજ માર્કશીટ","પાસપોર્ટ સાઇઝ ફોટો","જાતિનો દાખલો (OBC, SC, ST માટે)","આવકનો દાખલો","આધાર કાર્ડ ([Aadhaar Redacted])","બેંક પાસબુક","ફી ભર્યાની પહોંચ","LC (શાળા છોડ્યાનું પ્રમાણપત્ર)","રેશનકાર્ડ"];
+    docs.innerHTML = buildDocsHtml(d, 'fa-file-invoice');
+  }
+  
+  applyBtn.onclick = () => { 
+    const tabName = tab === 'digitalgujarat' ? "Digital Gujarat Scholarship" : tab === 'mysy' ? "MYSY Scholarship" : "NSP Scholarship";
+    sendWhatsAppInquiry(tabName);
+  };
+}
+
+function sendRequest(event) {
+  event.preventDefault();
+  const name = document.getElementById("customerName").value.trim();
+  const mobile = document.getElementById("customerMobile").value.trim();
+  const serviceValue = document.getElementById("serviceChoice").value;
+  const message = document.getElementById("customerMessage").value.trim();
+
+  if (!name || !mobile || !serviceValue) {
+    alert(getText("કૃપા કરીને જરૂરી વિગતો ભરો.", "Please fill details."));
+    return;
+  }
+  
+  const messageText = `${getText("સેવા માટેની વિનંતી", "Service Request")}\n\n` +
+    `${getText("નામ: ", "Name: ")}${name}\n${getText("મોબાઇલ: ", "Mobile: ")}${mobile}\n` +
+    `${getText("સેવા: ", "Service: ")}${serviceValue}\n${getText("વધુ માહિતી: ", "Details: ")}${message || "-"}\n\n*DWARKADHISH COMPUTER CENTER*`;
+
+  window.open("https://wa.me/919537362607?text=" + encodeURIComponent(messageText), "_blank");
+}
+
+/* --- LOADER LOGIC (ULTRA FAST) --- */
+window.addEventListener('load', () => {
+  const loader = document.getElementById('welcomeLoader');
+  
+  // 0.6 Seconds delay for instant feel
+  setTimeout(() => {
+    loader.style.opacity = '0';
+    loader.style.visibility = 'hidden';
+    document.body.style.overflow = ''; 
+  }, 600); 
+});
+
+window.onload = () => {
+  const yearEl = document.getElementById("currentYear");
+  if(yearEl) yearEl.textContent = new Date().getFullYear();
+  
+  setLanguage(localStorage.getItem("dcc-language") || "gu");
+  
+  const savedTheme = localStorage.getItem("dcc-theme");
+  if(savedTheme === "dark") { toggleTheme(); }
+  
+  navClick(document.getElementById('navHome'), 'home');
+  observeElements();
+};
+</script>
+
+</body>
+</html>
