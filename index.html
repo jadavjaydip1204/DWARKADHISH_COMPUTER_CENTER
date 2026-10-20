@@ -28,7 +28,6 @@
   --gold: #f59e0b;
 }
 
-/* Dark Mode Variables */
 body.dark-theme {
   --bg-color: #0f172a;
   --card-bg: #1e293b;
@@ -50,16 +49,17 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
-/* Scroll Lock Class for Loader */
-body.no-scroll { overflow: hidden; }
-
 /* -------------------------------------------------------------
-   SUPER FAST WELCOME LOADER SCREEN
+   PURE CSS LOADER (NEVER GETS STUCK)
 ------------------------------------------------------------- */
 #welcomeLoader {
   position: fixed; inset: 0; background: radial-gradient(circle at center, #1e293b 0%, #0b1120 100%);
   z-index: 999999; display: flex; flex-direction: column; align-items: center; justify-content: center;
-  transition: opacity 0.4s ease-out, visibility 0.4s ease-out;
+  animation: hideLoader 0.5s ease-out 0.8s forwards;
+  pointer-events: none; /* Allows clicks even if fading */
+}
+@keyframes hideLoader {
+  to { opacity: 0; visibility: hidden; z-index: -10; display: none; }
 }
 .loader-content { text-align: center; animation: scaleUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
 .loader-logo-box {
@@ -80,14 +80,13 @@ button, input, select, textarea { font: inherit; }
 button { cursor: pointer; }
 
 /* -------------------------------------------------------------
-   SLIM SINGLE-LINE FULL WIDTH HEADER
+   SLIM HEADER
 ------------------------------------------------------------- */
 .header-wrapper { position: sticky; top: 0; z-index: 9999; margin: 0; padding: 0; }
 .floating-nav-container { 
   background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); 
-  border-bottom: 1px solid var(--border-color); padding: 10px 4%; border-radius: 0; 
-  display: flex; align-items: center; justify-content: space-between; 
-  width: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05); pointer-events: auto; transition: 0.3s; 
+  border-bottom: 1px solid var(--border-color); padding: 10px 4%; display: flex; align-items: center; justify-content: space-between; 
+  width: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s; 
 }
 body.dark-theme .floating-nav-container { background: rgba(15, 23, 42, 0.95); border-bottom: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
 
@@ -127,7 +126,7 @@ body.dark-theme .language-switch button.active { background: #334155; color: whi
 .btn-primary:hover { background: #1e40af; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,99,235,0.4); }
 
 /* -------------------------------------------------------------
-   PREMIUM DEEP NAVY BLUE HERO SECTION
+   HERO SECTION
 ------------------------------------------------------------- */
 .hero { position: relative; padding: 110px 5% 80px; background: linear-gradient(135deg, #020617 0%, #1e3a8a 100%); color: white; overflow: hidden; z-index: 1; border-radius: 0 0 30px 30px;}
 .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(circle at 20% 150%, rgba(37, 99, 235, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% -50%, rgba(245, 158, 11, 0.1) 0%, transparent 50%), radial-gradient(rgba(255,255,255,0.04) 2px, transparent 2px); background-size: 100% 100%, 100% 100%, 30px 30px; z-index: -1; }
@@ -164,17 +163,39 @@ body.dark-theme .main-tab-btn.inactive { background: transparent; color: #f8fafc
 body.dark-theme .main-tab-btn.active { background: var(--nav-active); border-color: var(--nav-active); }
 
 /* -------------------------------------------------------------
-   HOME PAGE OFFICE GALLERY WITH ZOOM FEATURE
+   HOME PAGE HORIZONTAL AUTO-SCROLL GALLERY
 ------------------------------------------------------------- */
-.office-gallery { padding: 30px 5% 50px; }
-.gallery-container { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; margin-top: 20px;}
-.gallery-item { flex: 1 1 400px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border: 4px solid var(--card-bg); transition: 0.3s; background: var(--card-bg); position: relative; display: flex; align-items: center; justify-content: center; min-height: 250px;}
-.gallery-item:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.15); border-color: var(--nav-active); }
-/* ZOOM CURSOR ADDED HERE */
-.gallery-item img { width: 100%; height: 100%; max-height: 450px; object-fit: cover; display: block; cursor: zoom-in; transition: transform 0.3s; }
-.gallery-item:hover img { transform: scale(1.02); }
+.office-gallery { padding: 20px 5% 50px; overflow: hidden; }
+.horizontal-scroll-gallery {
+  display: flex; gap: 15px; overflow-x: auto; padding: 15px 5px 30px;
+  scroll-snap-type: x mandatory; scrollbar-width: thin; 
+  scrollbar-color: var(--nav-active) var(--border-color);
+  -webkit-overflow-scrolling: touch;
+}
+.horizontal-scroll-gallery::-webkit-scrollbar { height: 6px; }
+.horizontal-scroll-gallery::-webkit-scrollbar-track { background: var(--border-color); border-radius: 10px; }
+.horizontal-scroll-gallery::-webkit-scrollbar-thumb { background: var(--nav-active); border-radius: 10px; }
 
-/* NEW IMAGE ZOOM MODAL (FULL SCREEN) */
+.scroll-item {
+  flex: 0 0 80%; max-width: 280px; scroll-snap-align: center; border-radius: 12px;
+  overflow: hidden; box-shadow: 0 8px 25px rgba(0,0,0,0.08); 
+  border: 2px solid var(--border-color); background: var(--card-bg); transition: 0.3s;
+  display: flex; align-items: center; justify-content: center; position: relative;
+  height: 350px; 
+}
+@media(min-width: 650px) { .scroll-item { flex: 0 0 40%; max-width: 300px; height: 380px; } }
+@media(min-width: 1024px) { .scroll-item { flex: 0 0 25%; max-width: 280px; height: 350px; } }
+
+.scroll-item:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(37, 99, 235, 0.2); border-color: var(--nav-active); }
+
+/* object-fit: contain prevents cropping */
+.scroll-item img { 
+  width: 100%; height: 100%; object-fit: contain; display: block; 
+  cursor: zoom-in; transition: transform 0.3s; padding: 5px;
+}
+.scroll-item:hover img { transform: scale(1.03); }
+
+/* NEW IMAGE ZOOM MODAL */
 #imageZoomModal {
   display: none; position: fixed; z-index: 100000; left: 0; top: 0; width: 100%; height: 100%;
   background-color: rgba(0,0,0,0.9); backdrop-filter: blur(5px); cursor: zoom-out;
@@ -339,10 +360,10 @@ body.dark-theme .document-list li { background: var(--card-bg); border-color: va
 </style>
 </head>
 
-<body class="no-scroll">
+<body>
 
 <!-- ==========================================
-     WELCOME LOADER SCREEN
+     PURE CSS WELCOME LOADER
 =========================================== -->
 <div id="welcomeLoader">
   <div class="loader-content">
@@ -442,26 +463,6 @@ body.dark-theme .document-list li { background: var(--card-bg); border-color: va
       </div>
     </div>
 
-    <!-- OFFICE GALLERY SECTION (WITH AUTO-FIX AND ZOOM) -->
-    <section class="office-gallery" style="padding: 20px 5% 40px;">
-      <div class="container">
-        <div class="section-head animate-up">
-          <small data-en="OUR OFFICE" data-gu="અમારી ઓફિસ">અમારી ઓફિસ</small>
-          <h2 data-en="Visit Us" data-gu="અમારી મુલાકાત લો">અમારી મુલાકાત લો</h2>
-        </div>
-        
-        <div class="gallery-container animate-up">
-          <!-- AUTO-FIX code attached in onerror -->
-          <div class="gallery-item">
-            <img src="office1.jpg" alt="Dwarkadhish Services Banner" onerror="fallbackImage(this, 'office1')" onclick="openImageModal(this.src)">
-          </div>
-          <div class="gallery-item">
-            <img src="office2.jpg" alt="Dwarkadhish Computer Center Office" onerror="fallbackImage(this, 'office2')" onclick="openImageModal(this.src)">
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ABOUT SECTION -->
     <section class="about" id="about">
       <div class="container about-grid">
@@ -485,6 +486,7 @@ body.dark-theme .document-list li { background: var(--card-bg); border-color: va
       </div>
     </section>
 
+    <!-- CONTACT SECTION -->
     <section id="contact" style="background:var(--bg-color)">
       <div class="container">
         <div class="section-head animate-up">
@@ -528,7 +530,54 @@ body.dark-theme .document-list li { background: var(--card-bg); border-color: va
         </div>
       </div>
     </section>
-  </div>
+
+    <!-- NEW HORIZONTAL SWIPING AUTO-GALLERY (POSTERS 1 TO 10 & OFFICE1) -->
+    <section class="office-gallery">
+      <div class="container">
+        <div class="section-head animate-up">
+          <small data-en="GALLERY & POSTERS" data-gu="અમારી ગેલેરી">અમારી ગેલેરી</small>
+          <h2 data-en="Our Services & Office" data-gu="સેવાઓના પોસ્ટર અને ઓફિસ">સેવાઓના પોસ્ટર અને ઓફિસ</h2>
+        </div>
+        
+        <div class="horizontal-scroll-gallery animate-up" id="autoScrollGallery">
+          <div class="scroll-item">
+            <img src="office1.jpg" alt="Dwarkadhish Office Banner" onerror="fallbackImage(this, 'office1')" onclick="openImageModal(this.src)">
+          </div>
+          <div class="scroll-item">
+            <img src="1.jpg" alt="Service Poster 1" onerror="fallbackImage(this, '1')" onclick="openImageModal(this.src)">
+          </div>
+          <div class="scroll-item">
+            <img src="2.jpg" alt="Service Poster 2" onerror="fallbackImage(this, '2')" onclick="openImageModal(this.src)">
+          </div>
+          <div class="scroll-item">
+            <img src="3.jpg" alt="Service Poster 3" onerror="fallbackImage(this, '3')" onclick="openImageModal(this.src)">
+          </div>
+          <div class="scroll-item">
+            <img src="4.jpg" alt="Service Poster 4" onerror="fallbackImage(this, '4')" onclick="openImageModal(this.src)">
+          </div>
+          <div class="scroll-item">
+            <img src="5.jpg" alt="Service Poster 5" onerror="fallbackImage(this, '5')" onclick="openImageModal(this.src)">
+          </div>
+          <div class="scroll-item">
+            <img src="6.jpg" alt="Service Poster 6" onerror="fallbackImage(this, '6')" onclick="openImageModal(this.src)">
+          </div>
+          <div class="scroll-item">
+            <img src="7.jpg" alt="Service Poster 7" onerror="fallbackImage(this, '7')" onclick="openImageModal(this.src)">
+          </div>
+          <div class="scroll-item">
+            <img src="8.jpg" alt="Service Poster 8" onerror="fallbackImage(this, '8')" onclick="openImageModal(this.src)">
+          </div>
+          <div class="scroll-item">
+            <img src="9.jpg" alt="Service Poster 9" onerror="fallbackImage(this, '9')" onclick="openImageModal(this.src)">
+          </div>
+          <div class="scroll-item">
+            <img src="10.jpg" alt="Service Poster 10" onerror="fallbackImage(this, '10')" onclick="openImageModal(this.src)">
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div> <!-- END OF HOME SECTION -->
 
   <!-- SERVICES PAGE SECTION -->
   <div id="servicesSection" style="display: none; padding-top: 40px;">
@@ -634,8 +683,25 @@ function fallbackImage(img, baseName) {
     img.setAttribute('data-attempt', '3');
     img.src = baseName + '.jpg.jpg';
   } else {
-    img.onerror = null; // stop infinite loop
+    img.onerror = null; 
   }
+}
+
+/* --- AUTO SLIDE JAVASCRIPT FOR GALLERY --- */
+let slideInterval;
+function startAutoSlide() {
+  const gallery = document.getElementById("autoScrollGallery");
+  if (!gallery) return;
+  
+  slideInterval = setInterval(() => {
+    let maxScroll = gallery.scrollWidth - gallery.clientWidth;
+    // Pura cheda par pohnche etle pachu start thai jay
+    if (gallery.scrollLeft >= maxScroll - 20) {
+      gallery.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      gallery.scrollBy({ left: 280, behavior: 'smooth' }); // Adjust width + gap
+    }
+  }, 3500); // 3.5 seconds
 }
 
 /* --- IMAGE ZOOM FUNCTIONS --- */
@@ -644,12 +710,10 @@ function openImageModal(src) {
   const img = document.getElementById("zoomedImage");
   modal.style.display = "flex";
   img.src = src;
-  document.body.style.overflow = "hidden";
 }
 
 function closeImageModal() {
   document.getElementById("imageZoomModal").style.display = "none";
-  document.body.style.overflow = "";
 }
 
 /* --- MENU FUNCTIONS --- */
@@ -1026,7 +1090,7 @@ function openDynamicModal(type, serviceName = null) {
     else if (serviceName === "વાહન વીમો") {
       title.innerHTML = "🚙 <span style='color:var(--nav-active)'>Vehicle Insurance</span>";
       docs.style.display = "flex";
-      const d = [{text: "RC બુક (Registration Certificate)", icon: "fa-book-open"},{text: "વાહન માલિકનો આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-user-tag"},{text: "જૂની પોલિસી (જો હોય તો)", icon: "fa-file-shield"}];
+      const d = [{text: "RC બુક (Registration Certificate)", icon: "fa-book-open"},{text: "વાહન માલિકનો આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-user-tag"},{text: "જૂની પોલિસી (જો હોય গঠনતો)", icon: "fa-file-shield"}];
       docs.innerHTML = buildDocsHtml(d);
       btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
     }
@@ -1120,12 +1184,10 @@ function openDynamicModal(type, serviceName = null) {
   }
 
   modal.classList.add("show");
-  document.body.style.overflow = "hidden";
 }
 
 function closeDynamicModal() {
   document.getElementById("dynamicModal").classList.remove("show");
-  document.body.style.overflow = "";
 }
 
 function changeRationTab(tab, btn) {
@@ -1273,15 +1335,6 @@ function sendRequest(event) {
   window.open("https://wa.me/919537362607?text=" + encodeURIComponent(messageText), "_blank");
 }
 
-function dismissLoader() {
-  const loader = document.getElementById('welcomeLoader');
-  if (loader) {
-    loader.style.opacity = '0'; loader.style.visibility = 'hidden';
-    setTimeout(() => { loader.style.display = 'none'; }, 400); 
-  }
-  document.body.classList.remove('no-scroll');
-}
-
 function initializeWebsite() {
   const yearEl = document.getElementById("currentYear");
   if(yearEl) yearEl.textContent = new Date().getFullYear();
@@ -1290,12 +1343,13 @@ function initializeWebsite() {
   if(savedTheme === "dark") { toggleTheme(); }
   navClick(document.getElementById('navHome'), 'home');
   observeElements();
-  setTimeout(dismissLoader, 400);
 }
 
-if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', initializeWebsite); } 
-else { initializeWebsite(); }
-window.addEventListener('load', () => setTimeout(dismissLoader, 400));
+document.addEventListener('DOMContentLoaded', () => {
+  initializeWebsite();
+  document.body.classList.remove('no-scroll');
+  startAutoSlide();
+});
 </script>
 
 </body>
