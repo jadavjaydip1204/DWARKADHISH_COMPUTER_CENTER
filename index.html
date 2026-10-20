@@ -56,7 +56,7 @@ body.no-scroll {
 }
 
 /* -------------------------------------------------------------
-   PREMIUM WELCOME LOADER SCREEN
+   SUPER FAST WELCOME LOADER SCREEN
 ------------------------------------------------------------- */
 #welcomeLoader {
   position: fixed;
@@ -109,7 +109,8 @@ button, input, select, textarea { font: inherit; }
 button { cursor: pointer; }
 
 /* Header & Nav */
-.header-wrapper { padding: 0 4%; margin-top: 15px; margin-bottom: 10px; display: flex; justify-content: center; position: sticky; top: 10px; z-index: 50; pointer-events: none;}
+/* FIX: z-index set to 9999 so header and menu completely cover the dark overlay */
+.header-wrapper { padding: 0 4%; margin-top: 15px; margin-bottom: 10px; display: flex; justify-content: center; position: sticky; top: 10px; z-index: 9999; pointer-events: none;}
 .floating-nav-container { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.5); padding: 8px 18px; border-radius: 16px; display: flex; align-items: center; gap: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05); transition: 0.3s; width: 100%; max-width: 1280px; justify-content: space-between; pointer-events: auto; }
 body.dark-theme .floating-nav-container { background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
 
@@ -308,7 +309,7 @@ body.dark-theme .document-list li { background: var(--card-bg); border-color: va
   .nav-controls { border-left: none; border-top: 1px solid var(--border-color); padding-top: 15px; padding-left: 0; width: 100%; justify-content: center; }
   .menu-btn { display: block; position: absolute; right: 20px; top: 25px; pointer-events: auto; }
   
-  /* Mobile Overlay Dark Background */
+  /* Mobile Overlay Dark Background - FIX: z-index set lower than header */
   .menu-overlay { 
     display: block; position: fixed; inset: 0; background: rgba(0,0,0,0.6); 
     z-index: 9998; opacity: 0; visibility: hidden; transition: 0.3s ease; pointer-events: none;
@@ -368,7 +369,7 @@ body.dark-theme .document-list li { background: var(--card-bg); border-color: va
 </style>
 </head>
 
-<body>
+<body class="no-scroll">
 
 <!-- ==========================================
      WELCOME LOADER SCREEN
@@ -384,7 +385,7 @@ body.dark-theme .document-list li { background: var(--card-bg); border-color: va
   </div>
 </div>
 
-<!-- OVERLAY FOR MOBILE MENU -->
+<!-- OVERLAY FOR MOBILE MENU (FIXED: Moved to Body Level) -->
 <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
 
 <!-- FLOATING NAVBAR -->
