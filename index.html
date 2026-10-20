@@ -109,13 +109,13 @@ button, input, select, textarea { font: inherit; }
 button { cursor: pointer; }
 
 /* Header & Nav */
-/* FIX: z-index set to 9999 so header and menu completely cover the dark overlay */
 .header-wrapper { padding: 0 4%; margin-top: 15px; margin-bottom: 10px; display: flex; justify-content: center; position: sticky; top: 10px; z-index: 9999; pointer-events: none;}
 .floating-nav-container { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.5); padding: 8px 18px; border-radius: 16px; display: flex; align-items: center; gap: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05); transition: 0.3s; width: 100%; max-width: 1280px; justify-content: space-between; pointer-events: auto; }
 body.dark-theme .floating-nav-container { background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
 
-/* Brand */
-.brand { display: flex; align-items: center; gap: 12px; margin-right: auto; }
+/* Brand Structure */
+.mobile-top-row { display: flex; align-items: center; margin-right: auto; }
+.brand { display: flex; align-items: center; gap: 12px; }
 .logo { width: 45px; height: 45px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); display: grid; place-items: center; background: white; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
 .logo img { width: 100%; height: 100%; object-fit: contain; }
 .brand-text { display: flex; flex-direction: column; justify-content: center; line-height: 1.1; }
@@ -294,22 +294,27 @@ body.dark-theme .document-list li { background: var(--card-bg); border-color: va
 ======================================================== */
 @media(max-width: 1080px) {
   .floating-nav-container { 
-    flex-direction: column; width: 100%; padding: 15px; border-radius: 20px; 
+    flex-direction: column; width: 100%; padding: 12px 20px; border-radius: 20px; 
     justify-content: center; position: relative;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    background: #ffffff;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    backdrop-filter: none !important; -webkit-backdrop-filter: none !important;
+    background: #ffffff; box-shadow: 0 10px 40px rgba(0,0,0,0.1);
   }
   body.dark-theme .floating-nav-container { background: #0f172a; }
   
   .header-wrapper { padding: 10px 4%; }
-  .brand { margin-bottom: 10px; width: 100%; justify-content: center; margin-right: 0; }
-  .brand h2 { white-space: normal; text-align: center; }
-  .nav-controls { border-left: none; border-top: 1px solid var(--border-color); padding-top: 15px; padding-left: 0; width: 100%; justify-content: center; }
-  .menu-btn { display: block; position: absolute; right: 20px; top: 25px; pointer-events: auto; }
   
-  /* Mobile Overlay Dark Background - FIX: z-index set lower than header */
+  /* PERFECT ALIGNED MOBILE HEADER (Logo Left, Text Middle, Menu Right) */
+  .mobile-top-row { display: flex; width: 100%; justify-content: space-between; align-items: center; margin-right: 0; }
+  .brand { margin-bottom: 0; width: auto; gap: 10px; display: flex; align-items: center; justify-content: flex-start;}
+  
+  .brand h2 { font-size: 14.5px; white-space: nowrap; text-align: left; }
+  .brand small { font-size: 9px; text-align: left; margin-top: 0px; }
+  
+  .menu-btn { display: block; position: static; margin-left: auto; pointer-events: auto; }
+  
+  .nav-controls { border-top: 1px solid var(--border-color); padding-top: 12px; width: 100%; justify-content: center; margin-top: 12px; }
+  
+  /* Mobile Overlay Dark Background */
   .menu-overlay { 
     display: block; position: fixed; inset: 0; background: rgba(0,0,0,0.6); 
     z-index: 9998; opacity: 0; visibility: hidden; transition: 0.3s ease; pointer-events: none;
@@ -362,7 +367,8 @@ body.dark-theme .document-list li { background: var(--card-bg); border-color: va
   .universal-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
   .about-grid, .contact-grid, .footer-grid { grid-template-columns: 1fr; }
   .modal-box { padding: 30px 20px; }
-  .brand h2 { font-size: 17px; }
+  .brand h2 { font-size: 14px; white-space: normal; line-height: 1.1; }
+  .logo { width: 40px; height: 40px; }
   .jobs-grid { grid-template-columns: 1fr; }
   .modal-tabs { flex-direction: column; }
 }
@@ -385,23 +391,26 @@ body.dark-theme .document-list li { background: var(--card-bg); border-color: va
   </div>
 </div>
 
-<!-- OVERLAY FOR MOBILE MENU (FIXED: Moved to Body Level) -->
+<!-- OVERLAY FOR MOBILE MENU -->
 <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
 
 <!-- FLOATING NAVBAR -->
 <div class="header-wrapper">
   <div class="floating-nav-container">
     
-    <a href="#" class="brand" onclick="navClick(document.getElementById('navHome'), 'home')">
-      <div class="logo"><img src="LOGO.jpg" alt="Logo" onerror="this.style.display='none';this.parentElement.textContent='DCC';"></div>
-      <div class="brand-text">
-        <h2><span class="text-dark">DWARKADHISH</span> <span class="text-gold">COMPUTER CENTER</span></h2>
-        <small>DIGITAL PORTAL</small>
-      </div>
-    </a>
+    <!-- Mobile Top Row: Logo, Name, Menu Button -->
+    <div class="mobile-top-row">
+      <a href="#" class="brand" onclick="navClick(document.getElementById('navHome'), 'home')">
+        <div class="logo"><img src="LOGO.jpg" alt="Logo" onerror="this.style.display='none';this.parentElement.textContent='DCC';"></div>
+        <div class="brand-text">
+          <h2><span class="text-dark">DWARKADHISH</span> <span class="text-gold">COMPUTER CENTER</span></h2>
+          <small>DIGITAL PORTAL</small>
+        </div>
+      </a>
 
-    <!-- Hamburger menu button -->
-    <button class="menu-btn" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
+      <!-- Hamburger menu button -->
+      <button class="menu-btn" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
+    </div>
 
     <nav id="mainNav">
       <!-- Close button inside Sidebar -->
@@ -415,6 +424,7 @@ body.dark-theme .document-list li { background: var(--card-bg); border-color: va
       <a href="#registration" class="nav-btn" data-en="✨ Registration" data-gu="✨ સેવા વિનંતી" onclick="navClick(this, 'other'); setTimeout(()=>document.getElementById('registration').scrollIntoView({behavior: 'smooth'}), 100);">✨ Registration</a>
     </nav>
 
+    <!-- Language & Theme Controls -->
     <div class="nav-controls">
       <div class="language-switch">
         <button id="langEnglish" onclick="setLanguage('en')">EN</button>
