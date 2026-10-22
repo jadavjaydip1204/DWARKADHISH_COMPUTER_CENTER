@@ -20,7 +20,7 @@
   --nav-active: #2563eb; 
   --dark: #102a43;
   --light: #f8fafc;
-  --bg-color: #f8fafc;
+  --bg-color: #f0f4f8; 
   --card-bg: #ffffff;
   --text-main: #0f172a;
   --text-muted: #64748b;
@@ -28,6 +28,7 @@
   --gold: #f59e0b;
 }
 
+/* Dark Mode Variables */
 body.dark-theme {
   --bg-color: #0f172a;
   --card-bg: #1e293b;
@@ -49,29 +50,24 @@ body {
   transition: background 0.3s, color 0.3s;
 }
 
+/* Scroll Lock Class for Loader */
+body.no-scroll { overflow: hidden; }
+
 /* -------------------------------------------------------------
-   PURE CSS LOADER (NEVER GETS STUCK)
+   PURE CSS WELCOME LOADER
 ------------------------------------------------------------- */
 #welcomeLoader {
   position: fixed; inset: 0; background: radial-gradient(circle at center, #1e293b 0%, #0b1120 100%);
   z-index: 999999; display: flex; flex-direction: column; align-items: center; justify-content: center;
-  animation: hideLoader 0.5s ease-out 0.8s forwards;
-  pointer-events: none; /* Allows clicks even if fading */
+  animation: hideLoader 0.5s ease-out 0.8s forwards; pointer-events: none;
 }
-@keyframes hideLoader {
-  to { opacity: 0; visibility: hidden; z-index: -10; display: none; }
-}
+@keyframes hideLoader { to { opacity: 0; visibility: hidden; z-index: -10; display: none; } }
 .loader-content { text-align: center; animation: scaleUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
-.loader-logo-box {
-  width: 180px; height: 180px; border-radius: 50%; background: #ffffff; margin: 0 auto 15px;
-  display: grid; place-items: center; overflow: hidden; border: 4px solid rgba(255,255,255,0.1);
-  box-shadow: 0 0 50px rgba(15, 118, 110, 0.6), inset 0 0 25px rgba(0,0,0,0.05); position: relative;
-}
+.loader-logo-box { width: 180px; height: 180px; border-radius: 50%; background: #ffffff; margin: 0 auto 15px; display: grid; place-items: center; overflow: hidden; border: 4px solid rgba(255,255,255,0.1); box-shadow: 0 0 50px rgba(15, 118, 110, 0.6), inset 0 0 25px rgba(0,0,0,0.05); position: relative; }
 .loader-logo-box img { width: 100%; height: 100%; object-fit: contain; padding: 15px; }
 .loader-content h2 { margin: 0; font-size: 28px; font-weight: 800; letter-spacing: 1.5px; color: #ffffff; text-shadow: 0 4px 15px rgba(0,0,0,0.4); }
 .loader-content p { margin: 5px 0 0; font-size: 14px; font-weight: 700; color: var(--gold); letter-spacing: 4px; text-transform: uppercase; }
 .spinner { margin-top: 25px; width: 40px; height: 40px; border: 4px solid rgba(255, 255, 255, 0.1); border-top: 4px solid var(--gold); border-radius: 50%; animation: spin 0.5s linear infinite; display: inline-block; box-shadow: 0 0 15px rgba(217, 119, 6, 0.4); }
-
 @keyframes scaleUp { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 @keyframes spin { 100% { transform: rotate(360deg); } }
 
@@ -80,69 +76,89 @@ button, input, select, textarea { font: inherit; }
 button { cursor: pointer; }
 
 /* -------------------------------------------------------------
-   SLIM HEADER
+   EXACT PROFESSIONAL HEADER (PILL DESIGN)
 ------------------------------------------------------------- */
-.header-wrapper { position: sticky; top: 0; z-index: 9999; margin: 0; padding: 0; }
-.floating-nav-container { 
-  background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); 
-  border-bottom: 1px solid var(--border-color); padding: 10px 4%; display: flex; align-items: center; justify-content: space-between; 
-  width: 100%; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s; 
+.header-wrapper { 
+  position: sticky; top: 0; z-index: 9999; width: 100%;
+  background: var(--bg-color); 
+  border-bottom: 1px solid var(--border-color); box-shadow: 0 2px 10px rgba(0,0,0,0.02);
 }
-body.dark-theme .floating-nav-container { background: rgba(15, 23, 42, 0.95); border-bottom: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 4px 15px rgba(0,0,0,0.4); }
+.floating-nav-container { 
+  max-width: 1550px; margin: 0 auto; padding: 10px 2%;
+  display: flex; align-items: center; justify-content: space-between; gap: 20px;
+}
 
-.brand { display: flex; align-items: center; gap: 12px; margin-right: auto; text-decoration: none; }
-.logo { width: 42px; height: 42px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-color); display: grid; place-items: center; background: white; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+/* Brand Area */
+.brand { flex-shrink: 0; display: flex; align-items: center; gap: 14px; text-decoration: none; transition: 0.3s; }
+.brand:hover { transform: scale(1.01); }
+.logo { width: 55px; height: 55px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); display: grid; place-items: center; background: white; flex-shrink: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
 .logo img { width: 100%; height: 100%; object-fit: contain; }
 .brand-text { display: flex; flex-direction: column; justify-content: center; line-height: 1.1; }
-.brand h2 { margin: 0; font-size: 18px; font-weight: 800; white-space: nowrap; color: var(--text-main); }
+.brand h2 { margin: 0; font-size: 24px; font-weight: 800; white-space: nowrap; color: var(--text-main); letter-spacing: -0.5px;}
 .text-gold { color: var(--gold); transition: color 0.3s; }
-.brand small { color: var(--text-muted); font-size: 9.5px; font-weight: 600; letter-spacing: 2px; margin-top: 2px; text-transform: uppercase; white-space: nowrap; transition: color 0.3s; }
+.brand small { color: var(--text-muted); font-size: 11px; font-weight: 700; letter-spacing: 3px; margin-top: 1px; text-transform: uppercase; white-space: nowrap; }
 
-nav { display: flex; align-items: center; gap: 8px; margin-right: 15px; }
-.nav-link { padding: 8px 16px; border-radius: 8px; font-size: 14.5px; font-weight: 600; color: var(--text-muted); transition: 0.3s; position: relative; white-space: nowrap; }
-.nav-link::after { content: ''; position: absolute; width: 0; height: 3px; bottom: 0; left: 50%; transform: translateX(-50%); background-color: var(--nav-active); transition: 0.3s; border-radius: 3px; }
-.nav-link:hover { color: var(--text-main); background: rgba(0,0,0,0.03); }
-.nav-link:hover::after { width: 60%; }
-body.dark-theme .nav-link:hover { background: rgba(255,255,255,0.05); }
-.nav-link.active { color: var(--nav-active); background: transparent; }
-.nav-link.active::after { width: 60%; }
-.nav-btn { background: linear-gradient(135deg, var(--nav-active), #4f46e5); color: white; padding: 8px 18px; border-radius: 8px; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 8px; transition: 0.3s; margin-left: 10px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25); white-space: nowrap; }
-.nav-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(37, 99, 235, 0.4); }
+/* Centered Menu Pill (Desktop Only) */
+.nav-pill-wrapper {
+  background: var(--card-bg); border: 1px solid var(--border-color);
+  padding: 6px 6px 6px 20px; border-radius: 50px; display: flex; align-items: center; gap: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin: 0 auto; white-space: nowrap;
+}
+.nav-link { 
+  padding: 8px 16px; border-radius: 40px; font-size: 15px; font-weight: 600; 
+  color: var(--text-main); transition: all 0.3s ease; white-space: nowrap; cursor: pointer;
+}
+.nav-link:hover { color: var(--nav-active); background: rgba(37, 99, 235, 0.05); }
+.nav-link.active { color: var(--nav-active); background: rgba(37, 99, 235, 0.1); }
+body.dark-theme .nav-link:hover { background: rgba(255, 255, 255, 0.05); color: #fff; }
+body.dark-theme .nav-link.active { background: rgba(255, 255, 255, 0.1); color: #fff; }
 
-.mobile-close-btn, .menu-overlay, .mobile-lang-box { display: none; }
-.desktop-lang-box { display: flex; border-right: 2px solid var(--border-color); padding-right: 15px; margin-right: 15px; }
-.nav-controls { display: flex; align-items: center; justify-content: flex-end; }
-.language-switch { display: flex; background: var(--bg-color); border-radius: 8px; padding: 3px; border: 1px solid var(--border-color); }
-.language-switch button { background: transparent; color: var(--text-muted); border: none; padding: 5px 12px; border-radius: 6px; font-size: 12.5px; font-weight: 700; transition: .2s; }
-.language-switch button.active { background: white; color: var(--text-main); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+/* Registration Button inside Pill */
+.nav-btn-whatsapp { background: var(--nav-active); color: white; padding: 10px 24px; border-radius: 30px; font-weight: 600; font-size: 15px; display: flex; align-items: center; gap: 8px; transition: 0.3s; text-decoration: none; white-space: nowrap; cursor: pointer; }
+.nav-btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+
+/* Right Controls */
+.nav-controls { display: flex; align-items: center; gap: 15px; flex-shrink: 0; }
+.desktop-lang-box { display: flex; border-right: 2px solid var(--border-color); padding-right: 15px; }
+.language-switch { display: flex; background: var(--card-bg); border-radius: 30px; padding: 4px; border: 1px solid var(--border-color); }
+.language-switch button { background: transparent; color: var(--text-muted); border: none; padding: 6px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; transition: .2s; cursor: pointer;}
+.language-switch button.active { background: #f1f5f9; color: var(--text-main); box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
 body.dark-theme .language-switch button.active { background: #334155; color: white; }
 
-.theme-toggle { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-main); display: grid; place-items: center; font-size: 16px; transition: 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.05); cursor: pointer; }
+.theme-toggle { width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--border-color); background: var(--card-bg); color: var(--text-main); display: grid; place-items: center; font-size: 17px; transition: 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.05); cursor: pointer; }
 .theme-toggle:hover { background: var(--border-color); }
-.menu-btn { display: none; background: none; border: none; font-size: 24px; color: var(--text-main); cursor: pointer; padding: 5px; margin-left: 10px; }
+.menu-btn { display: none; background: none; border: none; font-size: 24px; color: var(--text-main); cursor: pointer; padding: 5px; margin-left: 5px; }
+.mobile-close-btn, .menu-overlay, .mobile-lang-box { display: none; }
 
-.btn { border: 0; border-radius: 9px; padding: 11px 22px; display: inline-block; text-align: center; font-weight: 600; cursor: pointer; }
-.btn-primary { background: var(--nav-active); color: white; transition: 0.3s; box-shadow: 0 4px 15px rgba(37,99,235,0.3); }
-.btn-primary:hover { background: #1e40af; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,99,235,0.4); }
+/* Mobile Menu Container (Hidden on Desktop) */
+#mainNav { display: none; }
 
 /* -------------------------------------------------------------
-   HERO SECTION
+   HERO SECTION WITH AUTO-TYPING
 ------------------------------------------------------------- */
 .hero { position: relative; padding: 110px 5% 80px; background: linear-gradient(135deg, #020617 0%, #1e3a8a 100%); color: white; overflow: hidden; z-index: 1; border-radius: 0 0 30px 30px;}
 .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(circle at 20% 150%, rgba(37, 99, 235, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% -50%, rgba(245, 158, 11, 0.1) 0%, transparent 50%), radial-gradient(rgba(255,255,255,0.04) 2px, transparent 2px); background-size: 100% 100%, 100% 100%, 30px 30px; z-index: -1; }
 .hero-inner { position: relative; z-index: 10; max-width: 1200px; margin: auto; display: grid; grid-template-columns: 1.2fr 0.8fr; align-items: center; gap: 40px; padding-top: 10px; }
 .pill { display: inline-block; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 6px 15px; border-radius: 30px; font-size: 13px; font-weight: 500; }
 .hero h1 { font-size: clamp(28px, 4vw, 50px); line-height: 1.2; margin: 18px 0; font-weight: 800; }
-.hero p { color: #e2f4f3; max-width: 650px; font-size: 17px; margin-bottom: 30px;}
+.hero p { color: #e2f4f3; max-width: 650px; font-size: 17px; margin-bottom: 20px;}
+
+.typing-container { font-size: 22px; margin-bottom: 35px; font-weight: 600; color: #e2f4f3; height: 35px; display: flex; align-items: center; }
+.typing-container i { color: var(--gold); margin-right: 10px; font-size: 18px; }
+.cursor { display: inline-block; width: 3px; background-color: var(--gold); margin-left: 2px; animation: blink 0.8s infinite; }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
 .hero-image-wrapper { position: relative; display: flex; justify-content: center; align-items: center; }
 .hero-logo-box { width: 100%; max-width: 380px; aspect-ratio: 1/1; background: white; border-radius: 50%; display: grid; place-items: center; overflow: hidden; border: 8px solid rgba(255,255,255,0.1); box-shadow: 0 0 60px rgba(30, 58, 138, 0.6), inset 0 0 20px rgba(0,0,0,0.05); padding: 20px; }
 .hero-logo-box img { width: 100%; height: 100%; object-fit: contain; }
 .hero-image-wrapper::before { content: ''; position: absolute; width: 420px; height: 420px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.15); animation: pulseRing 3s infinite alternate; z-index: -1; }
 .hero-image-wrapper::after { content: ''; position: absolute; width: 460px; height: 460px; border-radius: 50%; border: 1px dashed rgba(255,255,255,0.1); animation: spinRing 25s linear infinite; z-index: -1; }
-
 @keyframes pulseRing { from { transform: scale(0.95); opacity: 0.5; } to { transform: scale(1.05); opacity: 1; } }
 @keyframes spinRing { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+.btn { border: 0; border-radius: 9px; padding: 11px 22px; display: inline-block; text-align: center; font-weight: 600; cursor: pointer; }
+.btn-primary { background: var(--nav-active); color: white; transition: 0.3s; box-shadow: 0 4px 15px rgba(37,99,235,0.3); }
+.btn-primary:hover { background: #1e40af; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,99,235,0.4); }
 
 .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 0 5%; margin-top: -30px; position: relative; z-index: 10; }
 .stat { background: var(--card-bg); padding: 22px 10px; text-align: center; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: 1px solid var(--border-color); }
@@ -151,16 +167,20 @@ body.dark-theme .language-switch button.active { background: #334155; color: whi
 
 section { padding: 60px 5%; }
 .container { max-width: 1200px; margin: auto; }
-.section-head { margin-bottom: 35px; text-align: center; }
-.section-head small { color: var(--nav-active); font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; font-size: 13px; }
-.section-head h2 { color: var(--text-main); font-size: 34px; margin: 8px 0; font-weight: 800; }
+.section-head { margin-bottom: 40px; text-align: center; }
+.section-head small { background: rgba(37, 99, 235, 0.1); color: var(--nav-active); font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; font-size: 11px; padding: 6px 15px; border-radius: 20px; display: inline-block; margin-bottom: 10px;}
+.section-head h2 { color: var(--text-main); font-size: 32px; margin: 0; font-weight: 800; }
 
-.main-tab-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; margin-top: 20px; }
-.main-tab-btn { padding: 12px 25px; font-family: inherit; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
-.main-tab-btn.active { background: #1e293b; color: white; border: 2px solid #1e293b; border-radius: 8px; font-weight: 700; font-size: 16px; box-shadow: 0 4px 15px rgba(30, 41, 59, 0.2); }
-.main-tab-btn.inactive { background: white; color: #1e293b; border: 1px solid #cbd5e1; border-radius: 30px; font-weight: 700; font-size: 16px; }
-body.dark-theme .main-tab-btn.inactive { background: transparent; color: #f8fafc; border-color: #475569; }
-body.dark-theme .main-tab-btn.active { background: var(--nav-active); border-color: var(--nav-active); }
+/* -------------------------------------------------------------
+   WHY CHOOSE US
+------------------------------------------------------------- */
+.feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.feature-card { background: var(--card-bg); padding: 35px 20px; border-radius: 16px; text-align: center; border: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.02); transition: 0.3s; }
+.feature-card:hover { transform: translateY(-8px); box-shadow: 0 15px 35px rgba(37,99,235,0.1); border-color: var(--nav-active); }
+.feature-icon { width: 75px; height: 75px; margin: 0 auto 20px; background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(79,70,229,0.1)); color: var(--nav-active); display: grid; place-items: center; border-radius: 50%; font-size: 30px; transition: 0.5s; }
+.feature-card:hover .feature-icon { background: linear-gradient(135deg, var(--nav-active), #4f46e5); color: white; transform: rotateY(180deg); }
+.feature-card h3 { font-size: 20px; font-weight: 700; color: var(--text-main); margin: 0 0 10px; }
+.feature-card p { font-size: 14.5px; color: var(--text-muted); margin: 0; line-height: 1.5; }
 
 /* -------------------------------------------------------------
    HOME PAGE HORIZONTAL AUTO-SCROLL GALLERY
@@ -187,32 +207,21 @@ body.dark-theme .main-tab-btn.active { background: var(--nav-active); border-col
 @media(min-width: 1024px) { .scroll-item { flex: 0 0 25%; max-width: 280px; height: 350px; } }
 
 .scroll-item:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(37, 99, 235, 0.2); border-color: var(--nav-active); }
-
-/* object-fit: contain prevents cropping */
 .scroll-item img { 
   width: 100%; height: 100%; object-fit: contain; display: block; 
   cursor: zoom-in; transition: transform 0.3s; padding: 5px;
 }
 .scroll-item:hover img { transform: scale(1.03); }
 
-/* NEW IMAGE ZOOM MODAL */
-#imageZoomModal {
-  display: none; position: fixed; z-index: 100000; left: 0; top: 0; width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.9); backdrop-filter: blur(5px); cursor: zoom-out;
-  justify-content: center; align-items: center; flex-direction: column;
-}
-.zoom-content {
-  margin: auto; display: block; max-width: 95%; max-height: 90vh; border-radius: 10px;
-  animation: zoomIn 0.3s ease; box-shadow: 0 10px 50px rgba(0,0,0,0.8); object-fit: contain;
-}
-.close-zoom {
-  position: absolute; top: 20px; right: 30px; color: #f1f1f1; font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; z-index: 100001;
-}
-.close-zoom:hover, .close-zoom:focus { color: #ef4444; text-decoration: none; }
-@keyframes zoomIn { from {transform: scale(0.8); opacity: 0;} to {transform: scale(1); opacity: 1;} }
+/* Quick links Tabs */
+.main-tab-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; margin-top: 20px; }
+.main-tab-btn { padding: 12px 25px; font-family: inherit; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.3s; }
+.main-tab-btn.active { background: #1e293b; color: white; border: 2px solid #1e293b; border-radius: 8px; font-weight: 700; font-size: 16px; box-shadow: 0 4px 15px rgba(30, 41, 59, 0.2); }
+.main-tab-btn.inactive { background: white; color: #1e293b; border: 1px solid #cbd5e1; border-radius: 30px; font-weight: 700; font-size: 16px; }
+body.dark-theme .main-tab-btn.inactive { background: transparent; color: #f8fafc; border-color: #475569; }
+body.dark-theme .main-tab-btn.active { background: var(--nav-active); border-color: var(--nav-active); }
 
-
-/* General Card Design */
+/* Universal Cards & Grids */
 .universal-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; align-items: stretch; }
 .universal-card { background: var(--card-bg); padding: 25px; border-radius: 16px; border: 1px solid var(--border-color); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; flex-direction: column; align-items: flex-start; cursor: pointer; position: relative; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.03); height: 100%; }
 .universal-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, var(--nav-active), #4f46e5); opacity: 0; transition: 0.4s; }
@@ -240,42 +249,116 @@ body.dark-theme .update-tag { background: rgba(2, 132, 199, 0.2); color: #38bdf8
 body.dark-theme .update-filter-btn.active { background: var(--nav-active); border-color: var(--nav-active); }
 .empty { grid-column: 1/-1; background: var(--card-bg); padding: 40px; border-radius: 12px; text-align: center; font-weight: 500; border: 1px solid var(--border-color); font-size: 18px; }
 
-/* About Section */
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-.about-panel { background: linear-gradient(135deg, rgba(30,58,138,0.1), rgba(37,99,235,0.1)); padding: 40px; border-radius: 24px; min-height: 250px; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; border: 1px solid var(--border-color); }
-.big-icon { font-size: 65px; color: var(--nav-active); margin-bottom: 15px; }
-.check-list { padding-left: 0; list-style: none; margin-top: 20px; }
-.check-list li { margin: 12px 0; font-weight: 500; display: flex; align-items: center; gap: 10px; }
-.check-list li i { color: #10b981; }
+/* -------------------------------------------------------------
+   ABOUT US PAGE (PROFESSIONAL CSS THEME - NO PHOTO)
+------------------------------------------------------------- */
+.about-modern-wrapper { background: var(--card-bg); border-radius: 20px; border: 1px solid var(--border-color); box-shadow: 0 10px 40px rgba(0,0,0,0.03); overflow: hidden; display: flex; flex-direction: row; }
 
-/* Contact Forms */
-.contact-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 30px; }
-.contact-card, .form-card { background: var(--card-bg); border-radius: 16px; padding: 30px; border: 1px solid var(--border-color); box-shadow: 0 10px 40px rgba(0,0,0,0.02); }
-.contact-card h3, .form-card h3 { font-size: 22px; font-weight: 700; margin-top: 0; margin-bottom: 20px; color: var(--text-main); }
-.contact-item { padding: 15px 0; border-bottom: 1px solid var(--border-color); }
-.contact-item strong { color: var(--primary); font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
-.contact-item p { margin: 5px 0 0; font-size: 16px; font-weight: 600; color: var(--text-main); }
-.form-card label { display: block; margin: 15px 0 8px; font-weight: 600; font-size: 14px; color: var(--text-main); }
-.form-card input, .form-card select, .form-card textarea { width: 100%; padding: 14px; border: 1px solid var(--border-color); border-radius: 10px; background: var(--bg-color); color: var(--text-main); outline: none; transition: 0.3s; font-family: inherit; }
-.form-card input:focus, .form-card select:focus, .form-card textarea:focus { border-color: var(--nav-active); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1); }
-.form-card textarea { min-height: 110px; resize: vertical; }
+/* Animated Visual */
+.about-creative-visual { 
+  flex: 0 0 45%; 
+  background: linear-gradient(135deg, var(--primary) 0%, var(--nav-active) 100%); 
+  position: relative; 
+  overflow: hidden; 
+  min-height: 400px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  box-shadow: inset 0 0 50px rgba(0,0,0,0.2);
+}
+.about-creative-visual::before { 
+  content: ''; position: absolute; width: 200%; height: 200%; 
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 10%, transparent 60%); 
+  top: -50%; left: -50%; animation: spinRing 30s linear infinite; pointer-events: none; 
+}
+.about-cv-center { text-align: center; color: white; z-index: 2; padding: 20px; }
+.about-cv-center i { font-size: 80px; margin-bottom: 20px; text-shadow: 0 10px 20px rgba(0,0,0,0.3); color: white;}
+.about-cv-center h3 { margin: 0; font-size: 26px; font-weight: 800; letter-spacing: 1px; color: white;}
+.about-cv-center p { margin: 5px 0 0; font-size: 15px; font-weight: 500; opacity: 0.9; color: #e2e8f0;}
 
-footer { background: #0b1120; color: white; padding: 50px 5% 30px; }
-.footer-grid { max-width: 1200px; margin: auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 30px; }
-footer h3 { font-size: 18px; margin-bottom: 20px; font-weight: 600; }
-footer p, footer a { color: #94a3b8; font-size: 15px; transition: 0.2s; }
-footer a { display: block; margin: 10px 0; }
-footer a:hover { color: white; padding-left: 5px; }
-.copyright { max-width: 1200px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #94a3b8; text-align: center; }
-.whatsapp-float { position: fixed; right: 25px; bottom: 25px; z-index: 30; background: #25D366; width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 8px 25px rgba(37,211,102,0.4); display: flex; align-items: center; justify-content: center; transition: transform 0.3s; }
-.whatsapp-float:hover { transform: scale(1.15) rotate(-5deg); }
-.whatsapp-float i { font-size: 35px; color: white; }
+/* Floating background icons */
+.float-icon { position: absolute; color: rgba(255,255,255,0.15); animation: float 4s ease-in-out infinite; }
+.fi-1 { top: 15%; left: 15%; font-size: 45px; animation-duration: 4.5s; }
+.fi-2 { bottom: 20%; right: 15%; font-size: 55px; animation-duration: 5s; animation-direction: alternate-reverse; }
+.fi-3 { top: 25%; right: 15%; font-size: 35px; animation-duration: 3.5s; }
+.fi-4 { bottom: 15%; left: 20%; font-size: 45px; animation-duration: 4.2s; animation-direction: alternate-reverse; }
 
-/* Scroll Animation */
-.animate-up { opacity: 0; transform: translateY(40px); transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1); }
-.animate-up.in-view { opacity: 1; transform: translateY(0); }
+.about-content { flex: 1; padding: 50px; display: flex; flex-direction: column; justify-content: center;}
+.about-content h3 { font-size: 28px; font-weight: 800; color: var(--text-main); margin: 0 0 15px; line-height: 1.2;}
+.about-content p { color: var(--text-muted); font-size: 16px; margin-bottom: 25px; line-height: 1.7; }
 
-/* Unified Dynamic Modal */
+.vision-mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.vm-box { background: var(--bg-color); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); }
+.vm-box h4 { margin: 0 0 10px; font-size: 17px; font-weight: 700; color: var(--text-main); display: flex; align-items: center; gap: 8px;}
+.vm-box h4 i { color: #f43f5e; font-size: 18px;}
+.vm-box:last-child h4 i { color: var(--gold); }
+.vm-box p { margin: 0; font-size: 14px; color: var(--text-muted); line-height: 1.5; }
+
+@media(max-width: 950px) { .about-modern-wrapper { flex-direction: column; } .about-creative-visual { min-height: 300px;} .about-content { padding: 30px 20px;} .vision-mission-grid { grid-template-columns: 1fr; } }
+
+
+/* -------------------------------------------------------------
+   CONTACT SECTION (CARDS + SOCIAL + BANNER)
+------------------------------------------------------------- */
+.contact-3-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; margin-bottom: 40px; }
+.c-card { background: var(--card-bg); padding: 35px 20px; border-radius: 16px; text-align: center; border: 1px solid var(--border-color); box-shadow: 0 10px 30px rgba(0,0,0,0.02); transition: 0.3s; }
+.c-card:hover { transform: translateY(-5px); border-color: var(--nav-active); box-shadow: 0 15px 35px rgba(37,99,235,0.1); }
+.c-card i { font-size: 28px; color: var(--text-main); background: var(--bg-color); width: 60px; height: 60px; line-height: 60px; border-radius: 50%; margin-bottom: 15px; display: inline-block; transition: 0.3s;}
+.c-card:hover i { background: var(--nav-active); color: white; }
+.c-card h4 { font-size: 15px; font-weight: 700; color: var(--text-main); margin: 0 0 5px; text-transform: uppercase; letter-spacing: 1px; }
+.c-card p { font-size: 18px; font-weight: 600; color: var(--text-muted); margin: 0; }
+
+.social-links-area { text-align: center; margin-bottom: 40px; }
+.social-links-area h4 { font-size: 22px; font-weight: 800; color: var(--text-main); margin: 0 0 20px; display: flex; align-items: center; justify-content: center; gap: 10px;}
+.social-links-area h4 i { color: #0ea5e9; }
+.s-btns { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+.s-btn { padding: 12px 25px; border-radius: 30px; font-weight: 600; font-size: 15px; color: white; display: flex; align-items: center; gap: 8px; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-decoration: none;}
+.s-btn:hover { transform: translateY(-3px); opacity: 0.9; }
+.s-btn.insta { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+.s-btn.wa { background: #25D366; }
+
+/* Refined Contact Banner */
+.contact-banner { background: #1e3a8a; border-radius: 20px; padding: 40px; display: flex; align-items: center; justify-content: space-between; gap: 30px; box-shadow: 0 15px 40px rgba(30,58,138,0.3); overflow: hidden; position: relative;}
+.contact-banner::before { content: ''; position: absolute; top: -50%; right: -10%; width: 50%; height: 200%; background: rgba(255,255,255,0.05); transform: rotate(25deg); pointer-events: none; }
+.cb-text { flex: 1; color: white; z-index: 2;}
+.cb-text h3 { font-size: 32px; font-weight: 800; margin: 0 0 15px; display: flex; align-items: center; gap: 10px;}
+.cb-text p { font-size: 16px; margin: 0 0 25px; line-height: 1.6; opacity: 0.9; }
+.cb-btn { background: white; color: #1e3a8a; font-weight: 700; padding: 14px 30px; border-radius: 30px; display: inline-flex; align-items: center; gap: 10px; transition: 0.3s; font-size: 16px; text-decoration: none;}
+.cb-btn i { color: #25D366; font-size: 20px;}
+.cb-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+.cb-images { display: flex; gap: 15px; z-index: 2; align-items: center; justify-content: center;}
+.cb-images i { font-size: 120px; color: rgba(255,255,255,0.8); text-shadow: 0 10px 20px rgba(0,0,0,0.2); transition: 0.3s; animation: float 3s ease-in-out infinite; }
+
+@media(max-width: 950px) { .contact-3-cards { grid-template-columns: 1fr; } .contact-banner { flex-direction: column; text-align: center; } .cb-text h3 { justify-content: center;} }
+
+/* -------------------------------------------------------------
+   PREMIUM DARK REGISTRATION SPLIT LAYOUT
+------------------------------------------------------------- */
+.reg-split-container { display: grid; grid-template-columns: 1fr 2fr; gap: 30px; max-width: 1100px; margin: 0 auto; align-items: stretch; }
+.dark-panel { background: #1a202c; border-radius: 16px; padding: 40px; color: #f8fafc; box-shadow: 0 20px 40px rgba(0,0,0,0.15); position: relative; overflow: hidden;}
+.contact-info-panel { display: flex; flex-direction: column; justify-content: center;}
+.contact-info-panel h2 { font-size: 24px; color: #3b82f6; margin-top: 0; margin-bottom: 30px; font-weight: 800;}
+.ci-item { margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px;}
+.ci-item:last-child { border-bottom: none; }
+.ci-item span { display: block; font-size: 12px; color: #60a5fa; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;}
+.ci-item p { margin: 0; font-size: 16px; font-weight: 600; display: flex; align-items: center; gap: 8px;}
+.ci-item i { color: #f8fafc; }
+.btn-green-wa { background: #10b981; color: white; padding: 14px 20px; border-radius: 8px; font-weight: 700; font-size: 15px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; border: none; width: 100%; transition: 0.3s; cursor: pointer; margin-top: auto;}
+.btn-green-wa:hover { background: #059669; transform: translateY(-2px); }
+
+.registration-form-panel h2 { font-size: 28px; font-weight: 800; margin-top: 0; margin-bottom: 5px; color: white;}
+.registration-form-panel p { color: #94a3b8; font-size: 14px; margin-bottom: 30px;}
+.dark-form-group { margin-bottom: 20px; text-align: left; position: relative; z-index: 2;}
+.dark-form-group label { display: block; font-weight: 600; color: white; margin-bottom: 8px; font-size: 14px; }
+.dark-form-control { width: 100%; padding: 14px 15px; border: 1px solid #334155; border-radius: 8px; background: #0f172a; color: white; font-size: 15px; outline: none; transition: 0.3s; font-family: inherit; }
+.dark-form-control:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); }
+.bg-circle { position: absolute; top: -50px; right: -50px; width: 250px; height: 250px; border-radius: 50%; border: 40px solid rgba(255,255,255,0.02); pointer-events: none; z-index: 1;}
+
+@media(max-width: 850px) { .reg-split-container { grid-template-columns: 1fr; } .contact-info-panel, .registration-form-panel { padding: 30px 20px; } }
+
+/* -------------------------------------------------------------
+   UNIFIED DYNAMIC MODAL CSS & ORIGINAL BUTTON STYLES
+------------------------------------------------------------- */
 .modal { display: none; position: fixed; inset: 0; z-index: 10000; background: rgba(15, 23, 42, 0.85); padding: 20px; overflow-y: auto; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
 .modal.show { display: flex; animation: fadeIn 0.3s ease; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -313,50 +396,32 @@ body.dark-theme .document-list li { background: var(--card-bg); border-color: va
 .job-box:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(37,99,235,0.1); border-color: var(--nav-active); }
 .job-box h4 { margin: 0 0 10px; font-size: 16px; font-weight: 800; line-height: 1.3; }
 .job-box span { font-size: 13px; font-weight: 700; background: rgba(37,99,235,0.1); color: var(--nav-active); padding: 5px 12px; border-radius: 20px; display: inline-block; }
+
+/* IMPORTANT: ORIGINAL MODAL BUTTON CSS RESTORED */
 .modal-btn-primary { width: 100%; background: linear-gradient(135deg, var(--nav-active), #4f46e5) !important; color: white; padding: 16px; border-radius: 14px; font-size: 16px; font-weight: 700; border: 0; transition: 0.3s; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 10px; box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3); margin-top: 10px;}
 .modal-btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(37, 99, 235, 0.4); }
 
-/* ========================================================
-   RESPONSIVE ADJUSTMENTS & SIDEBAR MENU (MOBILE)
-======================================================== */
-@media(max-width: 1080px) {
-  .header-wrapper { margin: 0; padding: 0; }
-  .floating-nav-container { flex-direction: row; width: 100%; padding: 12px 20px; border-radius: 0; justify-content: space-between; align-items: center; position: relative; background: var(--card-bg) !important; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border-bottom: 1px solid var(--border-color); }
-  .brand { margin: 0; width: auto; gap: 10px; }
-  .logo { width: 38px; height: 38px; border-radius: 8px; }
-  .brand h2 { font-size: 14.5px; white-space: normal; line-height: 1.2; text-align: left;}
-  .brand small { font-size: 9px; text-align: left; margin-top: 2px; }
-  .desktop-lang-box { display: none; }
-  .nav-controls { border: none; padding: 0; margin: 0; width: auto; justify-content: flex-end; gap: 12px; }
-  .menu-btn { display: block; position: static; pointer-events: auto; font-size: 22px; margin-left: 5px; }
-  .theme-toggle { width: 32px; height: 32px; font-size: 14px; }
-  .menu-overlay { display: block; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 9998; opacity: 0; visibility: hidden; transition: 0.3s ease; pointer-events: none; }
-  .menu-overlay.show { opacity: 1; visibility: visible; pointer-events: auto; }
-  nav { position: fixed !important; top: 0; left: -100%; width: 280px; height: 100vh; background: var(--bg-color); z-index: 9999; flex-direction: column !important; align-items: flex-start; padding: 80px 20px 20px; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 5px 0 25px rgba(0,0,0,0.1); display: flex !important; margin: 0; justify-content: flex-start; gap: 10px; pointer-events: auto !important; }
-  nav.open { left: 0; }
-  .mobile-close-btn { display: flex; position: absolute; top: 15px; right: 15px; background: #fee2e2; color: #ef4444; width: 38px; height: 38px; border-radius: 50%; border: none; align-items: center; justify-content: center; font-size: 18px; cursor: pointer; transition: 0.3s; }
-  .mobile-close-btn:active { transform: scale(0.9); }
-  body.dark-theme .mobile-close-btn { background: rgba(239, 68, 68, 0.15); }
-  .nav-link { width: 100%; text-align: left; padding: 14px 20px; font-size: 16px; border-radius: 12px; color: var(--text-main); font-weight: 700; white-space: normal; }
-  .nav-link::after { display: none; }
-  .nav-link.active { background: var(--nav-active); color: white; box-shadow: 0 4px 12px rgba(37,99,235,0.2); }
-  .nav-btn { width: 100%; margin-left: 0; padding: 14px 20px; font-size: 16px; border-radius: 12px; justify-content: flex-start; margin-top: 10px; background: var(--nav-active); }
-  .mobile-lang-box { display: flex; width: 100%; justify-content: center; margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border-color); }
-  .universal-grid { grid-template-columns: repeat(3, 1fr); }
-  .hero-inner { grid-template-columns: 1fr; text-align: center; }
-  .hero-buttons { justify-content: center; }
-}
-@media(max-width:850px) { .universal-grid { grid-template-columns: repeat(2, 1fr); } }
-@media(max-width:650px) {
-  .stats { grid-template-columns: repeat(2, 1fr); }
-  .universal-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
-  .about-grid, .contact-grid, .footer-grid { grid-template-columns: 1fr; }
-  .modal-box { padding: 30px 20px; }
-  .brand h2 { font-size: 14px; white-space: normal; line-height: 1.1; }
-  .logo { width: 40px; height: 40px; }
-  .jobs-grid { grid-template-columns: 1fr; }
-  .modal-tabs { flex-direction: column; }
-}
+/* IMAGE ZOOM MODAL */
+#imageZoomModal { display: none; position: fixed; z-index: 100000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); backdrop-filter: blur(5px); cursor: zoom-out; justify-content: center; align-items: center; flex-direction: column; }
+.zoom-content { margin: auto; display: block; max-width: 95%; max-height: 90vh; border-radius: 10px; animation: zoomIn 0.3s ease; box-shadow: 0 10px 50px rgba(0,0,0,0.8); object-fit: contain; }
+.close-zoom { position: absolute; top: 20px; right: 30px; color: #f1f1f1; font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; z-index: 100001; }
+.close-zoom:hover, .close-zoom:focus { color: #ef4444; text-decoration: none; }
+@keyframes zoomIn { from {transform: scale(0.8); opacity: 0;} to {transform: scale(1); opacity: 1;} }
+
+footer { background: #0b1120; color: white; padding: 50px 5% 30px; }
+.footer-grid { max-width: 1200px; margin: auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 30px; }
+footer h3 { font-size: 18px; margin-bottom: 20px; font-weight: 600; }
+footer p, footer a { color: #94a3b8; font-size: 15px; transition: 0.2s; }
+footer a { display: block; margin: 10px 0; }
+footer a:hover { color: white; padding-left: 5px; }
+.copyright { max-width: 1200px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14px; color: #94a3b8; text-align: center; }
+.whatsapp-float { position: fixed; right: 25px; bottom: 25px; z-index: 30; background: #25D366; width: 60px; height: 60px; border-radius: 50%; box-shadow: 0 8px 25px rgba(37,211,102,0.4); display: flex; align-items: center; justify-content: center; transition: transform 0.3s; }
+.whatsapp-float:hover { transform: scale(1.15) rotate(-5deg); }
+.whatsapp-float i { font-size: 35px; color: white; }
+
+/* Scroll Animation */
+.animate-up { opacity: 0; transform: translateY(40px); transition: all 0.7s cubic-bezier(0.165, 0.84, 0.44, 1); }
+.animate-up.in-view { opacity: 1; transform: translateY(0); }
 </style>
 </head>
 
@@ -385,9 +450,10 @@ body.dark-theme .document-list li { background: var(--card-bg); border-color: va
 <!-- OVERLAY FOR MOBILE MENU -->
 <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
 
-<!-- FLOATING NAVBAR -->
+<!-- EXACT PROFESSIONAL HEADER WITH PILL MENU -->
 <div class="header-wrapper">
   <div class="floating-nav-container">
+    
     <a href="#" class="brand" onclick="navClick(document.getElementById('navHome'), 'home')">
       <div class="logo"><img src="LOGO.jpg" alt="Logo" onerror="this.style.display='none';this.parentElement.textContent='DCC';"></div>
       <div class="brand-text">
@@ -396,23 +462,19 @@ body.dark-theme .document-list li { background: var(--card-bg); border-color: va
       </div>
     </a>
 
-    <nav id="mainNav">
-      <button class="mobile-close-btn" onclick="closeMenu()"><i class="fa-solid fa-xmark"></i></button>
-      <a href="#" class="nav-link active" id="navHome" data-en="Home" data-gu="હોમ" onclick="navClick(this, 'home')">હોમ</a>
-      <a href="#" class="nav-link" id="navServices" data-en="Services" data-gu="સેવાઓ" onclick="navClick(this, 'services')">સેવાઓ</a>
-      <a href="#" class="nav-link" id="navUpdates" data-en="Updates & Jobs" data-gu="અપડેટ્સ & જોબ્સ" onclick="navClick(this, 'updates')">અપડેટ્સ & જોબ્સ</a>
-      <a href="#about" class="nav-link" data-en="About" data-gu="અમારા વિશે" onclick="navClick(this, 'other'); setTimeout(()=>document.getElementById('about').scrollIntoView({behavior: 'smooth'}), 100);">અમારા વિશે</a>
-      <a href="#contact" class="nav-link" data-en="Contact" data-gu="સંપર્ક" onclick="navClick(this, 'other'); setTimeout(()=>document.getElementById('contact').scrollIntoView({behavior: 'smooth'}), 100);">સંપર્ક</a>
-      <a href="#registration" class="nav-btn" data-en="✨ Registration" data-gu="✨ સેવા વિનંતી" onclick="navClick(this, 'other'); setTimeout(()=>document.getElementById('registration').scrollIntoView({behavior: 'smooth'}), 100);">✨ સેવા વિનંતી</a>
-      
-      <div class="mobile-lang-box">
-        <div class="language-switch">
-          <button class="lang-en-btn" onclick="setLanguage('en')">EN</button>
-          <button class="lang-gu-btn" onclick="setLanguage('gu')">GU</button>
-        </div>
-      </div>
-    </nav>
+    <!-- Center Nav Pill (Desktop Only) -->
+    <div class="nav-pill-wrapper">
+        <a href="#" class="nav-link active" id="navHome" data-en="Home" data-gu="હોમ" onclick="navClick(this, 'home')">હોમ</a>
+        <a href="#" class="nav-link" id="navServices" data-en="Services" data-gu="સેવાઓ" onclick="navClick(this, 'services')">સેવાઓ</a>
+        <a href="#" class="nav-link" id="navUpdates" data-en="Updates & Jobs" data-gu="અપડેટ્સ & જોબ્સ" onclick="navClick(this, 'updates')">અપડેટ્સ & જોબ્સ</a>
+        <a href="#" class="nav-link" id="navAbout" data-en="About" data-gu="અમારા વિશે" onclick="navClick(this, 'about')">અમારા વિશે</a>
+        <a href="#" class="nav-link" id="navContact" data-en="Contact" data-gu="સંપર્ક" onclick="navClick(this, 'contact')">સંપર્ક</a>
+        
+        <!-- Registration Button Inside Pill opens the new Registration Section -->
+        <a href="#" class="nav-btn-whatsapp" id="navRegistration" data-en="✨ Registration" data-gu="✨ Registration" onclick="navClick(this, 'registration')">✨ Registration</a>
+    </div>
 
+    <!-- Right Controls -->
     <div class="nav-controls">
       <div class="desktop-lang-box">
         <div class="language-switch">
@@ -423,8 +485,28 @@ body.dark-theme .document-list li { background: var(--card-bg); border-color: va
       <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn" aria-label="Toggle Dark Mode">🌙</button>
       <button class="menu-btn" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
     </div>
+
   </div>
 </div>
+
+<!-- Mobile Nav (Hidden on Desktop) -->
+<nav id="mainNav">
+  <button class="mobile-close-btn" onclick="closeMenu()"><i class="fa-solid fa-xmark"></i></button>
+  <a href="#" class="nav-link active" data-en="Home" data-gu="હોમ" onclick="navClick(document.getElementById('navHome'), 'home')">હોમ</a>
+  <a href="#" class="nav-link" data-en="Services" data-gu="સેવાઓ" onclick="navClick(document.getElementById('navServices'), 'services')">સેવાઓ</a>
+  <a href="#" class="nav-link" data-en="Updates & Jobs" data-gu="અપડેટ્સ & જોબ્સ" onclick="navClick(document.getElementById('navUpdates'), 'updates')">અપડેટ્સ & જોબ્સ</a>
+  <a href="#" class="nav-link" data-en="About" data-gu="અમારા વિશે" onclick="navClick(document.getElementById('navAbout'), 'about')">અમારા વિશે</a>
+  <a href="#" class="nav-link" data-en="Contact" data-gu="સંપર્ક" onclick="navClick(document.getElementById('navContact'), 'contact')">સંપર્ક</a>
+  
+  <a href="#" class="nav-btn-whatsapp-mobile" id="navRegistrationMobile" data-en="✨ Registration" data-gu="✨ Registration" onclick="navClick(document.getElementById('navRegistration'), 'registration')">✨ Registration</a>
+  
+  <div class="mobile-lang-box">
+    <div class="language-switch">
+      <button class="lang-en-btn" onclick="setLanguage('en')">EN</button>
+      <button class="lang-gu-btn" onclick="setLanguage('gu')">GU</button>
+    </div>
+  </div>
+</nav>
 
 <main>
   <!-- HOME PAGE SECTION -->
@@ -434,7 +516,14 @@ body.dark-theme .document-list li { background: var(--card-bg); border-color: va
         <div class="animate-up">
           <span class="pill" data-en="YOUR DIGITAL SERVICE CENTER" data-gu="તમારું ડિજિટલ સેવા કેન્દ્ર">તમારું ડિજિટલ સેવા કેન્દ્ર</span>
           <h1>DWARKADHISH<br><span class="text-gold">COMPUTER CENTER</span></h1>
-          <h2 data-en="All your digital needs in one place" data-gu="તમારી દરેક ડિજિટલ જરૂરિયાત એક જ જગ્યાએ">તમારી દરેક ડિજિટલ જરૂરિયાત એક જ જગ્યાએ</h2>
+          <p data-en="All your digital needs in one place" data-gu="તમારી દરેક ડિજિટલ જરૂરિયાત એક જ જગ્યાએ">તમારી દરેક ડિજિટલ જરૂરિયાત એક જ જગ્યાએ</p>
+          
+          <!-- AUTO-TYPING EFFECT -->
+          <div class="typing-container">
+            <i class="fa-solid fa-angles-right"></i>
+            <span id="typed-text" class="text-gold"></span><span class="cursor">|</span>
+          </div>
+
           <div class="hero-buttons">
             <button class="btn btn-primary" onclick="navClick(document.getElementById('navServices'), 'services')" data-en="Explore Services" data-gu="બધી સેવાઓ જુઓ">બધી સેવાઓ જુઓ</button>
           </div>
@@ -456,82 +545,14 @@ body.dark-theme .document-list li { background: var(--card-bg); border-color: va
     </div>
 
     <!-- QUICK LINKS TOGGLE -->
-    <div class="container animate-up" style="margin-top: 40px; margin-bottom: 20px;">
+    <div class="container animate-up" style="margin-top: 20px; margin-bottom: 20px;">
       <div class="main-tab-container">
         <button class="main-tab-btn active" onclick="navClick(document.getElementById('navUpdates'), 'updates')" data-en="<i class='fa-solid fa-bullhorn' style='color:#f43f5e'></i> Latest Updates" data-gu="<i class='fa-solid fa-bullhorn' style='color:#f43f5e'></i> તાજા સમાચાર"><i class="fa-solid fa-bullhorn" style="color:#f43f5e"></i> તાજા સમાચાર</button>
         <button class="main-tab-btn inactive" onclick="navClick(document.getElementById('navServices'), 'services')" data-en="<i class='fa-solid fa-bolt' style='color:#f59e0b'></i> Explore Services" data-gu="<i class='fa-solid fa-bolt' style='color:#f59e0b'></i> સેવાઓ જુઓ"><i class="fa-solid fa-bolt" style="color:#f59e0b"></i> સેવાઓ જુઓ</button>
       </div>
     </div>
 
-    <!-- ABOUT SECTION -->
-    <section class="about" id="about">
-      <div class="container about-grid">
-        <div class="animate-up">
-          <div class="section-head" style="text-align: left;">
-            <small data-en="KNOW MORE" data-gu="વધુ જાણો">વધુ જાણો</small>
-            <h2 data-en="About Us" data-gu="અમારા વિશે">અમારા વિશે</h2>
-          </div>
-          <p data-en="Welcome to DWARKADHISH COMPUTER CENTER. Our aim is to make digital services easy." data-gu="DWARKADHISH COMPUTER CENTER પર આપનું સ્વાગત છે. અમારો હેતુ ઓનલાઇન સેવાઓની માહિતી સરળતાથી ઉપલબ્ધ કરાવવાનો છે.">DWARKADHISH COMPUTER CENTER પર આપનું સ્વાગત છે. અમારો હેતુ ઓનલાઇન સેવાઓની માહિતી સરળતાથી ઉપલબ્ધ કરાવવાનો છે.</p>
-          <ul class="check-list">
-            <li data-en="✓ Information about various online services" data-gu="<i class='fa-solid fa-circle-check'></i> વિવિધ ઓનલાઇન સેવાઓની માહિતી"><i class="fa-solid fa-circle-check"></i> વિવિધ ઓનલાઇન સેવાઓની માહિતી</li>
-            <li data-en="✓ Government recruitment and admission updates" data-gu="<i class='fa-solid fa-circle-check'></i> સરકારી ભરતી અને એડમિશન અપડેટ્સ"><i class="fa-solid fa-circle-check"></i> સરકારી ભરતી અને એડમિશન અપડેટ્સ</li>
-            <li data-en="✓ Lists of required documents" data-gu="<i class='fa-solid fa-circle-check'></i> જરૂરી ડોક્યુમેન્ટ્સની યાદી"><i class="fa-solid fa-circle-check"></i> જરૂરી ડોક્યુમેન્ટ્સની યાદી</li>
-          </ul>
-        </div>
-        <div class="about-panel animate-up" style="transition-delay: 0.2s;">
-          <i class="fa-solid fa-laptop-code big-icon"></i>
-          <h2 data-en="Your Digital Service" data-gu="તમારી ડિજિટલ સેવા">તમારી ડિજિટલ સેવા</h2>
-          <p data-en="Fast, Reliable & Easy" data-gu="ઝડપી, ભરોસાપાત્ર અને સરળ">ઝડપી, ભરોસાપાત્ર અને સરળ</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section id="contact" style="background:var(--bg-color)">
-      <div class="container">
-        <div class="section-head animate-up">
-          <small data-en="GET IN TOUCH" data-gu="અમારો સંપર્ક કરો">અમારો સંપર્ક કરો</small>
-          <h2 data-en="Contact Us" data-gu="સંપર્ક કરો">સંપર્ક કરો</h2>
-        </div>
-        <div class="contact-grid">
-          <div class="contact-card animate-up">
-            <h3 data-en="Contact Details" data-gu="સંપર્કની વિગતો">સંપર્કની વિગતો</h3>
-            <div class="contact-item">
-              <strong data-en="Mobile" data-gu="મોબાઇલ">મોબાઇલ / WhatsApp</strong>
-              <p><i class="fa-solid fa-phone"></i> 9537362607</p>
-            </div>
-            <div class="contact-item">
-              <strong data-en="Shop Name" data-gu="દુકાનનું નામ">દુકાનનું નામ</strong>
-              <p><i class="fa-solid fa-shop"></i> DWARKADHISH COMPUTER CENTER</p>
-            </div>
-            <div class="contact-item" style="border:none">
-              <strong data-en="Address" data-gu="સરનામું">સરનામું</strong>
-              <p style="font-size: 15px; margin-top: 5px; line-height: 1.4;">
-                <i class="fa-solid fa-location-dot"></i> 
-                <span data-en="Near Siddhi Honda Showroom, Corner of Military Society, Chitra, Bhavnagar - 364004" data-gu="સિદ્ધિ હોન્ડા શોરૂમ પાસે, મિલિટરી સોસાયટીના નાકે, ચિત્રા, ભાવનગર - 364004">સિદ્ધિ હોન્ડા શોરૂમ પાસે, મિલિટરી સોસાયટીના નાકે, ચિત્રા, ભાવનગર - 364004</span>
-              </p>
-            </div>
-            <a class="btn btn-primary" target="_blank" href="https://wa.me/919537362607" style="margin-top:20px; display:inline-block; background: #168b50;" data-en="WhatsApp Us" data-gu="<i class='fa-brands fa-whatsapp'></i> WhatsApp કરો"><i class="fa-brands fa-whatsapp"></i> WhatsApp કરો</a>
-          </div>
-          <div class="form-card animate-up" id="registration" style="transition-delay: 0.2s;">
-            <h3 data-en="Service Registration" data-gu="સેવા માટે નોંધણી">સેવા માટે નોંધણી</h3>
-            <form onsubmit="sendRequest(event)">
-              <label data-en="Full Name *" data-gu="પૂરું નામ *">પૂરું નામ *</label>
-              <input id="customerName" required placeholder="તમારું નામ લખો" data-en-placeholder="Enter your name" data-gu-placeholder="તમારું નામ લખો">
-              <label data-en="Mobile *" data-gu="મોબાઇલ નંબર *">મોબાઇલ નંબર *</label>
-              <input id="customerMobile" type="tel" pattern="[0-9]{10}" required placeholder="10 અંકનો નંબર" data-en-placeholder="10 digit number" data-gu-placeholder="10 અંકનો નંબર">
-              <label data-en="Select Service *" data-gu="સેવા પસંદ કરો *">સેવા પસંદ કરો *</label>
-              <select id="serviceChoice" required></select>
-              <label data-en="Details" data-gu="વધુ માહિતી (જો હોય તો)">વધુ માહિતી (જો હોય તો)</label>
-              <textarea id="customerMessage" placeholder="તમારે કઈ સેવા જોઈએ છે તે લખો" data-en-placeholder="Write your query..." data-gu-placeholder="તમારે કઈ સેવા જોઈએ છે તે લખો"></textarea>
-              <button type="submit" class="btn btn-primary" style="width:100%;margin-top:15px; font-size:16px; background:var(--nav-active)" data-en="Send Request" data-gu="વિનંતી મોકલો <i class='fa-solid fa-paper-plane'></i>">વિનંતી મોકલો <i class="fa-solid fa-paper-plane"></i></button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- NEW HORIZONTAL SWIPING AUTO-GALLERY (POSTERS 1 TO 10 & OFFICE1) -->
+    <!-- HORIZONTAL SWIPING AUTO-GALLERY -->
     <section class="office-gallery">
       <div class="container">
         <div class="section-head animate-up">
@@ -540,44 +561,213 @@ body.dark-theme .document-list li { background: var(--card-bg); border-color: va
         </div>
         
         <div class="horizontal-scroll-gallery animate-up" id="autoScrollGallery">
-          <div class="scroll-item">
-            <img src="office1.jpg" alt="Dwarkadhish Office Banner" onerror="fallbackImage(this, 'office1')" onclick="openImageModal(this.src)">
-          </div>
-          <div class="scroll-item">
-            <img src="1.jpg" alt="Service Poster 1" onerror="fallbackImage(this, '1')" onclick="openImageModal(this.src)">
-          </div>
-          <div class="scroll-item">
-            <img src="2.jpg" alt="Service Poster 2" onerror="fallbackImage(this, '2')" onclick="openImageModal(this.src)">
-          </div>
-          <div class="scroll-item">
-            <img src="3.jpg" alt="Service Poster 3" onerror="fallbackImage(this, '3')" onclick="openImageModal(this.src)">
-          </div>
-          <div class="scroll-item">
-            <img src="4.jpg" alt="Service Poster 4" onerror="fallbackImage(this, '4')" onclick="openImageModal(this.src)">
-          </div>
-          <div class="scroll-item">
-            <img src="5.jpg" alt="Service Poster 5" onerror="fallbackImage(this, '5')" onclick="openImageModal(this.src)">
-          </div>
-          <div class="scroll-item">
-            <img src="6.jpg" alt="Service Poster 6" onerror="fallbackImage(this, '6')" onclick="openImageModal(this.src)">
-          </div>
-          <div class="scroll-item">
-            <img src="7.jpg" alt="Service Poster 7" onerror="fallbackImage(this, '7')" onclick="openImageModal(this.src)">
-          </div>
-          <div class="scroll-item">
-            <img src="8.jpg" alt="Service Poster 8" onerror="fallbackImage(this, '8')" onclick="openImageModal(this.src)">
-          </div>
-          <div class="scroll-item">
-            <img src="9.jpg" alt="Service Poster 9" onerror="fallbackImage(this, '9')" onclick="openImageModal(this.src)">
-          </div>
-          <div class="scroll-item">
-            <img src="10.jpg" alt="Service Poster 10" onerror="fallbackImage(this, '10')" onclick="openImageModal(this.src)">
-          </div>
+          <div class="scroll-item"><img src="office1.jpg" alt="Office Banner" onerror="fallbackImage(this, 'office1')" onclick="openImageModal(this.src)"></div>
+          <div class="scroll-item"><img src="1.jpg" alt="Poster 1" onerror="fallbackImage(this, '1')" onclick="openImageModal(this.src)"></div>
+          <div class="scroll-item"><img src="2.jpg" alt="Poster 2" onerror="fallbackImage(this, '2')" onclick="openImageModal(this.src)"></div>
+          <div class="scroll-item"><img src="3.jpg" alt="Poster 3" onerror="fallbackImage(this, '3')" onclick="openImageModal(this.src)"></div>
+          <div class="scroll-item"><img src="4.jpg" alt="Poster 4" onerror="fallbackImage(this, '4')" onclick="openImageModal(this.src)"></div>
+          <div class="scroll-item"><img src="5.jpg" alt="Poster 5" onerror="fallbackImage(this, '5')" onclick="openImageModal(this.src)"></div>
+          <div class="scroll-item"><img src="6.jpg" alt="Poster 6" onerror="fallbackImage(this, '6')" onclick="openImageModal(this.src)"></div>
+          <div class="scroll-item"><img src="7.jpg" alt="Poster 7" onerror="fallbackImage(this, '7')" onclick="openImageModal(this.src)"></div>
+          <div class="scroll-item"><img src="8.jpg" alt="Poster 8" onerror="fallbackImage(this, '8')" onclick="openImageModal(this.src)"></div>
+          <div class="scroll-item"><img src="9.jpg" alt="Poster 9" onerror="fallbackImage(this, '9')" onclick="openImageModal(this.src)"></div>
+          <div class="scroll-item"><img src="10.jpg" alt="Poster 10" onerror="fallbackImage(this, '10')" onclick="openImageModal(this.src)"></div>
         </div>
       </div>
     </section>
 
   </div> <!-- END OF HOME SECTION -->
+
+  <!-- ==============================================
+       ABOUT US PAGE SECTION (NEW SEPARATE PAGE)
+       ============================================== -->
+  <div id="aboutPageSection" style="display: none; padding-top: 40px; padding-bottom: 60px;">
+    <section class="about" id="aboutSection">
+      <div class="container animate-up">
+        <div class="section-head">
+          <small data-en="KNOW MORE" data-gu="વધુ જાણો">વધુ જાણો</small>
+          <h2 data-en="About Us" data-gu="અમારા વિશે (About Us)">અમારા વિશે (About Us)</h2>
+        </div>
+        
+        <div class="about-modern-wrapper">
+          <div class="about-creative-visual">
+            <div class="about-cv-center">
+              <i class="fa-solid fa-laptop-code"></i>
+              <h3 data-en="DIGITAL INDIA" data-gu="ડિજિટલ ઇન્ડિયા">ડિજિટલ ઇન્ડિયા</h3>
+              <p data-en="Smart Digital Services" data-gu="સ્માર્ટ ડિજિટલ સેવાઓ">સ્માર્ટ ડિજિટલ સેવાઓ</p>
+            </div>
+            <!-- Floating Background Icons -->
+            <i class="fa-solid fa-file-invoice float-icon fi-1"></i>
+            <i class="fa-solid fa-graduation-cap float-icon fi-2"></i>
+            <i class="fa-solid fa-id-card float-icon fi-3"></i>
+            <i class="fa-solid fa-landmark float-icon fi-4"></i>
+          </div>
+          
+          <div class="about-content">
+            <h3 data-en="DWARKADHISH COMPUTER CENTER" data-gu="DWARKADHISH COMPUTER CENTER">DWARKADHISH COMPUTER CENTER</h3>
+            <p data-en="Namaste! My name is JADAV JAYDIP. With vast experience in Common Service Center (CSC) and digital services, we have started 'Dwarkadhish Computer Center'." data-gu="નમસ્તે! મારું નામ JADAV JAYDIP છે. છેલ્લા ઘણા સમયથી કોમન સર્વિસ સેન્ટર (CSC) અને ડિજિટલ સેવાઓ ક્ષેત્રે કામ કરવાના બહોળા અનુભવ સાથે મેં 'DWARKADHISH COMPUTER CENTER' ની શરૂઆત કરી છે.">નમસ્તે! મારું નામ JADAV JAYDIP છે. છેલ્લા ઘણા સમયથી કોમન સર્વિસ સેન્ટર (CSC) અને ડિજિટલ સેવાઓ ક્ષેત્રે કામ કરવાના બહોળા અનુભવ સાથે મેં 'DWARKADHISH COMPUTER CENTER' ની શરૂઆત કરી છે.</p>
+            <p data-en="Our main goal is to remove the difficulties faced by people regarding government schemes, online forms, jobs, and scholarships. We provide a smart platform where you can easily get correct information." data-gu="અમારો મુખ્ય હેતુ લોકોને સરકારી યોજનાઓ, ઓનલાઇન ફોર્મ, નોકરીની માહિતી અને સ્કોલરશિપ માટે પડતી મુશ્કેલીઓ દૂર કરવાનો છે. અમે એક એવું સ્માર્ટ અને આધુનિક ડિજિટલ પ્લેટફોર્મ પૂરું પાડીએ છીએ, જ્યાં તમને ઘરે બેઠા પાન કાર્ડ, આધાર સેવાઓ, રેશનકાર્ડ અને વિવિધ પ્રમાણપત્રોની સચોટ માહિતી સરળતાથી મળી રહે.">અમારો મુખ્ય હેતુ લોકોને સરકારી યોજનાઓ, ઓનલાઇન ફોર્મ, નોકરીની માહિતી અને સ્કોલરશિપ માટે પડતી મુશ્કેલીઓ દૂર કરવાનો છે. અમે એક એવું સ્માર્ટ અને આધુનિક ડિજિટલ પ્લેટફોર્મ પૂરું પાડીએ છીએ, જ્યાં તમને ઘરે બેઠા પાન કાર્ડ, આધાર સેવાઓ, રેશનકાર્ડ અને વિવિધ પ્રમાણપત્રોની સચોટ માહિતી સરળતાથી મળી રહે.</p>
+            
+            <div class="vision-mission-grid">
+              <div class="vm-box">
+                <h4 data-en="<i class='fa-solid fa-bullseye'></i> Our Mission" data-gu="<i class='fa-solid fa-bullseye'></i> Our Mission"><i class="fa-solid fa-bullseye"></i> Our Mission</h4>
+                <p data-en="To provide fast, secure, and accurate digital services to every citizen and save their valuable time." data-gu="દરેક નાગરિકને ઝડપી, સુરક્ષિત અને સચોટ ડિજિટલ સેવાઓ પૂરી પાડવી અને તેમનો કિંમતી સમય બચાવવો.">દરેક નાગરિકને ઝડપી, સુરક્ષિત અને સચોટ ડિજિટલ સેવાઓ પૂરી પાડવી અને તેમનો કિંમતી સમય બચાવવો.</p>
+              </div>
+              <div class="vm-box">
+                <h4 data-en="<i class='fa-solid fa-lightbulb'></i> Our Vision" data-gu="<i class='fa-solid fa-lightbulb'></i> Our Vision"><i class="fa-solid fa-lightbulb"></i> Our Vision</h4>
+                <p data-en="To realize the dream of Digital India, promote paperless smart work, and make online processes accessible." data-gu="ડિજિટલ ઇન્ડિયાના સ્વપ્નને સાકાર કરી, પેપરલેસ અને સ્માર્ટ વર્કને સતત પ્રોત્સાહન આપવું.">ડિજિટલ ઇન્ડિયાના સ્વપ્નને સાકાર કરી, પેપરલેસ અને સ્માર્ટ વર્કને સતત પ્રોત્સાહન આપવું.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
+  <!-- ==============================================
+       CONTACT PAGE SECTION (SEPARATE PAGE)
+       ============================================== -->
+  <div id="contactPageSection" style="display: none; padding-top: 40px; padding-bottom: 60px;">
+    <section id="contactSection">
+      <div class="container animate-up">
+        <div class="section-head">
+          <small data-en="GET IN TOUCH" data-gu="અમારો સંપર્ક કરો">અમારો સંપર્ક કરો</small>
+          <h2 data-en="Contact Us" data-gu="સંપર્ક કરો (Contact Us)">સંપર્ક કરો (Contact Us)</h2>
+          <p style="color: var(--text-muted); font-weight: 600;" data-en="Contact for Digital Services" data-gu="Digital Services માટે સંપર્ક કરો">Digital Services માટે સંપર્ક કરો</p>
+        </div>
+
+        <!-- Contact Cards -->
+        <div class="contact-3-cards">
+          <div class="c-card">
+            <i class="fa-solid fa-user-tie"></i>
+            <h4 data-en="Founder" data-gu="સંચાલક (Founder)">સંચાલક (Founder)</h4>
+            <p data-en="JADAV JAYDIP" data-gu="JADAV JAYDIP">JADAV JAYDIP</p>
+          </div>
+          <div class="c-card">
+            <i class="fa-solid fa-building"></i>
+            <h4 data-en="Company" data-gu="સંસ્થા (Company)">સંસ્થા (Company)</h4>
+            <p style="font-size: 14px;" data-en="DWARKADHISH COMPUTER CENTER" data-gu="DWARKADHISH COMPUTER CENTER">DWARKADHISH COMPUTER CENTER</p>
+          </div>
+          <div class="c-card">
+            <i class="fa-solid fa-phone-volume"></i>
+            <h4 data-en="Call Us" data-gu="કોલ કરો (Call Us)">કોલ કરો (Call Us)</h4>
+            <p>+91 9537362607</p>
+          </div>
+        </div>
+
+        <!-- Social Media Area -->
+        <div class="social-links-area animate-up">
+          <h4 data-en="<i class='fa-solid fa-globe'></i> Follow Us On Social Media" data-gu="<i class='fa-solid fa-globe'></i> સોશિયલ મીડિયા પર જોડાઓ"><i class="fa-solid fa-globe"></i> સોશિયલ મીડિયા પર જોડાઓ</h4>
+          <div class="s-btns">
+            <a href="https://www.instagram.com/dwarkadhish_center?mdxt=aTN6YWoyNGViY3l3" target="_blank" class="s-btn insta"><i class="fa-brands fa-instagram"></i> Instagram</a>
+            <a href="https://chat.whatsapp.com/EZfdiAmMSUTIneMoTYSq4u" target="_blank" class="s-btn wa"><i class="fa-brands fa-whatsapp"></i> WhatsApp Group</a>
+          </div>
+        </div>
+
+        <!-- Big Contact Banner -->
+        <div class="contact-banner animate-up">
+          <div class="cb-text">
+            <h3 data-en="🤝 Always at your service..." data-gu="🤝 હંમેશા તમારી સેવામાં...">🤝 હંમેશા તમારી સેવામાં...</h3>
+            <p data-en="Our sole purpose is to make your work fast, secure, and easy. Feel free to contact us for any online form, government scheme, or digital service." data-gu="DWARKADHISH COMPUTER CENTER નો એક જ ઉદ્દેશ્ય છે - તમારું કામ એકદમ ઝડપી, સુરક્ષિત અને સરળ બનાવવું. કોઈપણ ઓનલાઈન ફોર્મ, સરકારી યોજના કે ડિજિટલ સર્વિસ માટે નિઃસંકોચ અમારો સંપર્ક કરો.">DWARKADHISH COMPUTER CENTER નો એક જ ઉદ્દેશ્ય છે - તમારું કામ એકદમ ઝડપી, સુરક્ષિત અને સરળ બનાવવું. કોઈપણ ઓનલાઈન ફોર્મ, સરકારી યોજના કે ડિજિટલ સર્વિસ માટે નિઃસંકોચ અમારો સંપર્ક કરો.</p>
+            <a href="https://wa.me/919537362607" target="_blank" class="cb-btn" data-en="<i class='fa-brands fa-whatsapp'></i> Message on WhatsApp" data-gu="<i class='fa-brands fa-whatsapp'></i> WhatsApp પર મેસેજ કરો"><i class="fa-brands fa-whatsapp"></i> WhatsApp પર મેસેજ કરો</a>
+          </div>
+          <div class="cb-images">
+             <i class="fa-solid fa-headset"></i>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <!-- ==============================================
+       REGISTRATION PAGE SECTION (PREMIUM DARK SPLIT)
+       ============================================== -->
+  <div id="registrationPageSection" style="display: none; padding-top: 40px; padding-bottom: 60px;">
+    <section id="registrationSection">
+      <div class="container animate-up">
+        
+        <div class="reg-split-container">
+          
+          <!-- Left Panel: Contact Info -->
+          <div class="dark-panel contact-info-panel">
+             <h2 data-en="Contact Details" data-gu="Contact Details">Contact Details</h2>
+             
+             <div class="ci-item">
+               <span data-en="MOBILE" data-gu="MOBILE">MOBILE</span>
+               <p><i class="fa-solid fa-phone"></i> +91 9537362607</p>
+             </div>
+             
+             <div class="ci-item">
+               <span data-en="SHOP NAME" data-gu="SHOP NAME">SHOP NAME</span>
+               <p><i class="fa-solid fa-building"></i> DWARKADHISH COMPUTER CENTER</p>
+             </div>
+             
+             <div class="ci-item">
+               <span data-en="ADDRESS" data-gu="ADDRESS">ADDRESS</span>
+               <p style="font-size: 14px; line-height: 1.5; align-items: flex-start;"><i class="fa-solid fa-location-dot" style="margin-top: 4px;"></i> <span style="display:inline; text-transform:none; color:white; font-weight:500; font-size: 15px;" data-en="Near Siddhi Honda Showroom, Corner of Military Society, Chitra, Bhavnagar - 364004" data-gu="સિદ્ધિ હોન્ડા શોરૂમ પાસે, મિલિટરી સોસાયટીના નાકે, ચિત્રા, ભાવનગર - 364004">સિદ્ધિ હોન્ડા શોરૂમ પાસે, મિલિટરી સોસાયટીના નાકે, ચિત્રા, ભાવનગર - 364004</span></p>
+             </div>
+             
+             <a href="https://wa.me/919537362607" target="_blank" class="btn-green-wa" data-en="WhatsApp Us" data-gu="WhatsApp Us">WhatsApp Us</a>
+          </div>
+
+          <!-- Right Panel: The Form -->
+          <div class="dark-panel registration-form-panel">
+            <div class="bg-circle"></div>
+            
+            <h2 data-en="Service Registration" data-gu="Service Registration">Service Registration</h2>
+            <p data-en="Fill in your details and contact us on WhatsApp for the required service." data-gu="તમારી વિગતો ભરો અને તમને જોઈતી સેવા વિશે WhatsApp પર સંપર્ક કરો.">તમારી વિગતો ભરો અને તમને જોઈતી સેવા વિશે WhatsApp પર સંપર્ક કરો.</p>
+            
+            <form class="reg-form" onsubmit="submitRegistration(event)">
+              
+              <div class="dark-form-group">
+                <label data-en="Full Name *" data-gu="પૂરું નામ *">પૂરું નામ *</label>
+                <input type="text" id="regName" class="dark-form-control" required placeholder="તમારું પૂરું નામ" data-en-placeholder="Enter your full name" data-gu-placeholder="તમારું પૂરું નામ">
+              </div>
+              
+              <div class="dark-form-group">
+                <label data-en="Mobile Number *" data-gu="મોબાઈલ નંબર *">મોબાઈલ નંબર *</label>
+                <input type="tel" id="regMobile" class="dark-form-control" required placeholder="10 આંકડાનો મોબાઈલ નંબર" data-en-placeholder="10 digit mobile number" data-gu-placeholder="10 આંકડાનો મોબાઈલ નંબર">
+              </div>
+              
+              <div class="dark-form-group">
+                <label data-en="Address *" data-gu="સરનામું *">સરનામું *</label>
+                <input type="text" id="regAddress" class="dark-form-control" required placeholder="Chitra, Bhavnagar" data-en-placeholder="Your Area, City" data-gu-placeholder="તમારો વિસ્તાર, શહેર">
+              </div>
+              
+              <div class="dark-form-group">
+                <label data-en="Select Service *" data-gu="તમારે કઈ સેવા જોઈએ છે? *">તમારે કઈ સેવા જોઈએ છે? *</label>
+                <select id="regService" class="dark-form-control" required>
+                  <option value="">-- સેવા પસંદ કરો --</option>
+                  <option value="PAN Card">PAN કાર્ડ / PAN Card</option>
+                  <option value="Aadhaar Card">આધાર કાર્ડ / Aadhaar Card</option>
+                  <option value="Voter ID">ચૂંટણી કાર્ડ / Voter ID</option>
+                  <option value="Job Form">સરકારી ભરતી / Job Form</option>
+                  <option value="Admission Form">એડમિશન ફોર્મ / Admission</option>
+                  <option value="Scholarship Form">સ્કોલરશિપ / Scholarship</option>
+                  <option value="PF Service">PF સેવાઓ / PF Services</option>
+                  <option value="Other Service">અન્ય કોઈ સેવા / Other Service</option>
+                </select>
+              </div>
+              
+              <div class="dark-form-group">
+                <label data-en="More Info (Optional)" data-gu="વધુ માહિતી (વૈકલ્પિક)">વધુ માહિતી (વૈકલ્પિક)</label>
+                <textarea id="regMessage" class="dark-form-control" rows="3" placeholder="તમારા કામ વિશે બીજી કોઈ માહિતી હોય તો લખો" data-en-placeholder="Any other details..." data-gu-placeholder="તમારા કામ વિશે બીજી કોઈ માહિતી હોય તો લખો"></textarea>
+              </div>
+              
+              <button type="submit" class="btn-green-wa" style="font-size: 16px; padding: 15px;" data-en="<i class='fa-brands fa-whatsapp'></i> Send Request on WhatsApp" data-gu="<i class='fa-brands fa-whatsapp'></i> WhatsApp પર રિકવેસ્ટ મોકલો"><i class="fa-brands fa-whatsapp"></i> WhatsApp પર રિકવેસ્ટ મોકલો</button>
+              
+              <p style="font-size: 11px; margin-top: 15px; margin-bottom:0; text-align:center; color: #64748b;" data-en="Your details will be shared on WhatsApp. Press Send once WhatsApp opens." data-gu="તમારી વિગતો WhatsApp મેસેજમાં જોડાશે. મેસેજ મોકલવા માટે WhatsApp ખુલ્યા પછી તમારે Send દબાવવું પડશે.">તમારી વિગતો WhatsApp મેસેજમાં જોડાશે. મેસેજ મોકલવા માટે WhatsApp ખુલ્યા પછી તમારે Send દબાવવું પડશે.</p>
+            </form>
+            
+          </div>
+          
+        </div>
+      </div>
+    </section>
+  </div>
+
 
   <!-- SERVICES PAGE SECTION -->
   <div id="servicesSection" style="display: none; padding-top: 40px;">
@@ -634,7 +824,7 @@ body.dark-theme .document-list li { background: var(--card-bg); border-color: va
       <h3 data-en="Quick Links" data-gu="ઝડપી લિંક્સ">ઝડપી લિંક્સ</h3>
       <a href="#" onclick="navClick(document.getElementById('navHome'), 'home')" data-en="Home" data-gu="હોમ">હોમ</a>
       <a href="#" onclick="navClick(document.getElementById('navServices'), 'services')" data-en="Services" data-gu="સેવાઓ">સેવાઓ</a>
-      <a href="#contact" onclick="navClick(document.getElementById('navHome'), 'other'); setTimeout(()=>document.getElementById('contact').scrollIntoView({behavior: 'smooth'}), 100);" data-en="Contact" data-gu="સંપર્ક">સંપર્ક</a>
+      <a href="#" onclick="navClick(document.getElementById('navContact'), 'contact')" data-en="Contact" data-gu="સંપર્ક">સંપર્ક</a>
     </div>
   </div>
   <div class="copyright">© <span id="currentYear"></span> DWARKADHISH COMPUTER CENTER. <span data-en="All Rights Reserved." data-gu="તમામ હકો અનામત.">તમામ હકો અનામત.</span></div>
@@ -670,6 +860,51 @@ let activeUpdateFilter = "All";
 let selectedService = "";
 let isDarkMode = false;
 
+/* --- AUTO TYPING EFFECT LOGIC --- */
+const typingWordsEn = ["PAN Card Services...", "Aadhaar Card Update...", "Passport Application...", "Government Jobs...", "Scholarship Forms..."];
+const typingWordsGu = ["પાન કાર્ડ ની સેવાઓ...", "આધાર કાર્ડ અપડેટ...", "પાસપોર્ટ એપ્લિકેશન...", "સરકારી ભરતી ના ફોર્મ...", "સ્કોલરશિપ ના ફોર્મ..."];
+let typeIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+let typingTimeout;
+
+function typeEffect() {
+  const typedTextSpan = document.getElementById("typed-text");
+  if(!typedTextSpan) return;
+  
+  const currentWords = currentLanguage === "en" ? typingWordsEn : typingWordsGu;
+  if (typeIndex >= currentWords.length) typeIndex = 0;
+  const currentWord = currentWords[typeIndex];
+
+  if (isDeleting) {
+    typedTextSpan.textContent = currentWord.substring(0, charIndex - 1);
+    charIndex--;
+  } else {
+    typedTextSpan.textContent = currentWord.substring(0, charIndex + 1);
+    charIndex++;
+  }
+
+  let typeSpeed = isDeleting ? 50 : 100;
+
+  if (!isDeleting && charIndex === currentWord.length) {
+    typeSpeed = 2000; // Pause at end
+    isDeleting = true;
+  } else if (isDeleting && charIndex === 0) {
+    isDeleting = false;
+    typeIndex = (typeIndex + 1) % currentWords.length;
+    typeSpeed = 500; // Pause before typing next
+  }
+
+  typingTimeout = setTimeout(typeEffect, typeSpeed);
+}
+
+function resetTyping() {
+   clearTimeout(typingTimeout);
+   charIndex = 0;
+   isDeleting = false;
+   typeEffect();
+}
+
 /* --- AUTO-FIX FOR IMAGE EXTENSIONS --- */
 function fallbackImage(img, baseName) {
   let attempt = parseInt(img.getAttribute('data-attempt') || '0');
@@ -695,13 +930,12 @@ function startAutoSlide() {
   
   slideInterval = setInterval(() => {
     let maxScroll = gallery.scrollWidth - gallery.clientWidth;
-    // Pura cheda par pohnche etle pachu start thai jay
     if (gallery.scrollLeft >= maxScroll - 20) {
       gallery.scrollTo({ left: 0, behavior: 'smooth' });
     } else {
-      gallery.scrollBy({ left: 280, behavior: 'smooth' }); // Adjust width + gap
+      gallery.scrollBy({ left: 280, behavior: 'smooth' }); 
     }
-  }, 3500); // 3.5 seconds
+  }, 3500); 
 }
 
 /* --- IMAGE ZOOM FUNCTIONS --- */
@@ -729,6 +963,34 @@ function closeMenu() {
   const overlay = document.getElementById('menuOverlay');
   if (nav) nav.classList.remove('open');
   if (overlay) overlay.classList.remove('show');
+}
+
+/* --- UPDATED FORM SUBMIT FUNCTION (WHATSAPP VIP FORMAT) --- */
+function submitRegistration(event) {
+  event.preventDefault();
+  const name = document.getElementById('regName').value;
+  const mobile = document.getElementById('regMobile').value;
+  const address = document.getElementById('regAddress').value;
+  const service = document.getElementById('regService').value;
+  const msg = document.getElementById('regMessage').value;
+  
+  let waText = `🌟 *DWARKADHISH COMPUTER CENTER* 🌟\n`;
+  waText += `------------------------------------------------------\n\n`;
+  waText += `👤 *નામ:* ${name}\n\n`;
+  waText += `📱 *મોબાઈલ:* ${mobile}\n\n`;
+  waText += `📍 *સરનામું:* ${address}\n\n`;
+  waText += `🛠️ *સેવા:* ${service}\n\n`;
+  
+  if(msg) {
+    waText += `💬 *વધુ માહિતી:* ${msg}\n\n`;
+  }
+  
+  waText += `------------------------------------------------------\n\n`;
+  waText += `💙 *Thank you for choosing us!*\n`;
+  waText += `✨ *WELCOME TO DWARKADHISH GROUP OF SERVICES* ✨\n\n`;
+  waText += `તમારી Digital સેવા – એક જ જગ્યાએ!`;
+  
+  window.open("https://wa.me/919537362607?text=" + encodeURIComponent(waText), "_blank");
 }
 
 /* --- UI Helper Function --- */
@@ -811,28 +1073,43 @@ function observeElements() {
 
 function navClick(element, action) {
   document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active'));
-  if(element && !element.classList.contains('nav-btn')){ element.classList.add('active'); }
+  // Update active state, ignoring the registration button to keep its original blue color
+  if(element && !element.classList.contains('nav-btn-whatsapp') && !element.classList.contains('nav-btn-whatsapp-mobile')){ 
+    element.classList.add('active'); 
+  }
   
+  // Hide all sections first
+  document.getElementById('homeSection').style.display = 'none';
+  document.getElementById('servicesSection').style.display = 'none';
+  document.getElementById('updatesSection').style.display = 'none';
+  document.getElementById('aboutPageSection').style.display = 'none';
+  document.getElementById('contactPageSection').style.display = 'none';
+  document.getElementById('registrationPageSection').style.display = 'none';
+
+  // Show the requested section
   if (action === 'home' || action === 'other') {
     document.getElementById('homeSection').style.display = 'block';
-    document.getElementById('servicesSection').style.display = 'none';
-    document.getElementById('updatesSection').style.display = 'none';
     if(action === 'home') window.scrollTo(0, 0);
   } else if (action === 'services') {
-    document.getElementById('homeSection').style.display = 'none';
     document.getElementById('servicesSection').style.display = 'block';
-    document.getElementById('updatesSection').style.display = 'none';
     renderServices();
     window.scrollTo(0, 0);
   } else if (action === 'updates') {
-    document.getElementById('homeSection').style.display = 'none';
-    document.getElementById('servicesSection').style.display = 'none';
     document.getElementById('updatesSection').style.display = 'block';
     activeUpdateFilter = 'All';
     const btns = document.querySelectorAll(".update-filter-btn");
     btns.forEach(btn => btn.classList.remove("active"));
     if(btns.length > 0) btns[0].classList.add("active");
     renderUpdates();
+    window.scrollTo(0, 0);
+  } else if (action === 'about') {
+    document.getElementById('aboutPageSection').style.display = 'block';
+    window.scrollTo(0, 0);
+  } else if (action === 'contact') {
+    document.getElementById('contactPageSection').style.display = 'block';
+    window.scrollTo(0, 0);
+  } else if (action === 'registration') {
+    document.getElementById('registrationPageSection').style.display = 'block';
     window.scrollTo(0, 0);
   }
   
@@ -858,6 +1135,7 @@ function setLanguage(lang) {
   updateServiceSelect();
   renderServices();
   renderUpdates();
+  resetTyping(); // Restart typing effect on language change
   try { localStorage.setItem("dcc-language", lang); } catch(e) {}
 }
 
@@ -881,6 +1159,7 @@ function toggleTheme() {
 
 function updateServiceSelect() {
   const select = document.getElementById("serviceChoice");
+  if(!select) return;
   const previous = select.value;
   select.innerHTML = "";
   const first = document.createElement("option");
@@ -1090,7 +1369,7 @@ function openDynamicModal(type, serviceName = null) {
     else if (serviceName === "વાહન વીમો") {
       title.innerHTML = "🚙 <span style='color:var(--nav-active)'>Vehicle Insurance</span>";
       docs.style.display = "flex";
-      const d = [{text: "RC બુક (Registration Certificate)", icon: "fa-book-open"},{text: "વાહન માલિકનો આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-user-tag"},{text: "જૂની પોલિસી (જો હોય গঠনતો)", icon: "fa-file-shield"}];
+      const d = [{text: "RC બુક (Registration Certificate)", icon: "fa-book-open"},{text: "વાહન માલિકનો આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-user-tag"},{text: "જૂની પોલિસી (જો હોય તો)", icon: "fa-file-shield"}];
       docs.innerHTML = buildDocsHtml(d);
       btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
     }
@@ -1322,20 +1601,7 @@ function changeScholarshipTab(tab, btn) {
   applyBtn.onclick = () => { const tabName = tab === 'digitalgujarat' ? "Digital Gujarat Scholarship" : tab === 'mysy' ? "MYSY Scholarship" : "NSP Scholarship"; sendWhatsAppInquiry(tabName); };
 }
 
-function sendRequest(event) {
-  event.preventDefault();
-  const name = document.getElementById("customerName").value.trim();
-  const mobile = document.getElementById("customerMobile").value.trim();
-  const serviceValue = document.getElementById("serviceChoice").value;
-  const message = document.getElementById("customerMessage").value.trim();
-  if (!name || !mobile || !serviceValue) { alert(getText("કૃપા કરીને જરૂરી વિગતો ભરો.", "Please fill details.")); return; }
-  const messageText = `${getText("સેવા માટેની વિનંતી", "Service Request")}\n\n` +
-    `${getText("નામ: ", "Name: ")}${name}\n${getText("મોબાઇલ: ", "Mobile: ")}${mobile}\n` +
-    `${getText("સેવા: ", "Service: ")}${serviceValue}\n${getText("વધુ માહિતી: ", "Details: ")}${message || "-"}\n\n*DWARKADHISH COMPUTER CENTER*`;
-  window.open("https://wa.me/919537362607?text=" + encodeURIComponent(messageText), "_blank");
-}
-
-function initializeWebsite() {
+document.addEventListener('DOMContentLoaded', () => {
   const yearEl = document.getElementById("currentYear");
   if(yearEl) yearEl.textContent = new Date().getFullYear();
   setLanguage(localStorage.getItem("dcc-language") || "gu");
@@ -1343,12 +1609,11 @@ function initializeWebsite() {
   if(savedTheme === "dark") { toggleTheme(); }
   navClick(document.getElementById('navHome'), 'home');
   observeElements();
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  initializeWebsite();
+  
   document.body.classList.remove('no-scroll');
+  document.body.style.overflow = 'auto';
   startAutoSlide();
+  typeEffect();
 });
 </script>
 
