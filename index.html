@@ -29,11 +29,11 @@
   --card-bg: #ffffff;
   --text-main: #0f172a;
   --text-muted: #64748b;
-  --border-color: #e2e8f0;
+  --border-color: rgba(226, 232, 240, 0.9);
   --gold: #f59e0b;
-  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  --shadow-md: 0 10px 30px -5px rgba(139, 92, 246, 0.15);
-  --shadow-hover: 0 20px 40px -10px rgba(139, 92, 246, 0.25);
+  --shadow-sm: 0 10px 30px -10px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 15px 35px -5px rgba(139, 92, 246, 0.15);
+  --shadow-hover: 0 25px 50px -12px rgba(139, 92, 246, 0.25);
   --glass-bg: rgba(255, 255, 255, 0.95);
   --glass-blur: blur(16px);
 }
@@ -43,20 +43,32 @@ body.dark-theme {
   --card-bg: #0f172a;
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
-  --border-color: #1e293b;
+  --border-color: rgba(255, 255, 255, 0.08);
   --primary-light: #1e293b;
-  --shadow-sm: 0 4px 10px rgba(0,0,0,0.3);
-  --shadow-md: 0 10px 30px -5px rgba(0,0,0,0.5);
-  --shadow-hover: 0 20px 40px -10px rgba(139, 92, 246, 0.3);
+  --shadow-sm: 0 10px 30px rgba(0,0,0,0.4);
+  --shadow-md: 0 15px 35px -5px rgba(0,0,0,0.6);
+  --shadow-hover: 0 25px 50px -12px rgba(139, 92, 246, 0.3);
   --glass-bg: rgba(2, 6, 23, 0.9);
 }
 
+/* Fix Horizontal Scroll on Mobile */
+html, body { overflow-x: hidden; width: 100%; }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+
 body {
   margin: 0;
   font-family: "Plus Jakarta Sans", "Hind Vadodara", sans-serif;
   background-color: var(--bg-color);
+  
+  /* 🌟 VIP BACKGROUND: Dot Pattern + Floating Glow */
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(37, 99, 235, 0.05), transparent 25%),
+    radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.05), transparent 25%),
+    radial-gradient(rgba(139, 92, 246, 0.08) 1.5px, transparent 1.5px);
+  background-size: 100% 100%, 100% 100%, 25px 25px;
+  background-attachment: fixed;
+  
   color: var(--text-main);
   line-height: 1.7;
   transition: all 0.3s ease;
@@ -65,13 +77,19 @@ body {
 body.no-scroll { overflow: hidden; }
 
 /* -------------------------------------------------------------
-   MODERN LOADER (BUG FIXED - WILL ALWAYS HIDE)
+   MODERN LOADER
 ------------------------------------------------------------- */
 #welcomeLoader {
   position: fixed; inset: 0; background: var(--bg-color);
   z-index: 999999; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  animation: hideLoader 0.5s ease-out 1.2s forwards;
 }
-.loader-content { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; animation: scaleUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+@keyframes hideLoader { to { opacity: 0; visibility: hidden; z-index: -10; display: none; } }
+
+.loader-content { 
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  animation: scaleUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; 
+}
 .loader-logo-box { width: 150px; height: 150px; border-radius: 35px; background: #ffffff; margin: 0 auto 20px; display: grid; place-items: center; overflow: hidden; box-shadow: var(--shadow-md); border: 2px solid var(--border-color);}
 .loader-logo-box img { width: 100%; height: 100%; object-fit: contain; padding: 15px; }
 .loader-content h2 { margin: 0; font-size: 32px; font-weight: 800; background: var(--nav-active-grad); -webkit-background-clip: text; color: transparent; letter-spacing: 1px;}
@@ -84,7 +102,7 @@ button, input, select, textarea { font: inherit; }
 button { cursor: pointer; }
 
 /* -------------------------------------------------------------
-   PREMIUM GLASS HEADER & SCROLLING TICKER
+   PREMIUM GLASS HEADER
 ------------------------------------------------------------- */
 .header-wrapper { 
   position: sticky; top: 0; z-index: 9999; width: 100%;
@@ -137,7 +155,7 @@ body.dark-theme .nav-link:hover { color: white; background: rgba(255,255,255,0.0
 
 .menu-btn { display: none; background: none; border: none; font-size: 26px; color: var(--text-main); cursor: pointer; padding: 5px; margin-left: 5px; }
 
-/* 🌟 NEW: SCROLLING TRUST TICKER */
+/* 🌟 SCROLLING TRUST TICKER */
 .news-ticker { background: var(--primary-dark); color: white; padding: 8px 0; overflow: hidden; display: flex; width: 100%; position: relative; z-index: 9998; border-bottom: 1px solid rgba(255,255,255,0.1); }
 body.dark-theme .news-ticker { background: #020617; }
 .ticker-text { display: flex; white-space: nowrap; font-size: 13.5px; font-weight: 700; letter-spacing: 1px; animation: ticker 25s linear infinite; }
@@ -155,14 +173,12 @@ body.dark-theme .news-ticker { background: #020617; }
 .hero { position: relative; padding: 100px 5% 150px; background: linear-gradient(135deg, #020617 0%, #1e1b4b 40%, #172554 80%, #082f49 100%); color: white; overflow: hidden; z-index: 1; box-shadow: 0 20px 50px rgba(0,0,0,0.3);}
 .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(circle at 10% 100%, rgba(14, 165, 233, 0.4) 0%, transparent 50%), radial-gradient(circle at 90% 0%, rgba(139, 92, 246, 0.4) 0%, transparent 50%); z-index: -1; }
 
-/* 🌟 NEW: CSS FLOATING PARTICLES */
 .tech-particles { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; overflow: hidden; }
 .tech-particles::before, .tech-particles::after { content: ''; position: absolute; width: 5px; height: 5px; background: white; border-radius: 50%; opacity: 0; animation: floatUp 15s linear infinite; }
 .tech-particles::before { box-shadow: 10vw 20vh white, 30vw 80vh white, 50vw 50vh white, 70vw 90vh white, 90vw 30vh white; animation-delay: 0s; }
 .tech-particles::after { box-shadow: 15vw 70vh white, 40vw 30vh white, 60vw 80vh white, 85vw 60vh white, 95vw 10vh white; animation-delay: -7s; }
 @keyframes floatUp { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: 0.6; } 90% { opacity: 0.6; } 100% { transform: translateY(-200px); opacity: 0; } }
 
-/* 🌟 NEW: WAVE BOTTOM SHAPE */
 .hero-wave { position: absolute; bottom: -1px; left: 0; width: 100%; overflow: hidden; line-height: 0; z-index: 10;}
 .hero-wave svg { position: relative; display: block; width: calc(100% + 1.3px); height: 80px; }
 .hero-wave .shape-fill { fill: var(--bg-color); transition: fill 0.3s ease; }
@@ -201,7 +217,7 @@ body.dark-theme .news-ticker { background: #020617; }
 
 /* Stats */
 .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; padding: 0 5%; margin-top: -50px; position: relative; z-index: 10; max-width: 1400px; margin-left: auto; margin-right: auto;}
-.stat { background: var(--card-bg); padding: 30px 15px; text-align: center; border-radius: 24px; box-shadow: var(--shadow-md); border: 1px solid var(--border-color); backdrop-filter: var(--glass-blur); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.stat { background: var(--card-bg); padding: 30px 15px; text-align: center; border-radius: 24px; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color); backdrop-filter: var(--glass-blur); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 .stat:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: #8b5cf6; }
 .stat strong { display: block; font-size: 36px; font-weight: 800; background: var(--nav-active-grad); -webkit-background-clip: text; color: transparent; margin-bottom: 5px; line-height: 1;}
 .stat span { font-size: 14px; font-weight: 800; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px;}
@@ -239,44 +255,82 @@ body.dark-theme .section-head small { background: rgba(139, 92, 246, 0.15); bord
 .scroll-item:hover img { transform: scale(1.05); }
 
 /* App-Like Quick Tabs */
-.main-tab-container { display: flex; justify-content: center; gap: 15px; margin: 40px 0; background: var(--card-bg); padding: 8px; border-radius: 20px; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); display: inline-flex; margin-left: 50%; transform: translateX(-50%);}
-.main-tab-btn { padding: 14px 30px; font-family: inherit; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: 0.3s ease; border-radius: 14px; border: none; background: transparent; font-weight: 800; font-size: 16px; color: var(--text-muted);}
+.main-tab-container { display: flex; justify-content: center; gap: 15px; margin: 40px 0; background: var(--card-bg); padding: 8px; border-radius: 50px; border: 1px solid var(--border-color); box-shadow: var(--shadow-sm); display: inline-flex; margin-left: 50%; transform: translateX(-50%);}
+.main-tab-btn { padding: 14px 30px; font-family: inherit; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: 0.3s ease; border-radius: 40px; border: none; background: transparent; font-weight: 800; font-size: 16px; color: var(--text-muted);}
 .main-tab-btn:hover { color: #8b5cf6; background: var(--primary-light);}
 body.dark-theme .main-tab-btn:hover { background: rgba(255,255,255,0.05); }
 .main-tab-btn.active { background: var(--nav-active-grad); color: white; box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3); }
 
 /* -------------------------------------------------------------
-   PREMIUM WHITE CARDS (3D GLOWING BORDER ADDED)
+   🌟 ULTRA VIP CARDS (3D, Glowing Icon & Pill Button)
 ------------------------------------------------------------- */
 .universal-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 30px; align-items: stretch; }
-.universal-card { background: var(--card-bg); padding: 35px 30px; border-radius: 28px; border: 1px solid var(--border-color); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; flex-direction: column; align-items: flex-start; cursor: pointer; position: relative; overflow: hidden; box-shadow: var(--shadow-sm); height: 100%; }
+.universal-card { 
+  background: var(--card-bg); padding: 35px 25px; border-radius: 24px; 
+  border: 1px solid var(--border-color); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+  display: flex; flex-direction: column; align-items: flex-start; cursor: pointer; 
+  position: relative; overflow: hidden; box-shadow: var(--shadow-sm); height: 100%; 
+  z-index: 1;
+}
 
-/* 🌟 NEW: 3D Scale and Glow effect */
-.universal-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.5), var(--shadow-hover); }
+/* Glowing Top Accent Line on Hover */
+.universal-card::after {
+  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
+  background: var(--nav-active-grad); opacity: 0; transition: 0.4s ease;
+}
+.universal-card:hover { transform: translateY(-10px); box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.5), var(--shadow-hover); border-color: transparent; }
+.universal-card:hover::after { opacity: 1; }
 
-.universal-icon { width: 65px; height: 65px; background: var(--primary-light); color: #8b5cf6; display: grid; place-items: center; border-radius: 20px; font-size: 28px; transition: all 0.4s ease; margin-bottom: 25px; border: 1px solid var(--border-color); box-shadow: inset 0 2px 5px rgba(0,0,0,0.02);}
-.universal-card:hover .universal-icon { background: var(--nav-active-grad); color: white; transform: scale(1.1) rotate(-5deg); box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3); border-color: transparent;}
+/* Vibrant Gradient Icons */
+.universal-icon { 
+  width: 60px; height: 60px; background: var(--nav-active-grad); color: white; 
+  display: flex; align-items: center; justify-content: center; border-radius: 18px; 
+  font-size: 26px; transition: all 0.4s ease; margin-bottom: 25px; 
+  box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3); border: none;
+}
+.universal-card:hover .universal-icon { 
+  transform: scale(1.1) rotate(5deg); 
+  box-shadow: 0 15px 30px rgba(139, 92, 246, 0.4); 
+  border-radius: 50%;
+}
+
 .universal-card h3 { margin: 0 0 12px; font-size: 20px; font-weight: 800; color: var(--text-main); line-height: 1.3; letter-spacing: -0.5px;}
 .universal-card p { font-size: 15px; color: var(--text-muted); margin: 0 0 30px; flex: 1; font-weight: 600; line-height: 1.6;}
-.universal-link { color: #8b5cf6; font-size: 15px; font-weight: 800; transition: 0.3s; display: flex; align-items: center; gap: 8px; margin-top: auto; padding: 12px 20px; background: var(--bg-color); border-radius: 14px; width: 100%; justify-content: space-between; border: 1px solid var(--border-color);}
-.universal-card:hover .universal-link { background: var(--nav-active-grad); color: white; border-color: transparent; box-shadow: 0 8px 20px rgba(139, 92, 246, 0.25);}
+
+/* Modern Pill-Shaped Outline Button */
+.universal-link { 
+  color: var(--text-main); font-size: 14.5px; font-weight: 800; transition: 0.4s ease; 
+  display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: auto; 
+  padding: 12px 0; background: transparent; border-radius: 50px; width: 100%; 
+  border: 2px solid var(--border-color);
+}
+.universal-card:hover .universal-link { 
+  background: var(--nav-active-grad); color: white; border-color: transparent; 
+  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3); gap: 12px;
+}
 .universal-link i { transition: transform 0.3s ease; }
-.universal-card:hover .universal-link i { transform: translateX(5px); }
+.universal-card:hover .universal-link i { transform: translateX(3px); }
 
 /* Updates tags */
 .card-header-tags { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 20px; }
 .update-tag { background: var(--primary-light); color: #8b5cf6; font-size: 11px; font-weight: 800; padding: 6px 14px; border-radius: 8px; letter-spacing: 1px; text-transform: uppercase; border: 1px solid var(--border-color);}
 .update-date { color: var(--text-muted); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;}
 
-/* Search & Filters */
+/* Search Box (Floating Pill Style) */
 .search-area { display: flex; gap: 10px; margin: 0 auto 50px; max-width: 800px; position: relative;}
-.search-area input { flex: 1; min-width: 0; padding: 20px 25px 20px 60px; border: 2px solid transparent; border-radius: 24px; background: var(--card-bg); color: var(--text-main); outline: none; font-size: 17px; font-weight: 600; box-shadow: var(--shadow-md); border: 1px solid var(--border-color); transition: all 0.3s ease; }
+.search-area input { 
+  flex: 1; min-width: 0; padding: 22px 30px 22px 60px; border: 2px solid transparent; 
+  border-radius: 50px; background: var(--card-bg); color: var(--text-main); outline: none; 
+  font-size: 17px; font-weight: 600; box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+  transition: all 0.3s ease; 
+}
+body.dark-theme .search-area input { box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid var(--border-color); }
 .search-area::before { content: '\f002'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; left: 25px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 20px; z-index: 2; transition: 0.3s;}
-.search-area input:focus { border-color: #8b5cf6; box-shadow: 0 0 0 6px var(--primary-light), var(--shadow-hover); }
+.search-area input:focus { border-color: #8b5cf6; box-shadow: 0 0 0 6px var(--primary-light), var(--shadow-md); }
 .search-area input:focus + ::before { color: #8b5cf6; }
 
 .updates-filter-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 60px; flex-wrap: wrap; }
-.update-filter-btn { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-muted); padding: 12px 26px; border-radius: 14px; font-weight: 800; font-size: 15px; cursor: pointer; transition: all 0.3s ease; display:flex; align-items:center; gap:10px; box-shadow: var(--shadow-sm); }
+.update-filter-btn { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-muted); padding: 12px 26px; border-radius: 50px; font-weight: 800; font-size: 15px; cursor: pointer; transition: all 0.3s ease; display:flex; align-items:center; gap:10px; box-shadow: var(--shadow-sm); }
 .update-filter-btn:hover { border-color: #8b5cf6; color: #8b5cf6; transform: translateY(-2px); box-shadow: var(--shadow-md);}
 .update-filter-btn.active { background: var(--nav-active-grad); color: white; border-color: transparent; box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);}
 
@@ -312,7 +366,6 @@ body.dark-theme .main-tab-btn:hover { background: rgba(255,255,255,0.05); }
 .vm-box p { margin: 0; font-size: 14.5px; color: var(--text-muted); line-height: 1.6; font-weight: 600;}
 
 @media(max-width: 950px) { .about-modern-wrapper { flex-direction: column; } .about-creative-visual { min-height: 350px;} .about-content { padding: 40px 25px;} .vision-mission-grid { grid-template-columns: 1fr; } }
-
 
 /* -------------------------------------------------------------
    CONTACT SECTION 
@@ -438,77 +491,83 @@ footer a:hover { color: white; transform: translateX(5px); }
   100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
 
-/* 🌟 NEW: SMOOTH SCROLL REVELATIONS */
+/* 🌟 SMOOTH SCROLL REVELATIONS */
 .animate-up { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
 .animate-up.in-view { opacity: 1; transform: translateY(0); }
 
 /* ========================================================
-   RESPONSIVE (MOBILE OPTIMIZED)
+   RESPONSIVE (MOBILE OPTIMIZED - 100% PERFECT FIX)
 ======================================================== */
 @media(max-width: 1080px) {
   .header-wrapper { margin: 0; padding: 0;}
-  .floating-nav-container { padding: 12px 20px; }
+  .floating-nav-container { padding: 10px 15px; }
   .right-menu-group { display: none; } 
   .brand { margin-right: auto; }
-  .logo { width: 45px; height: 45px; border-radius: 12px;}
-  .brand h2 { font-size: 20px; white-space: normal; line-height: 1.15; letter-spacing: -0.5px;}
+  .logo { width: 42px; height: 42px; border-radius: 10px;}
+  .brand h2 { font-size: 18px; white-space: normal; line-height: 1.2; letter-spacing: -0.5px;}
   .desktop-lang-box { display: none; }
-  .nav-controls { gap: 15px; }
-  .menu-btn { display: block; font-size: 26px;}
-  .theme-toggle { width: 40px; height: 40px; font-size: 16px; }
+  .nav-controls { gap: 12px; }
+  .menu-btn { display: block; font-size: 24px; padding: 0; margin-left: 0;}
+  .theme-toggle { width: 38px; height: 38px; font-size: 16px; }
   
-  #mainNav { position: fixed !important; top: 0; left: -100%; width: 300px; height: 100vh; background: var(--card-bg); z-index: 9999; flex-direction: column !important; align-items: flex-start; padding: 90px 25px 30px; transition: 0.4s ease; box-shadow: 10px 0 30px rgba(0,0,0,0.1); display: flex !important; border-radius: 0; border: none; margin: 0; gap: 12px;}
+  #mainNav { position: fixed !important; top: 0; left: -100%; width: 280px; height: 100vh; background: var(--card-bg); z-index: 9999; flex-direction: column !important; align-items: flex-start; padding: 80px 20px 30px; transition: 0.4s ease; box-shadow: 10px 0 30px rgba(0,0,0,0.1); display: flex !important; border-radius: 0; border: none; margin: 0; gap: 10px;}
   #mainNav.open { left: 0; }
   .mobile-close-btn { display: flex; position: absolute; top: 20px; right: 20px; background: var(--bg-color); color: var(--text-main); width: 40px; height: 40px; border-radius: 12px; border: 1px solid var(--border-color); align-items: center; justify-content: center; font-size: 20px; cursor: pointer; transition: 0.3s; }
   .mobile-close-btn:hover { background: #ef4444; color: white; border-color: #ef4444;}
-  #mainNav .nav-link { width: 100%; text-align: left; padding: 14px 20px; font-size: 16px; font-weight: 800; border-radius: 12px; color: var(--text-main); background: transparent; transition: 0.3s;}
+  #mainNav .nav-link { width: 100%; text-align: left; padding: 12px 18px; font-size: 15px; font-weight: 800; border-radius: 12px; color: var(--text-main); background: transparent; transition: 0.3s;}
   #mainNav .nav-link:hover { background: var(--bg-color); color: #8b5cf6;}
   #mainNav .nav-link.active { background: var(--nav-active-grad); color: white; }
   
-  .nav-btn-whatsapp-mobile { width: 100%; padding: 16px 20px; font-size: 16px; border-radius: 12px; display: flex; justify-content: flex-start; align-items: center; gap: 12px; margin-top: 15px; background: var(--nav-active-grad); color: white; font-weight: 800; text-decoration: none; box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);}
-  .mobile-lang-box { display: flex; width: 100%; justify-content: center; margin-top: auto; padding-top: 25px; border-top: 1px solid var(--border-color); }
-  
-  .universal-grid { grid-template-columns: repeat(3, 1fr); }
-  .hero-inner { grid-template-columns: 1fr; text-align: center; }
-  .hero-buttons { justify-content: center; }
+  .nav-btn-whatsapp-mobile { width: 100%; padding: 15px 18px; font-size: 15px; border-radius: 12px; display: flex; justify-content: flex-start; align-items: center; gap: 10px; margin-top: 10px; background: var(--nav-active-grad); color: white; font-weight: 800; text-decoration: none; box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);}
+  .mobile-lang-box { display: flex; width: 100%; justify-content: center; margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border-color); }
 }
 
 @media(max-width:850px) { .universal-grid { grid-template-columns: repeat(2, 1fr); } }
 
+/* 🌟 MOBILE PHONES ONLY (1 COLUMN PERFECT LAYOUT) */
 @media(max-width:650px) {
-  .hero { padding: 80px 5% 70px; border-radius: 0 0 35px 35px;}
-  .hero h1 { font-size: 38px;}
+  .hero { padding: 80px 5% 60px; border-radius: 0 0 25px 25px;}
+  .hero h1 { font-size: 32px;}
+  .typing-container { font-size: 16px; padding: 8px 15px; }
   
-  /* ROUND LOGO FIX FOR MOBILE */
-  .hero-logo-box { max-width: 300px; padding: 15px; border-radius: 50%; border-width: 6px;}
-  .hero-image-wrapper::before { width: 330px; height: 330px; }
-  .hero-image-wrapper::after { width: 360px; height: 360px; }
+  .hero-logo-box { max-width: 250px; padding: 12px; border-width: 5px;}
+  .hero-image-wrapper::before { width: 280px; height: 280px; }
+  .hero-image-wrapper::after { width: 310px; height: 310px; }
 
-  .stats { grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: -35px;}
-  .stat { padding: 20px 15px; border-radius: 16px;}
-  .stat strong { font-size: 28px;}
-  .universal-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
-  .universal-card { padding: 20px 15px; border-radius: 16px;}
-  .universal-icon { width: 45px; height: 45px; font-size: 20px; border-radius: 12px; margin-bottom: 15px;}
-  .universal-card h3 { font-size: 16px;}
-  .universal-card p { font-size: 13.5px; margin-bottom: 15px;}
-  .universal-link { font-size: 13.5px; padding: 8px 12px;}
+  /* Stats - Keep 2 columns but tighter */
+  .stats { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: -30px;}
+  .stat { padding: 15px 10px; border-radius: 14px;}
+  .stat strong { font-size: 24px;}
+  .stat span { font-size: 12px; }
   
-  .about-modern-wrapper { flex-direction: column; border-radius: 20px;} .about-creative-visual { min-height: 250px;} .about-content { padding: 30px 20px;} .vision-mission-grid { grid-template-columns: 1fr; }
-  .contact-3-cards { grid-template-columns: 1fr; gap: 15px;} .contact-banner { flex-direction: column; text-align: center; padding: 40px 20px; border-radius: 20px;} .cb-text h3 { justify-content: center; font-size: 26px;}
-  .reg-split-container { grid-template-columns: 1fr; border-radius: 20px;} .contact-info-panel, .registration-form-panel { padding: 35px 20px; }
-  .modal-box { padding: 35px 20px; border-radius: 24px;}
+  /* 🌟 MOBILE FIX: Services 1 Column! No squeezing! */
+  .universal-grid { grid-template-columns: 1fr; gap: 20px; }
+  .universal-card { padding: 25px 20px; border-radius: 20px;}
+  .universal-icon { width: 50px; height: 50px; font-size: 22px; margin-bottom: 15px;}
   
-  .brand h2 { font-size: 17px; letter-spacing: -0.5px;}
-  .brand h2 span { display: block; } 
-  .logo { width: 40px; height: 40px; border-radius: 10px;}
+  /* Quick Tabs */
+  .main-tab-container { width: 100%; flex-direction: row; flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; margin-left: 0; transform: none; border-radius: 15px; padding: 5px; gap: 5px;}
+  .main-tab-btn { flex: 1; min-width: max-content; padding: 10px 15px; font-size: 14px;}
   
-  .jobs-grid { grid-template-columns: 1fr; }
-  .modal-tabs { flex-direction: column; }
+  /* Modals perfectly scaled */
+  .modal-box { padding: 25px 15px; border-radius: 20px;}
+  .modal-header h2 { font-size: 22px; }
+  .document-list li { padding: 12px 15px; gap: 12px;}
+  .doc-icon { width: 35px; height: 35px; font-size: 16px;}
+  .doc-text { font-size: 14.5px; }
   
+  .about-modern-wrapper { flex-direction: column; border-radius: 20px;} .about-creative-visual { min-height: 250px;} .about-content { padding: 30px 20px;} .vision-mission-grid { grid-template-columns: 1fr; gap: 15px;}
+  .contact-3-cards { grid-template-columns: 1fr; gap: 15px;} .contact-banner { flex-direction: column; text-align: center; padding: 40px 20px; border-radius: 20px;} .cb-text h3 { justify-content: center; font-size: 24px;} .cb-images i { font-size: 80px;}
+  .reg-split-container { grid-template-columns: 1fr; border-radius: 20px;} 
+  .contact-info-panel, .registration-form-panel { padding: 30px 15px; }
+  
+  .jobs-grid { grid-template-columns: 1fr; gap: 15px;}
+  .modal-tabs { flex-direction: column; gap: 5px;}
+  
+  footer { padding: 50px 5% 20px;}
   .footer-grid { grid-template-columns: 1fr; text-align: center; gap: 30px; }
-  footer a:hover { transform: translateY(-2px);}
-  footer { padding: 50px 5% 30px;}
+  
+  .news-ticker { font-size: 12px; padding: 6px 0;}
 }
 </style>
 </head>
@@ -1127,32 +1186,32 @@ function sendWhatsAppInquiry(serviceName) {
   closeDynamicModal();
 }
 
-/* --- SERVICES DATA --- */
+/* --- SERVICES DATA (GUJLISH KEYWORDS FIXED) --- */
 const services = [
-  { name:"PAN કાર્ડ", en:"PAN Card", icon:'<i class="fa-solid fa-id-card-clip"></i>', category:"Government", desc:"PAN Card application અને એજન્સીની માહિતી.", enDesc:"New PAN Card applications and correction services.", docs:[], enDocs:[] },
-  { name:"આધાર કાર્ડ", en:"Aadhaar", icon:'<i class="fa-solid fa-id-card"></i>', category:"Government", desc:"Aadhaar સંબંધિત services અને updates.", enDesc:"Information and online services related to Aadhaar Card.", docs:[], enDocs:[] },
-  { name:"ચૂંટણી કાર્ડ", en:"Voter ID Card", icon:'<i class="fa-solid fa-address-card"></i>', category:"Government", desc:"નવું ચૂંટણી કાર્ડ અને સુધારાની માહિતી.", enDesc:"Information about Voter ID applications and corrections.", docs:[], enDocs:[] },
-  { name:"e-Shram કાર્ડ", en:"E-Shram", icon:'<i class="fa-solid fa-helmet-safety"></i>', category:"Government", desc:"E-Shram Card સંબંધિત માહિતી.", enDesc:"Information about e-Shram Card.", docs:[], enDocs:[] },
-  { name:"Ayushman Card", en:"Ayushman", icon:'<i class="fa-solid fa-notes-medical"></i>', category:"Government", desc:"Ayushman Card સંબંધિત information.", enDesc:"Information about the Ayushman Bharat scheme.", docs:[], enDocs:[] },
-  { name:"આવકનો દાખલો", en:"Income Certificate", icon:'<i class="fa-solid fa-file-invoice-dollar"></i>', category:"Government", desc:"Income Certificate માટે જરૂરી ડોક્યુમેન્ટ્સ.", enDesc:"Information about documents required for an Income Certificate.", docs:[], enDocs:[] },
-  { name:"નોન-ક્રિમી લેયર", en:"Non-Creamy Layer", icon:'<i class="fa-solid fa-file-shield"></i>', category:"Government", desc:"નોન-ક્રીમીલેયર સર્ટિફિકેટ કઢાવવાની માહિતી.", enDesc:"Required supporting documents for a Non-Creamy Layer Certificate.", docs:[], enDocs:[] },
-  { name:"જાતિનો દાખલો", en:"Caste Certificate", icon:'<i class="fa-solid fa-users"></i>', category:"Government", desc:"Caste Certificate માટેની જરૂરી માહિતી.", enDesc:"Application and supporting-document information for a Caste Certificate.", docs:["આધાર કાર્ડ ([Aadhaar Redacted])","રેશન કાર્ડ","શાળા છોડ્યાનું પ્રમાણપત્ર","જાતિનો આધાર"], enDocs:["Aadhaar Card ([Aadhaar Redacted])","Ration Card","School Leaving Certificate","Caste-related supporting proof"] },
-  { name:"EWS પ્રમાણપત્ર", en:"EWS Certificate", icon:'<i class="fa-solid fa-building-columns"></i>', category:"Government", desc:"આર્થિક રીતે નબળા વર્ગ (EWS) નું સર્ટિફિકેટ.", enDesc:"Information about EWS Certificate applications.", docs:[], enDocs:[] },
-  { name:"PF ની સેવાઓ", en:"PF Services", icon:'<i class="fa-solid fa-piggy-bank"></i>', category:"Government", desc:"UAN Activation, PF ઉપાડવા અને KYC.", enDesc:"UAN Activation, PF withdrawal and KYC.", docs:[], enDocs:[] },
-  { name:"મેરેજ સર્ટિફિકેટ", en:"Marriage Certificate", icon:'<i class="fa-solid fa-heart"></i>', category:"Government", desc:"લગ્ન નોંધણી/પ્રમાણપત્ર કઢાવવા માટે.", enDesc:"Information about documents required for a Marriage Certificate.", docs:[], enDocs:[] },
-  { name:"પોલીસ ક્લિયરન્સ", en:"Police Clearance", icon:'<i class="fa-solid fa-user-shield"></i>', category:"Government", desc:"Police Clearance Certificate (PCC) માહિતી.", enDesc:"General information about Police Clearance applications.", docs:[], enDocs:[] },
-  { name:"રેશન કાર્ડ", en:"Ration Card", icon:'<i class="fa-solid fa-book"></i>', category:"Government", desc:"રેશનકાર્ડમાં નામ ચડાવવા / કમી કરવા.", enDesc:"Services to add or remove names and update Ration Card details.", docs:[], enDocs:[] },
-  { name:"રિઝ્યુમે / CV", en:"Resume (CV)", icon:'<i class="fa-solid fa-file-pdf"></i>', category:"Education", desc:"નોકરી માટે પ્રોફેશનલ રિઝ્યુમે / CV બનાવવા.", enDesc:"Resume preparation service for job applications.", docs:[], enDocs:[] },
-  { name:"ઉદ્યોગ આધાર / MSME", en:"Udyog Aadhaar", icon:'<i class="fa-solid fa-city"></i>', category:"Government", desc:"Udyog Aadhaar (MSME) રજીસ્ટ્રેશન.", enDesc:"Information about MSME / Udyam registration.", docs:[], enDocs:[] },
-  { name:"૭/૧૨ અને ૮-અ ઉતારા", en:"Land Records", icon:'<i class="fa-solid fa-map"></i>', category:"Government", desc:"જમીનના ૭/૧૨ અને ૮-અ ના ઉતારા.", enDesc:"Details needed to access land records.", docs:[], enDocs:[] },
-  { name:"વહાલી દીકરી યોજના", en:"Vahali Dikri Yojana", icon:'<i class="fa-solid fa-child-dress"></i>', category:"Government", desc:"દીકરીઓ માટે સરકારની આર્થિક સહાય યોજના.", enDesc:"Information about documents required for the Vahali Dikri Scheme.", docs:[], enDocs:[] },
-  { name:"Indian Passport", en:"Indian Passport", icon:'<i class="fa-solid fa-passport"></i>', category:"Government", desc:"નવો પાસપોર્ટ કઢાવવા માટે.", enDesc:"Information about new passport applications.", docs:[], enDocs:[] },
-  { name:"વાહન વીમો", en:"Vehicle Insurance", icon:'<i class="fa-solid fa-motorcycle"></i>', category:"Government", desc:"બાઇક કે ફોરવીલર માટે કંપનીના વીમા.", enDesc:"Information about vehicle insurance.", docs:[], enDocs:[] },
-  { name:"સરકારી ભરતી", en:"Government Jobs", icon:'<i class="fa-solid fa-briefcase"></i>', category:"Education", desc:"નવી Government Recruitment updates.", enDesc:"Information about new government vacancies and notifications.", docs:[], enDocs:[] },
-  { name:"Admission", en:"Admission", icon:'<i class="fa-solid fa-graduation-cap"></i>', category:"Education", desc:"ITI, Diploma, College admission updates.", enDesc:"ITI, Diploma, College Admission details.", docs:[], enDocs:[] },
-  { name:"Scholarship", en:"Scholarship", icon:'<i class="fa-solid fa-sack-dollar"></i>', category:"Education", desc:"Student scholarship અંગે schemes.", enDesc:"Digital Gujarat, MYSY, NSP scholarship details.", docs:[], enDocs:[] },
-  { name:"કુંવરબાઈનું મામેરું", en:"Kuvarbai Nu Mameru", icon:'<i class="fa-solid fa-hand-holding-heart"></i>', category:"Scheme", desc:"લગ્ન સહાય યોજના સંબંધિત માહિતી.", enDesc:"Marriage assistance scheme forms and documents.", docs:[], enDocs:[] },
-  { name:"ABHA હેલ્થ કાર્ડ", en:"ABHA Card", icon:'<i class="fa-solid fa-heart-pulse"></i>', category:"Government", desc:"ABHA (Health ID) Card બનાવવાની માહિતી.", enDesc:"Information about ABHA Health ID.", docs:[], enDocs:[] }
+  { name:"PAN કાર્ડ", en:"PAN Card", icon:'<i class="fa-solid fa-id-card-clip"></i>', category:"Government", desc:"PAN Card application અને એજન્સીની માહિતી.", enDesc:"New PAN Card applications and correction services.", docs:[], enDocs:[], keywords:"pan card" },
+  { name:"આધાર કાર્ડ", en:"Aadhaar", icon:'<i class="fa-solid fa-id-card"></i>', category:"Government", desc:"Aadhaar સંબંધિત services અને updates.", enDesc:"Information and online services related to Aadhaar Card.", docs:[], enDocs:[], keywords:"adhar, aadhar, adhaar" },
+  { name:"ચૂંટણી કાર્ડ", en:"Voter ID Card", icon:'<i class="fa-solid fa-address-card"></i>', category:"Government", desc:"નવું ચૂંટણી કાર્ડ અને સુધારાની માહિતી.", enDesc:"Information about Voter ID applications and corrections.", docs:[], enDocs:[], keywords:"chutni, chuntani, voter, matdar, election" },
+  { name:"e-Shram કાર્ડ", en:"E-Shram", icon:'<i class="fa-solid fa-helmet-safety"></i>', category:"Government", desc:"E-Shram Card સંબંધિત માહિતી.", enDesc:"Information about e-Shram Card.", docs:[], enDocs:[], keywords:"eshram, shram, e-shram, majur" },
+  { name:"Ayushman Card", en:"Ayushman", icon:'<i class="fa-solid fa-notes-medical"></i>', category:"Government", desc:"Ayushman Card સંબંધિત information.", enDesc:"Information about the Ayushman Bharat scheme.", docs:[], enDocs:[], keywords:"ayushman, aayushman, maa card, ma card, health" },
+  { name:"આવકનો દાખલો", en:"Income Certificate", icon:'<i class="fa-solid fa-file-invoice-dollar"></i>', category:"Government", desc:"Income Certificate માટે જરૂરી ડોક્યુમેન્ટ્સ.", enDesc:"Information about documents required for an Income Certificate.", docs:[], enDocs:[], keywords:"avak, aavak, dakhlo, income" },
+  { name:"નોન-ક્રિમી લેયર", en:"Non-Creamy Layer", icon:'<i class="fa-solid fa-file-shield"></i>', category:"Government", desc:"નોન-ક્રીમીલેયર સર્ટિફિકેટ કઢાવવાની માહિતી.", enDesc:"Required supporting documents for a Non-Creamy Layer Certificate.", docs:[], enDocs:[], keywords:"non creamy layer, non-creamy, ncl, non crimi, bakshi panch" },
+  { name:"જાતિનો દાખલો", en:"Caste Certificate", icon:'<i class="fa-solid fa-users"></i>', category:"Government", desc:"Caste Certificate માટેની જરૂરી માહિતી.", enDesc:"Application and supporting-document information for a Caste Certificate.", docs:["આધાર કાર્ડ ([Aadhaar Redacted])","રેશન કાર્ડ","શાળા છોડ્યાનું પ્રમાણપત્ર","જાતિનો આધાર"], enDocs:["Aadhaar Card ([Aadhaar Redacted])","Ration Card","School Leaving Certificate","Caste-related supporting proof"], keywords:"jati, jaati, dakhlo, cast, caste" },
+  { name:"EWS પ્રમાણપત્ર", en:"EWS Certificate", icon:'<i class="fa-solid fa-building-columns"></i>', category:"Government", desc:"આર્થિક રીતે નબળા વર્ગ (EWS) નું સર્ટિફિકેટ.", enDesc:"Information about EWS Certificate applications.", docs:[], enDocs:[], keywords:"ews, aarthik, savarna" },
+  { name:"PF ની સેવાઓ", en:"PF Services", icon:'<i class="fa-solid fa-piggy-bank"></i>', category:"Government", desc:"UAN Activation, PF ઉપાડવા અને KYC.", enDesc:"UAN Activation, PF withdrawal and KYC.", docs:[], enDocs:[], keywords:"pf, epfo, provident fund, upad" },
+  { name:"મેરેજ સર્ટિફિકેટ", en:"Marriage Certificate", icon:'<i class="fa-solid fa-heart"></i>', category:"Government", desc:"લગ્ન નોંધણી/પ્રમાણપત્ર કઢાવવા માટે.", enDesc:"Information about documents required for a Marriage Certificate.", docs:[], enDocs:[], keywords:"lagna, lagan, marriage, marriage certificate" },
+  { name:"પોલીસ ક્લિયરન્સ", en:"Police Clearance", icon:'<i class="fa-solid fa-user-shield"></i>', category:"Government", desc:"Police Clearance Certificate (PCC) માહિતી.", enDesc:"General information about Police Clearance applications.", docs:[], enDocs:[], keywords:"police, pcc, clearance, dakhlo" },
+  { name:"રેશન કાર્ડ", en:"Ration Card", icon:'<i class="fa-solid fa-book"></i>', category:"Government", desc:"રેશનકાર્ડમાં નામ ચડાવવા / કમી કરવા.", enDesc:"Services to add or remove names and update Ration Card details.", docs:[], enDocs:[], keywords:"ration, reshan, card" },
+  { name:"રિઝ્યુમે / CV", en:"Resume (CV)", icon:'<i class="fa-solid fa-file-pdf"></i>', category:"Education", desc:"નોકરી માટે પ્રોફેશનલ રિઝ્યુમે / CV બનાવવા.", enDesc:"Resume preparation service for job applications.", docs:[], enDocs:[], keywords:"resume, cv, biodata, bio data" },
+  { name:"ઉદ્યોગ આધાર / MSME", en:"Udyog Aadhaar", icon:'<i class="fa-solid fa-city"></i>', category:"Government", desc:"Udyog Aadhaar (MSME) રજીસ્ટ્રેશન.", enDesc:"Information about MSME / Udyam registration.", docs:[], enDocs:[], keywords:"udyog, udyam, msme, business" },
+  { name:"૭/૧૨ અને ૮-અ ઉતારા", en:"Land Records", icon:'<i class="fa-solid fa-map"></i>', category:"Government", desc:"જમીનના ૭/૧૨ અને ૮-અ ના ઉતારા.", enDesc:"Details needed to access land records.", docs:[], enDocs:[], keywords:"7/12, 8a, sat bar, utara, jamin, land" },
+  { name:"વહાલી દીકરી યોજના", en:"Vahali Dikri Yojana", icon:'<i class="fa-solid fa-child-dress"></i>', category:"Government", desc:"દીકરીઓ માટે સરકારની આર્થિક સહાય યોજના.", enDesc:"Information about documents required for the Vahali Dikri Scheme.", docs:[], enDocs:[], keywords:"vahali, vahli, dikri, dikari, yojana" },
+  { name:"Indian Passport", en:"Indian Passport", icon:'<i class="fa-solid fa-passport"></i>', category:"Government", desc:"નવો પાસપોર્ટ કઢાવવા માટે.", enDesc:"Information about new passport applications.", docs:[], enDocs:[], keywords:"passport, pasport" },
+  { name:"વાહન વીમો", en:"Vehicle Insurance", icon:'<i class="fa-solid fa-motorcycle"></i>', category:"Government", desc:"બાઇક કે ફોરવીલર માટે કંપનીના વીમા.", enDesc:"Information about vehicle insurance.", docs:[], enDocs:[], keywords:"vahan, vimo, insurance, bike, car" },
+  { name:"સરકારી ભરતી", en:"Government Jobs", icon:'<i class="fa-solid fa-briefcase"></i>', category:"Education", desc:"નવી Government Recruitment updates.", enDesc:"Information about new government vacancies and notifications.", docs:[], enDocs:[], keywords:"sarkari, bharti, job, nokri" },
+  { name:"Admission", en:"Admission", icon:'<i class="fa-solid fa-graduation-cap"></i>', category:"Education", desc:"ITI, Diploma, College admission updates.", enDesc:"ITI, Diploma, College Admission details.", docs:[], enDocs:[], keywords:"admission, college, iti, diploma" },
+  { name:"Scholarship", en:"Scholarship", icon:'<i class="fa-solid fa-sack-dollar"></i>', category:"Education", desc:"Student scholarship અંગે schemes.", enDesc:"Digital Gujarat, MYSY, NSP scholarship details.", docs:[], enDocs:[], keywords:"scholarship, shishyavrutti, sahay" },
+  { name:"કુંવરબાઈનું મામેરું", en:"Kuvarbai Nu Mameru", icon:'<i class="fa-solid fa-hand-holding-heart"></i>', category:"Scheme", desc:"લગ્ન સહાય યોજના સંબંધિત માહિતી.", enDesc:"Marriage assistance scheme forms and documents.", docs:[], enDocs:[], keywords:"kuvarbai, kunvarbai, mameru, lagna sahay" },
+  { name:"ABHA હેલ્થ કાર્ડ", en:"ABHA Card", icon:'<i class="fa-solid fa-heart-pulse"></i>', category:"Government", desc:"ABHA (Health ID) Card બનાવવાની માહિતી.", enDesc:"Information about ABHA Health ID.", docs:[], enDocs:[], keywords:"abha, health, aabha, id" }
 ];
 
 /* --- UPDATES DATA --- */
@@ -1286,12 +1345,19 @@ function updateServiceSelect() {
   if (services.some(s => s.name === previous)) select.value = previous;
 }
 
+/* 🌟 FIXED: Modified to also search by keywords field */
 function renderGrid(containerId, dataArray, searchString = "") {
   const grid = document.getElementById(containerId);
   grid.innerHTML = "";
+  
   const filtered = dataArray.filter(item => {
     const s = searchString.toLowerCase();
-    return item.name.toLowerCase().includes(s) || item.en.toLowerCase().includes(s) || item.desc.toLowerCase().includes(s) || item.enDesc.toLowerCase().includes(s);
+    const keywords = item.keywords ? item.keywords.toLowerCase() : "";
+    return item.name.toLowerCase().includes(s) || 
+           item.en.toLowerCase().includes(s) || 
+           item.desc.toLowerCase().includes(s) || 
+           item.enDesc.toLowerCase().includes(s) ||
+           keywords.includes(s);
   });
 
   if (filtered.length === 0) {
