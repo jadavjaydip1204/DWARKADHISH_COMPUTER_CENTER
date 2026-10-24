@@ -1048,7 +1048,7 @@ body.dark-theme #scrollToTopBtn { background: var(--card-bg); color: var(--text-
   <div class="copyright animate-up" style="transition-delay: 0.2s;">© <span id="currentYear"></span> DWARKADHISH COMPUTER CENTER. <span data-en="All Rights Reserved." data-gu="તમામ હકો અનામત.">તમામ હકો અનામત.</span></div>
 </footer>
 
-<!-- 🌟 NEW: SCROLL TO TOP BUTTON -->
+<!-- 🌟 VIP SCROLL TO TOP BUTTON -->
 <button id="scrollToTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Scroll to top">
   <i class="fa-solid fa-arrow-up"></i>
 </button>
@@ -1418,7 +1418,6 @@ function updateServiceSelect() {
   if (services.some(s => s.name === previous)) select.value = previous;
 }
 
-/* 🌟 FIXED: Modified to also search by keywords field */
 function renderGrid(containerId, dataArray, searchString = "") {
   const grid = document.getElementById(containerId);
   grid.innerHTML = "";
@@ -1740,6 +1739,21 @@ function openDynamicModal(type, serviceName = null) {
       const d = [
         {text: getDocText("આધાર કાર્ડ ([Aadhaar Redacted])", "Aadhaar Card ([Aadhaar Redacted])"), icon: "fa-id-card"},
         {text: getDocText("આધાર સાથે લિંક મોબાઇલ નંબર", "Aadhaar Linked Mobile Number"), icon: "fa-mobile-screen"}
+      ];
+      docs.innerHTML = buildDocsHtml(d);
+      btn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
+    }
+    else if (serviceName === "મેરેજ સર્ટિફિકેટ") {
+      title.innerHTML = "💖 <span style='color:var(--primary)'>" + getText("મેરેજ સર્ટિફિકેટ", "Marriage Certificate") + "</span>";
+      banner.style.display = "block"; docs.style.display = "flex";
+      banner.innerHTML = `<h3>${getText("લગ્ન નોંધણી પ્રમાણપત્ર", "Marriage Registration")}</h3><p>${getText("લગ્ન નોંધણી પ્રમાણપત્ર માટે જરૂરી પુરાવા", "Documents required for Marriage Registration")}</p>`;
+      const d = [
+        {text: getDocText("કન્યા અને યુવકનો જન્મનો દાખલો અથવા LC", "Birth Certificate or LC of Bride & Groom"), icon: "fa-file-lines"},
+        {text: getDocText("કન્યા અને યુવકનું આધાર કાર્ડ ([Aadhaar Redacted])", "Bride & Groom's Aadhaar Card ([Aadhaar Redacted])"), icon: "fa-id-card"},
+        {text: getDocText("બે સાક્ષીના આધાર કાર્ડ ([Aadhaar Redacted])", "Two Witnesses' Aadhaar Card ([Aadhaar Redacted])"), icon: "fa-users"},
+        {text: getDocText("લગ્ન કંકોત્રી (Wedding Invitation)", "Wedding Invitation (Kankotri)"), icon: "fa-envelope-open-text"},
+        {text: getDocText("ગોર મહારાજનું આધાર કાર્ડ ([Aadhaar Redacted])", "Priest's Aadhaar Card ([Aadhaar Redacted])"), icon: "fa-hands-praying"},
+        {text: getDocText("બંને વ્યક્તિના બે-બે પાસપોર્ટ સાઈઝ ફોટા", "2 Passport Size Photos of Both"), icon: "fa-camera"}
       ];
       docs.innerHTML = buildDocsHtml(d);
       btn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
