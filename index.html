@@ -29,11 +29,11 @@
   --card-bg: #ffffff;
   --text-main: #0f172a;
   --text-muted: #64748b;
-  --border-color: #e2e8f0;
+  --border-color: rgba(226, 232, 240, 0.9);
   --gold: #f59e0b;
-  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-  --shadow-md: 0 10px 30px -5px rgba(139, 92, 246, 0.15);
-  --shadow-hover: 0 20px 40px -10px rgba(139, 92, 246, 0.25);
+  --shadow-sm: 0 10px 30px -10px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 15px 35px -5px rgba(139, 92, 246, 0.15);
+  --shadow-hover: 0 25px 50px -12px rgba(139, 92, 246, 0.25);
   --glass-bg: rgba(255, 255, 255, 0.95);
   --glass-blur: blur(16px);
 }
@@ -43,7 +43,7 @@ body.dark-theme {
   --card-bg: #0f172a;
   --text-main: #f8fafc;
   --text-muted: #94a3b8;
-  --border-color: #1e293b;
+  --border-color: rgba(255, 255, 255, 0.08);
   --primary-light: #1e293b;
   --shadow-sm: 0 4px 10px rgba(0,0,0,0.3);
   --shadow-md: 0 10px 30px -5px rgba(0,0,0,0.5);
@@ -184,9 +184,10 @@ body.dark-theme .news-ticker { background: #020617; }
 .hero h1 { font-size: clamp(35px, 5vw, 65px); line-height: 1.15; margin: 0 0 20px; font-weight: 800; letter-spacing: -1px; text-shadow: 0 4px 20px rgba(0,0,0,0.4); color: white;}
 .hero p { color: rgba(255,255,255,0.85); max-width: 550px; font-size: 18px; margin-bottom: 30px; font-weight: 500; line-height: 1.6;}
 
-.typing-container { font-size: 22px; margin-bottom: 40px; font-weight: 800; color: white; display: inline-flex; align-items: center; background: rgba(0,0,0,0.25); padding: 10px 25px; border-radius: 16px; border-left: 4px solid #8b5cf6; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 25px rgba(0,0,0,0.3);}
-.typing-container i { color: #8b5cf6; margin-right: 12px; font-size: 20px; }
-.cursor { display: inline-block; width: 3px; background-color: #8b5cf6; margin-left: 4px; animation: blink 0.8s infinite; }
+/* 🌟 UPDATED: PILL SHAPE TYPING CONTAINER FOR PHOTO MATCH */
+.typing-container { font-size: 20px; margin-bottom: 40px; font-weight: 800; color: white; display: inline-flex; align-items: center; background: rgba(0,0,0,0.3); padding: 12px 30px; border-radius: 50px; border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 10px 25px rgba(0,0,0,0.3);}
+.typing-container i { color: #a78bfa; margin-right: 12px; font-size: 20px; }
+.cursor { display: inline-block; width: 3px; background-color: #a78bfa; margin-left: 4px; animation: blink 0.8s infinite; }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
 .btn { border: 0; border-radius: 14px; padding: 16px 32px; display: inline-block; text-align: center; font-weight: 800; cursor: pointer; font-family: inherit; font-size: 16px; transition: all 0.4s ease;}
@@ -514,13 +515,6 @@ footer a:hover { color: white; transform: translateX(5px); }
   .menu-btn { display: block; flex: 0 0 auto; font-size: 26px; padding: 0; margin: 0; border: none; background: transparent; color: var(--text-main); cursor: pointer;}
   .theme-toggle { display: none; } 
   
-  /* 🌟 HERO LAYOUT FIX (This brings the big logo back to center) */
-  .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 40px; }
-  .typing-container { margin: 0 auto 30px; display: inline-flex; justify-content: center; }
-  .hero-buttons { display: flex; justify-content: center; width: 100%; }
-  
-  .universal-grid { grid-template-columns: repeat(3, 1fr); }
-  
   #mainNav { position: fixed !important; top: 0; left: -100%; width: 280px; height: 100vh; background: var(--card-bg); z-index: 9999; flex-direction: column !important; align-items: flex-start; padding: 80px 20px 30px; transition: 0.4s ease; box-shadow: 10px 0 30px rgba(0,0,0,0.1); display: flex !important; border-radius: 0; border: none; margin: 0; gap: 10px; overflow-y: auto;}
   #mainNav.open { left: 0; }
   .mobile-close-btn { display: flex; position: absolute; top: 20px; right: 20px; background: var(--bg-color); color: var(--text-main); width: 40px; height: 40px; border-radius: 12px; border: 1px solid var(--border-color); align-items: center; justify-content: center; font-size: 20px; cursor: pointer; transition: 0.3s; }
@@ -545,18 +539,24 @@ footer a:hover { color: white; transform: translateX(5px); }
   .brand h2 { font-size: 15px; line-height: 1.2; letter-spacing: -0.5px;}
   .brand h2 span { display: inline; } 
 
-  .hero { padding: 80px 5% 60px; border-radius: 0 0 25px 25px;}
+  /* 🌟 EXACT PHOTO MATCH: CENTERED HERO & OVERLAPPING LOGO */
+  .hero { padding: 60px 5% 80px; border-radius: 0 0 25px 25px;}
   .hero h1 { font-size: 32px;}
-  .typing-container { font-size: 16px; padding: 8px 15px; margin: 0 auto 30px; display: inline-flex;}
   
-  /* 🌟 MOBILE HERO LOGO FIX */
-  .hero-logo-box { max-width: 250px; padding: 12px; border-width: 5px; margin: 0 auto;}
-  .hero-image-wrapper { margin-top: 10px; display: flex; justify-content: center; width: 100%;}
-  .hero-image-wrapper::before { width: 280px; height: 280px; }
-  .hero-image-wrapper::after { width: 310px; height: 310px; }
+  .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 20px; display: flex; flex-direction: column; align-items: center;}
+  .typing-container { font-size: 16px; padding: 8px 20px; margin: 0 auto 30px; display: inline-flex; border-radius: 50px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.15);}
+  .hero-buttons { display: flex; justify-content: center; width: 100%; position: relative; z-index: 25;}
+  
+  /* 🌟 OVERLAPPING LOGO FIX */
+  .hero-image-wrapper { margin-top: 10px; display: flex; justify-content: center; width: 100%; z-index: 20; transform: translateY(60px); }
+  .hero-logo-box { max-width: 250px; padding: 12px; border: 6px solid #ffffff; background: #ffffff; margin: 0 auto;}
+  .hero-image-wrapper::before { width: 280px; height: 280px; z-index: -1;}
+  .hero-image-wrapper::after { width: 310px; height: 310px; z-index: -1;}
+  
+  .hero-wave { z-index: 10; bottom: -2px; }
 
-  /* Stats - Keep 2 columns but tighter */
-  .stats { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: -30px;}
+  /* Stats - Keep 2 columns but tighter & pushed down */
+  .stats { margin-top: 60px; grid-template-columns: repeat(2, 1fr); gap: 10px; position: relative; z-index: 5;}
   .stat { padding: 15px 10px; border-radius: 14px;}
   .stat strong { font-size: 24px;}
   .stat span { font-size: 12px; }
@@ -702,7 +702,7 @@ footer a:hover { color: white; transform: translateX(5px); }
       <div class="tech-particles"></div>
       
       <div class="hero-inner">
-        <div class="animate-up">
+        <div class="animate-up" style="width: 100%;">
           <span class="pill" data-en="YOUR DIGITAL SERVICE CENTER" data-gu="તમારું ડિજિટલ સેવા કેન્દ્ર">તમારું ડિજિટલ સેવા કેન્દ્ર</span>
           <h1><span class="brand-gradient">DWARKADHISH</span><br>COMPUTER CENTER</h1>
           <p data-en="All your digital needs in one place" data-gu="તમારી દરેક ડિજિટલ જરૂરિયાત એક જ જગ્યાએ">તમારી દરેક ડિજિટલ જરૂરિયાત એક જ જગ્યાએ</p>
@@ -1042,7 +1042,7 @@ footer a:hover { color: white; transform: translateX(5px); }
     <div id="dynamicModalJobs" class="jobs-grid"></div>
 
     <ul class="document-list" id="dynamicModalDocs" style="display:none;"></ul>
-    <div id="anyOneText" class="any-one-text" style="display:none;">અને નીચેનામાંથી કોઈપણ ૧ (Any One):</div>
+    <div id="anyOneText" class="any-one-text" style="display:none;"></div>
     <ul class="document-list" id="dynamicModalOptionalDocs" style="display:none;"></ul>
     
     <button id="dynamicModalBtn" class="modal-btn-primary" onclick="alert('ડોક્યુમેન્ટ્સ જમા થયા પછી માહિતી અહીં જોવા મળશે.')">Button Text</button>
@@ -1054,6 +1054,15 @@ let currentLanguage = "gu";
 let activeUpdateFilter = "All";
 let selectedService = "";
 let isDarkMode = false;
+
+/* 🌟 TRANSLATION HELPER FOR MODAL DOCUMENTS */
+function getDocText(gu, en) {
+  if (currentLanguage === "en") {
+    return `${en} (${gu})`;
+  } else {
+    return `${gu} (${en})`;
+  }
+}
 
 /* --- AUTO TYPING EFFECT LOGIC --- */
 const typingWordsEn = ["PAN Card Services...", "Aadhaar Card Update...", "Passport Application...", "Government Jobs...", "Scholarship Forms..."];
@@ -1209,7 +1218,7 @@ function sendWhatsAppInquiry(serviceName) {
   closeDynamicModal();
 }
 
-/* --- SERVICES DATA (GUJLISH KEYWORDS FIXED) --- */
+/* --- SERVICES DATA --- */
 const services = [
   { name:"PAN કાર્ડ", en:"PAN Card", icon:'<i class="fa-solid fa-id-card-clip"></i>', category:"Government", desc:"PAN Card application અને એજન્સીની માહિતી.", enDesc:"New PAN Card applications and correction services.", docs:[], enDocs:[], keywords:"pan card" },
   { name:"આધાર કાર્ડ", en:"Aadhaar", icon:'<i class="fa-solid fa-id-card"></i>', category:"Government", desc:"Aadhaar સંબંધિત services અને updates.", enDesc:"Information and online services related to Aadhaar Card.", docs:[], enDocs:[], keywords:"adhar, aadhar, adhaar" },
@@ -1218,7 +1227,7 @@ const services = [
   { name:"Ayushman Card", en:"Ayushman", icon:'<i class="fa-solid fa-notes-medical"></i>', category:"Government", desc:"Ayushman Card સંબંધિત information.", enDesc:"Information about the Ayushman Bharat scheme.", docs:[], enDocs:[], keywords:"ayushman, aayushman, maa card, ma card, health" },
   { name:"આવકનો દાખલો", en:"Income Certificate", icon:'<i class="fa-solid fa-file-invoice-dollar"></i>', category:"Government", desc:"Income Certificate માટે જરૂરી ડોક્યુમેન્ટ્સ.", enDesc:"Information about documents required for an Income Certificate.", docs:[], enDocs:[], keywords:"avak, aavak, dakhlo, income" },
   { name:"નોન-ક્રિમી લેયર", en:"Non-Creamy Layer", icon:'<i class="fa-solid fa-file-shield"></i>', category:"Government", desc:"નોન-ક્રીમીલેયર સર્ટિફિકેટ કઢાવવાની માહિતી.", enDesc:"Required supporting documents for a Non-Creamy Layer Certificate.", docs:[], enDocs:[], keywords:"non creamy layer, non-creamy, ncl, non crimi, bakshi panch" },
-  { name:"જાતિનો દાખલો", en:"Caste Certificate", icon:'<i class="fa-solid fa-users"></i>', category:"Government", desc:"Caste Certificate માટેની જરૂરી માહિતી.", enDesc:"Application and supporting-document information for a Caste Certificate.", docs:["આધાર કાર્ડ ([Aadhaar Redacted])","રેશન કાર્ડ","શાળા છોડ્યાનું પ્રમાણપત્ર","જાતિનો આધાર"], enDocs:["Aadhaar Card ([Aadhaar Redacted])","Ration Card","School Leaving Certificate","Caste-related supporting proof"], keywords:"jati, jaati, dakhlo, cast, caste" },
+  { name:"જાતિનો દાખલો", en:"Caste Certificate", icon:'<i class="fa-solid fa-users"></i>', category:"Government", desc:"Caste Certificate માટેની જરૂરી માહિતી.", enDesc:"Application and supporting-document information for a Caste Certificate.", docs:[], enDocs:[], keywords:"jati, jaati, dakhlo, cast, caste" },
   { name:"EWS પ્રમાણપત્ર", en:"EWS Certificate", icon:'<i class="fa-solid fa-building-columns"></i>', category:"Government", desc:"આર્થિક રીતે નબળા વર્ગ (EWS) નું સર્ટિફિકેટ.", enDesc:"Information about EWS Certificate applications.", docs:[], enDocs:[], keywords:"ews, aarthik, savarna" },
   { name:"PF ની સેવાઓ", en:"PF Services", icon:'<i class="fa-solid fa-piggy-bank"></i>', category:"Government", desc:"UAN Activation, PF ઉપાડવા અને KYC.", enDesc:"UAN Activation, PF withdrawal and KYC.", docs:[], enDocs:[], keywords:"pf, epfo, provident fund, upad" },
   { name:"મેરેજ સર્ટિફિકેટ", en:"Marriage Certificate", icon:'<i class="fa-solid fa-heart"></i>', category:"Government", desc:"લગ્ન નોંધણી/પ્રમાણપત્ર કઢાવવા માટે.", enDesc:"Information about documents required for a Marriage Certificate.", docs:[], enDocs:[], keywords:"lagna, lagan, marriage, marriage certificate" },
@@ -1371,7 +1380,6 @@ function updateServiceSelect() {
   if (services.some(s => s.name === previous)) select.value = previous;
 }
 
-/* 🌟 FIXED: Modified to also search by keywords field */
 function renderGrid(containerId, dataArray, searchString = "") {
   const grid = document.getElementById(containerId);
   grid.innerHTML = "";
@@ -1488,152 +1496,236 @@ function openDynamicModal(type, serviceName = null) {
     
     if (serviceName === "PAN કાર્ડ") {
       tabs.style.display = "flex";
-      tabs.innerHTML = `<button class="modal-tab-btn active" onclick="changePanTab('new', this)">1. New PAN</button><button class="modal-tab-btn" onclick="changePanTab('correction', this)">2. Correction</button>`;
+      tabs.innerHTML = `<button class="modal-tab-btn active" onclick="changePanTab('new', this)">1. ${getText('નવું PAN', 'New PAN')}</button><button class="modal-tab-btn" onclick="changePanTab('correction', this)">2. ${getText('સુધારો', 'Correction')}</button>`;
       changePanTab('new', tabs.querySelector('.modal-tab-btn'));
     } 
     else if (serviceName === "આધાર કાર્ડ") {
       tabs.style.display = "flex";
-      tabs.innerHTML = `<button class="modal-tab-btn active" onclick="changeAadhaarTab('address', this)">1. Address</button><button class="modal-tab-btn" onclick="changeAadhaarTab('download', this)">2. Download</button>`;
+      tabs.innerHTML = `<button class="modal-tab-btn active" onclick="changeAadhaarTab('address', this)">1. ${getText('સરનામું', 'Address')}</button><button class="modal-tab-btn" onclick="changeAadhaarTab('download', this)">2. ${getText('ડાઉનલોડ', 'Download')}</button>`;
       changeAadhaarTab('address', tabs.querySelector('.modal-tab-btn'));
     }
     else if (serviceName === "ચૂંટણી કાર્ડ") {
       tabs.style.display = "flex";
-      tabs.innerHTML = `<button class="modal-tab-btn active" onclick="changeVoterTab('new', this)"><i class="fa-solid fa-id-card"></i> નવું ચૂંટણી કાર્ડ</button><button class="modal-tab-btn" onclick="changeVoterTab('correction', this)"><i class="fa-solid fa-pen"></i> કાર્ડમાં સુધારો</button>`;
+      tabs.innerHTML = `<button class="modal-tab-btn active" onclick="changeVoterTab('new', this)"><i class="fa-solid fa-id-card"></i> ${getText('નવું ચૂંટણી કાર્ડ', 'New Voter ID')}</button><button class="modal-tab-btn" onclick="changeVoterTab('correction', this)"><i class="fa-solid fa-pen"></i> ${getText('સુધારો', 'Correction')}</button>`;
       changeVoterTab('new', tabs.querySelector('.modal-tab-btn'));
     }
     else if (serviceName === "e-Shram કાર્ડ") {
       title.innerHTML = "👷 <span style='color:var(--primary)'>E-Shram Card</span>";
       docs.style.display = "flex";
-      const d = [{text: "આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},{text: "બેંક પાસબુક (Bank Passbook)", icon: "fa-building-columns"},{text: "આધાર સાથે લિંક મોબાઇલ નંબર", icon: "fa-mobile-screen"}];
+      const d = [
+        {text: getDocText("આધાર કાર્ડ ([Aadhaar Redacted])", "Aadhaar Card ([Aadhaar Redacted])"), icon: "fa-id-card"},
+        {text: getDocText("બેંક પાસબુક", "Bank Passbook"), icon: "fa-building-columns"},
+        {text: getDocText("આધાર સાથે લિંક મોબાઇલ નંબર", "Aadhaar Linked Mobile Number"), icon: "fa-mobile-screen"}
+      ];
       docs.innerHTML = buildDocsHtml(d);
-      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+      btn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
     }
     else if (serviceName === "Ayushman Card") {
       title.innerHTML = "🏥 <span style='color:var(--primary)'>Ayushman Card</span>";
       docs.style.display = "flex";
-      const d = [{text: "આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},{text: "રેશન કાર્ડ (Ration Card)", icon: "fa-book"},{text: "પાસપોર્ટ સાઇઝ ફોટો", icon: "fa-camera"}];
+      const d = [
+        {text: getDocText("આધાર કાર્ડ ([Aadhaar Redacted])", "Aadhaar Card ([Aadhaar Redacted])"), icon: "fa-id-card"},
+        {text: getDocText("રેશન કાર્ડ", "Ration Card"), icon: "fa-book"},
+        {text: getDocText("પાસપોર્ટ સાઇઝ ફોટો", "Passport Size Photo"), icon: "fa-camera"}
+      ];
       docs.innerHTML = buildDocsHtml(d);
-      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+      btn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
     }
     else if (serviceName === "આવકનો દાખલો") {
-      title.innerHTML = "📄 <span style='color:var(--primary)'>આવકનો દાખલો</span>";
+      title.innerHTML = "📄 <span style='color:var(--primary)'>" + getText("આવકનો દાખલો", "Income Certificate") + "</span>";
       banner.style.display = "block"; docs.style.display = "flex";
-      banner.innerHTML = `<h3>Income Certificate</h3><p>આવકનો દાખલો કાઢવા માટે જરૂરી પુરાવા</p>`;
-      const d = [{text: "આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},{text: "રેશન કાર્ડ (Ration Card)", icon: "fa-book"},{text: "લાઇટ બિલ (Light Bill)", icon: "fa-lightbulb"}];
+      banner.innerHTML = `<h3>${getText("આવકનો દાખલો", "Income Certificate")}</h3><p>${getText("આવકનો દાખલો કાઢવા માટે જરૂરી પુરાવા", "Documents required for Income Certificate")}</p>`;
+      const d = [
+        {text: getDocText("આધાર કાર્ડ ([Aadhaar Redacted])", "Aadhaar Card ([Aadhaar Redacted])"), icon: "fa-id-card"},
+        {text: getDocText("રેશન કાર્ડ", "Ration Card"), icon: "fa-book"},
+        {text: getDocText("લાઇટ બિલ", "Electricity Bill"), icon: "fa-lightbulb"}
+      ];
       docs.innerHTML = buildDocsHtml(d);
-      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+      btn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
     }
     else if (serviceName === "નોન-ક્રિમી લેયર") {
-      title.innerHTML = "📜 <span style='color:var(--primary)'>Non-Creamy Layer</span>";
+      title.innerHTML = "📜 <span style='color:var(--primary)'>" + getText("નોન-ક્રીમીલેયર સર્ટિફિકેટ", "Non-Creamy Layer Certificate") + "</span>";
       banner.style.display = "block"; docs.style.display = "flex";
-      banner.innerHTML = `<h3>નોન-ક્રીમીલેયર સર્ટિફિકેટ</h3><p>જરૂરી ડોક્યુમેન્ટ્સનું લિસ્ટ</p>`;
-      const d = [{text: "વિદ્યાર્થી અને વાલીનું આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},{text: "વિદ્યાર્થી અને વાલીનું LC (શાળા છોડ્યાનું પ્રમાણપત્ર)", icon: "fa-school"},{text: "પિતાનો આવકનો દાખલો", icon: "fa-file-invoice-dollar"},{text: "વિદ્યાર્થીની છેલ્લી માર્કશીટ", icon: "fa-graduation-cap"},{text: "વાલીનું સોગંદનામું (Affidavit)", icon: "fa-scale-balanced"},{text: "રેશનકાર્ડ", icon: "fa-book"},{text: "વિદ્યાર્થીનો જાતિનો દાખલો", icon: "fa-scroll"}];
+      banner.innerHTML = `<h3>${getText("નોન-ક્રીમીલેયર સર્ટિફિકેટ", "Non-Creamy Layer Certificate")}</h3><p>${getText("જરૂરી ડોક્યુમેન્ટ્સનું લિસ્ટ", "List of Required Documents")}</p>`;
+      const d = [
+        {text: getDocText("વિદ્યાર્થી અને વાલીનું આધાર કાર્ડ ([Aadhaar Redacted])", "Student & Parent's Aadhaar Card ([Aadhaar Redacted])"), icon: "fa-id-card"},
+        {text: getDocText("વિદ્યાર્થી અને વાલીનું LC", "Student & Parent's LC"), icon: "fa-school"},
+        {text: getDocText("પિતાનો આવકનો દાખલો", "Father's Income Certificate"), icon: "fa-file-invoice-dollar"},
+        {text: getDocText("વિદ્યાર્થીની છેલ્લી માર્કશીટ", "Student's Last Marksheet"), icon: "fa-graduation-cap"},
+        {text: getDocText("વાલીનું સોગંદનામું", "Parent's Affidavit"), icon: "fa-scale-balanced"},
+        {text: getDocText("રેશનકાર્ડ", "Ration Card"), icon: "fa-book"},
+        {text: getDocText("વિદ્યાર્થીનો જાતિનો દાખલો", "Student's Caste Certificate"), icon: "fa-scroll"}
+      ];
       docs.innerHTML = buildDocsHtml(d);
-      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+      btn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
     }
     else if (serviceName === "જાતિનો દાખલો") {
-      title.innerHTML = "👫 <span style='color:var(--primary)'>જાતિનો દાખલો</span>";
+      title.innerHTML = "👫 <span style='color:var(--primary)'>" + getText("જાતિનો દાખલો", "Caste Certificate") + "</span>";
       banner.style.display = "block"; docs.style.display = "flex";
-      banner.innerHTML = `<h3>Caste Certificate</h3><p>જરૂરી ડોક્યુમેન્ટ્સનું લિસ્ટ</p>`;
-      const d = [{text: "વિદ્યાર્થી અને વાલીનું આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},{text: "વિદ્યાર્થીનું LC (શાળા છોડ્યાનું પ્રમાણપત્ર)", icon: "fa-school"},{text: "પિતા/દાદા/કાકા/ફઈનું LC", icon: "fa-file-lines"},{text: "રેશનકાર્ડ", icon: "fa-book"}];
+      banner.innerHTML = `<h3>${getText("જાતિનો દાખલો", "Caste Certificate")}</h3><p>${getText("જરૂરી ડોક્યુમેન્ટ્સનું લિસ્ટ", "List of Required Documents")}</p>`;
+      const d = [
+        {text: getDocText("વિદ્યાર્થી અને વાલીનું આધાર કાર્ડ ([Aadhaar Redacted])", "Student & Parent's Aadhaar Card ([Aadhaar Redacted])"), icon: "fa-id-card"},
+        {text: getDocText("વિદ્યાર્થીનું LC (શાળા છોડ્યાનું પ્રમાણપત્ર)", "Student's School Leaving Certificate (LC)"), icon: "fa-school"},
+        {text: getDocText("પિતા/દાદા/કાકા/ફઈનું LC", "Father/Grandfather/Uncle/Aunt's LC"), icon: "fa-file-lines"},
+        {text: getDocText("રેશનકાર્ડ", "Ration Card"), icon: "fa-book"}
+      ];
       docs.innerHTML = buildDocsHtml(d);
-      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+      btn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
     }
     else if (serviceName === "EWS પ્રમાણપત્ર") {
       title.innerHTML = "🏛️ <span style='color:var(--primary)'>EWS Certificate</span>";
       banner.style.display = "block"; docs.style.display = "flex";
-      banner.innerHTML = `<h3>આર્થિક નબળા વર્ગનું પ્રમાણપત્ર</h3><p>જરૂરી ડોક્યુમેન્ટ્સનું લિસ્ટ</p>`;
-      const d = [{text: "વિદ્યાર્થી અને વાલીનું આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},{text: "વિદ્યાર્થી અને વાલીનું LC (શાળા છોડ્યાનું પ્રમાણપત્ર)", icon: "fa-school"},{text: "પિતાનો આવકનો દાખલો", icon: "fa-file-invoice-dollar"},{text: "વિદ્યાર્થીની છેલ્લી માર્કશીટ", icon: "fa-graduation-cap"},{text: "વાલીનું સોગંદનામું (Affidavit)", icon: "fa-scale-balanced"},{text: "રેશનકાર્ડ", icon: "fa-book"}];
+      banner.innerHTML = `<h3>${getText("આર્થિક નબળા વર્ગનું પ્રમાણપત્ર", "Economically Weaker Section Certificate")}</h3><p>${getText("જરૂરી ડોક્યુમેન્ટ્સનું લિસ્ટ", "List of Required Documents")}</p>`;
+      const d = [
+        {text: getDocText("વિદ્યાર્થી અને વાલીનું આધાર કાર્ડ ([Aadhaar Redacted])", "Student & Parent's Aadhaar Card ([Aadhaar Redacted])"), icon: "fa-id-card"},
+        {text: getDocText("વિદ્યાર્થી અને વાલીનું LC", "Student & Parent's LC"), icon: "fa-school"},
+        {text: getDocText("પિતાનો આવકનો દાખલો", "Father's Income Certificate"), icon: "fa-file-invoice-dollar"},
+        {text: getDocText("વિદ્યાર્થીની છેલ્લી માર્કશીટ", "Student's Last Marksheet"), icon: "fa-graduation-cap"},
+        {text: getDocText("વાલીનું સોગંદનામું (Affidavit)", "Parent's Affidavit"), icon: "fa-scale-balanced"},
+        {text: getDocText("રેશનકાર્ડ", "Ration Card"), icon: "fa-book"}
+      ];
       docs.innerHTML = buildDocsHtml(d);
-      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+      btn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
     }
     else if (serviceName === "પોલીસ ક્લિયરન્સ") {
-      title.innerHTML = "👮 <span style='color:var(--primary)'>પોલીસનો દાખલો</span>";
+      title.innerHTML = "👮 <span style='color:var(--primary)'>" + getText("પોલીસનો દાખલો", "Police Clearance Certificate") + "</span>";
       banner.style.display = "block"; docs.style.display = "flex";
-      banner.innerHTML = `<h3>Police Clearance Certificate</h3><p>PCC કાઢવા માટે જરૂરી ડોક્યુમેન્ટ્સ</p>`;
-      const d = [{text: "આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},{text: "પાસપોર્ટ સાઇઝ ફોટો (Passport Photo)", icon: "fa-camera"},{text: "મોબાઇલ નંબર (Mobile No.)", icon: "fa-mobile-screen"}];
+      banner.innerHTML = `<h3>Police Clearance Certificate</h3><p>${getText("PCC કાઢવા માટે જરૂરી ડોક્યુમેન્ટ્સ", "Documents required for PCC")}</p>`;
+      const d = [
+        {text: getDocText("આધાર કાર્ડ ([Aadhaar Redacted])", "Aadhaar Card ([Aadhaar Redacted])"), icon: "fa-id-card"},
+        {text: getDocText("પાસપોર્ટ સાઇઝ ફોટો", "Passport Photo"), icon: "fa-camera"},
+        {text: getDocText("મોબાઇલ નંબર", "Mobile Number"), icon: "fa-mobile-screen"}
+      ];
       docs.innerHTML = buildDocsHtml(d);
-      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+      btn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
     }
     else if (serviceName === "રેશન કાર્ડ") {
       tabs.style.display = "flex";
-      tabs.innerHTML = `<button class="modal-tab-btn active" onclick="changeRationTab('add', this)"><i class="fa-solid fa-plus"></i> નામ ચડાવવા</button><button class="modal-tab-btn" onclick="changeRationTab('remove', this)"><i class="fa-solid fa-minus"></i> નામ કમી કરવા</button>`;
+      tabs.innerHTML = `<button class="modal-tab-btn active" onclick="changeRationTab('add', this)"><i class="fa-solid fa-plus"></i> ${getText('નામ ઉમેરવા', 'Add Name')}</button><button class="modal-tab-btn" onclick="changeRationTab('remove', this)"><i class="fa-solid fa-minus"></i> ${getText('નામ કમી કરવા', 'Remove Name')}</button>`;
       changeRationTab('add', tabs.querySelector('.modal-tab-btn'));
     }
     else if (serviceName === "Indian Passport") {
       title.innerHTML = "🛂 <span style='color:var(--primary)'>Indian Passport</span>";
       banner.style.display = "block"; docs.style.display = "flex";
-      banner.innerHTML = `<h3>નવો પાસપોર્ટ એપ્લિકેશન</h3><p>ઇન્ડિયન પાસપોર્ટ કઢાવવા માટે જરૂરી પુરાવા</p>`;
-      const d = [{text: "આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},{text: "પાન કાર્ડ (PAN Card)", icon: "fa-id-card-clip"},{text: "LC (શાળા છોડ્યાનું પ્રમાણપત્ર)", icon: "fa-school"},{text: "જન્મ તારીખનો દાખલો (Birth Certificate)", icon: "fa-file-lines"},{text: "મોબાઇલ નંબર (Mobile No.)", icon: "fa-mobile-screen"},{text: "ઈમેલ આઈડી (Email ID)", icon: "fa-envelope-circle-check"}];
+      banner.innerHTML = `<h3>${getText("નવો પાસપોર્ટ એપ્લિકેશન", "New Passport Application")}</h3><p>${getText("પાસપોર્ટ કઢાવવા માટે જરૂરી પુરાવા", "Documents required for Indian Passport")}</p>`;
+      const d = [
+        {text: getDocText("આધાર કાર્ડ ([Aadhaar Redacted])", "Aadhaar Card ([Aadhaar Redacted])"), icon: "fa-id-card"},
+        {text: getDocText("પાન કાર્ડ", "PAN Card"), icon: "fa-id-card-clip"},
+        {text: getDocText("LC (શાળા છોડ્યાનું પ્રમાણપત્ર)", "School Leaving Certificate (LC)"), icon: "fa-school"},
+        {text: getDocText("જન્મ તારીખનો દાખલો", "Birth Certificate"), icon: "fa-file-lines"},
+        {text: getDocText("મોબાઇલ નંબર", "Mobile Number"), icon: "fa-mobile-screen"},
+        {text: getDocText("ઈમેલ આઈડી", "Email ID"), icon: "fa-envelope-circle-check"}
+      ];
       docs.innerHTML = buildDocsHtml(d);
-      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+      btn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
     }
     else if (serviceName === "વાહન વીમો") {
-      title.innerHTML = "🚙 <span style='color:var(--primary)'>Vehicle Insurance</span>";
+      title.innerHTML = "🚙 <span style='color:var(--primary)'>" + getText("વાહન વીમો", "Vehicle Insurance") + "</span>";
       docs.style.display = "flex";
-      const d = [{text: "RC બુક (Registration Certificate)", icon: "fa-book-open"},{text: "વાહન માલિકનો આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-user-tag"},{text: "જૂની પોલિસી (જો હોય0 તો)", icon: "fa-file-shield"}];
+      const d = [
+        {text: getDocText("RC બુક", "RC Book"), icon: "fa-book-open"},
+        {text: getDocText("વાહન માલિકનો આધાર કાર્ડ ([Aadhaar Redacted])", "Owner's Aadhaar Card ([Aadhaar Redacted])"), icon: "fa-user-tag"},
+        {text: getDocText("જૂની પોલિસી (જો હોય તો)", "Old Policy (If any)"), icon: "fa-file-shield"}
+      ];
       docs.innerHTML = buildDocsHtml(d);
-      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+      btn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
     }
     else if (serviceName === "ઉદ્યોગ આધાર / MSME") {
       title.innerHTML = "🏭 <span style='color:var(--primary)'>MSME Registration</span>";
       docs.style.display = "flex";
-      const d = [{text: "આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-address-card"},{text: "PAN કાર્ડ", icon: "fa-credit-card"},{text: "મોબાઇલ નંબર", icon: "fa-mobile"},{text: "ઈમેઇલ ID", icon: "fa-envelope"},{text: "બેંકની વિગતો", icon: "fa-building-columns"}];
+      const d = [
+        {text: getDocText("આધાર કાર્ડ ([Aadhaar Redacted])", "Aadhaar Card ([Aadhaar Redacted])"), icon: "fa-address-card"},
+        {text: getDocText("PAN કાર્ડ", "PAN Card"), icon: "fa-credit-card"},
+        {text: getDocText("મોબાઇલ નંબર", "Mobile Number"), icon: "fa-mobile"},
+        {text: getDocText("ઈમેઇલ ID", "Email ID"), icon: "fa-envelope"},
+        {text: getDocText("બેંકની વિગતો", "Bank Details"), icon: "fa-building-columns"}
+      ];
       docs.innerHTML = buildDocsHtml(d);
-      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+      btn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
     }
     else if (serviceName === "રિઝ્યુમે / CV") {
       title.innerHTML = "📝 <span style='color:var(--primary)'>Resume / CV</span>";
       docs.style.display = "flex";
-      const d = [{text: "શૈક્ષણિક વિગતો (Education Details)", icon: "fa-graduation-cap"},{text: "કામનો અનુભવ (જો હોય તો)", icon: "fa-briefcase"},{text: "મોબાઇલ નંબર", icon: "fa-phone"},{text: "ઈમેઇલ ID", icon: "fa-envelope"},{text: "પાસપોર્ટ સાઇઝ ફોટો (જો જરૂરી હોય)", icon: "fa-image"}];
+      const d = [
+        {text: getDocText("શૈક્ષણિક વિગતો", "Education Details"), icon: "fa-graduation-cap"},
+        {text: getDocText("કામનો અનુભવ (જો હોય તો)", "Work Experience (If any)"), icon: "fa-briefcase"},
+        {text: getDocText("મોબાઇલ નંબર", "Mobile Number"), icon: "fa-phone"},
+        {text: getDocText("ઈમેઇલ ID", "Email ID"), icon: "fa-envelope"},
+        {text: getDocText("પાસપોર્ટ સાઇઝ ફોટો (જો જરૂરી હોય)", "Passport Size Photo (If required)"), icon: "fa-image"}
+      ];
       docs.innerHTML = buildDocsHtml(d);
-      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+      btn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
     }
     else if (serviceName === "૭/૧૨ અને ૮-અ ઉતારા") {
-      title.innerHTML = "🗺️ <span style='color:var(--primary)'>Land Records</span>";
+      title.innerHTML = "🗺️ <span style='color:var(--primary)'>" + getText("જમીનના ઉતારા", "Land Records") + "</span>";
       docs.style.display = "flex";
-      const d = [{text: "જિલ્લો (District)", icon: "fa-map"},{text: "તાલુકો (Taluka)", icon: "fa-location-dot"},{text: "ગામ (Village)", icon: "fa-house"},{text: "સર્વે નંબર અથવા ખાતા નંબર", icon: "fa-hashtag"}];
+      const d = [
+        {text: getDocText("જિલ્લો", "District"), icon: "fa-map"},
+        {text: getDocText("તાલુકો", "Taluka"), icon: "fa-location-dot"},
+        {text: getDocText("ગામ", "Village"), icon: "fa-house"},
+        {text: getDocText("સર્વે નંબર અથવા ખાતા નંબર", "Survey Number or Khata Number"), icon: "fa-hashtag"}
+      ];
       docs.innerHTML = buildDocsHtml(d);
-      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+      btn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
     }
     else if (serviceName === "વહાલી દીકરી યોજના") {
       title.innerHTML = "👧 <span style='color:var(--primary)'>Vahali Dikri Scheme</span>";
       docs.style.display = "flex";
-      const d = [{text: "દીકરીનો જન્મ દાખલો", icon: "fa-baby"},{text: "માતા-પિતાના આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-user-group"},{text: "આવકનો દાખલો", icon: "fa-file-invoice-dollar"},{text: "રેશન કાર્ડ", icon: "fa-book"},{text: "બેંક પાસબુક", icon: "fa-building-columns"},{text: "સત્તાવાર નિયમ મુજબના અન્ય પુરાવા", icon: "fa-file-circle-plus"}];
+      const d = [
+        {text: getDocText("દીકરીનો જન્મ દાખલો", "Daughter's Birth Certificate"), icon: "fa-baby"},
+        {text: getDocText("માતા-પિતાના આધાર કાર્ડ ([Aadhaar Redacted])", "Parents' Aadhaar Card ([Aadhaar Redacted])"), icon: "fa-user-group"},
+        {text: getDocText("આવકનો દાખલો", "Income Certificate"), icon: "fa-file-invoice-dollar"},
+        {text: getDocText("રેશન કાર્ડ", "Ration Card"), icon: "fa-book"},
+        {text: getDocText("બેંક પાસબુક", "Bank Passbook"), icon: "fa-building-columns"},
+        {text: getDocText("સત્તાવાર નિયમ મુજબના અન્ય પુરાવા", "Other Proofs as per Rules"), icon: "fa-file-circle-plus"}
+      ];
       docs.innerHTML = buildDocsHtml(d);
-      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+      btn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
     }
     else if (serviceName === "PF ની સેવાઓ") {
       title.innerHTML = "🏦 <span style='color:var(--primary)'>PF Services</span>";
       docs.style.display = "flex";
-      const d = [{text: "UAN નંબર (UAN Number)", icon: "fa-hashtag"},{text: "આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},{text: "PAN કાર્ડ", icon: "fa-credit-card"},{text: "બેંક પાસબુક (Bank Passbook)", icon: "fa-book-open"}];
+      const d = [
+        {text: getDocText("UAN નંબર", "UAN Number"), icon: "fa-hashtag"},
+        {text: getDocText("આધાર કાર્ડ ([Aadhaar Redacted])", "Aadhaar Card ([Aadhaar Redacted])"), icon: "fa-id-card"},
+        {text: getDocText("PAN કાર્ડ", "PAN Card"), icon: "fa-credit-card"},
+        {text: getDocText("બેંક પાસબુક", "Bank Passbook"), icon: "fa-book-open"}
+      ];
       docs.innerHTML = buildDocsHtml(d);
-      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+      btn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
     }
     else if (serviceName === "ABHA હેલ્થ કાર્ડ") {
       title.innerHTML = "🩺 <span style='color:var(--primary)'>ABHA Health Card</span>";
       banner.style.display = "block"; docs.style.display = "flex";
-      banner.innerHTML = `<h3>Ayushman Bharat Health Account</h3><p>ડિજિટલ હેલ્થ આઇડી કાર્ડ (Health ID)</p>`;
-      const d = [{text: "આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},{text: "આધાર સાથે લિંક મોબાઇલ નંબર", icon: "fa-mobile-screen"}];
+      banner.innerHTML = `<h3>Ayushman Bharat Health Account</h3><p>${getText("ડિજિટલ હેલ્થ આઇડી કાર્ડ", "Digital Health ID Card")}</p>`;
+      const d = [
+        {text: getDocText("આધાર કાર્ડ ([Aadhaar Redacted])", "Aadhaar Card ([Aadhaar Redacted])"), icon: "fa-id-card"},
+        {text: getDocText("આધાર સાથે લિંક મોબાઇલ નંબર", "Aadhaar Linked Mobile Number"), icon: "fa-mobile-screen"}
+      ];
       docs.innerHTML = buildDocsHtml(d);
-      btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+      btn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
     }
     else {
       docs.style.display = "flex";
-      btn.innerHTML = getText("Request This Service", "Request This Service");
-      const docsArray = currentLanguage === "en" ? service.enDocs : service.docs;
-      const cleanedDocs = docsArray.map(doc => {
-        let safeDoc = doc;
-        if(safeDoc.includes("આધાર કાર્ડ")) safeDoc = "આધાર કાર્ડ ([Aadhaar Redacted])";
-        if(safeDoc.includes("Aadhaar Card")) safeDoc = "Aadhaar Card ([Aadhaar Redacted])";
-        return safeDoc;
-      });
-      docs.innerHTML = buildDocsHtml(cleanedDocs);
+      btn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
+      
+      const enArr = service.enDocs && service.enDocs.length ? service.enDocs : service.docs;
+      const guArr = service.docs && service.docs.length ? service.docs : enArr;
+      
+      let combinedDocs = [];
+      for(let i=0; i<guArr.length; i++){
+         let guText = guArr[i];
+         let enText = enArr[i] || guText;
+         let safeGu = guText.includes("આધાર કાર્ડ") ? "આધાર કાર્ડ ([Aadhaar Redacted])" : guText;
+         let safeEn = enText.includes("Aadhaar Card") ? "Aadhaar Card ([Aadhaar Redacted])" : enText;
+         combinedDocs.push(getDocText(safeGu, safeEn));
+      }
+      docs.innerHTML = buildDocsHtml(combinedDocs);
     }
     btn.onclick = () => { sendWhatsAppInquiry(currentLanguage === "en" ? service.en : service.name); };
   }
   else if (type === 'jobs') {
-    title.innerHTML = '<i class="fa-solid fa-briefcase" style="color:var(--primary)"></i> ' + getText("Latest Government Jobs", "Latest Government Jobs");
+    title.innerHTML = '<i class="fa-solid fa-briefcase" style="color:var(--primary)"></i> ' + getText("તાજી સરકારી ભરતી", "Latest Government Jobs");
     jobs.style.display = "grid"; jobs.classList.add("active"); btn.style.display = "none"; 
     jobs.innerHTML = `
       <div class="job-box" onclick="sendWhatsAppInquiry('India Post Office GDS Job')"><h4>India Post Office GDS</h4><span>(23757 Posts)</span></div>
@@ -1643,13 +1735,13 @@ function openDynamicModal(type, serviceName = null) {
     `;
   } 
   else if (type === 'admission') {
-    title.innerHTML = '<i class="fa-solid fa-graduation-cap" style="color:var(--primary)"></i> ' + getText("Admission Portal", "Admission Portal");
+    title.innerHTML = '<i class="fa-solid fa-graduation-cap" style="color:var(--primary)"></i> ' + getText("એડમિશન પોર્ટલ", "Admission Portal");
     tabs.style.display = "flex"; banner.style.display = "block"; docs.style.display = "flex";
     tabs.innerHTML = `<button class="modal-tab-btn active" onclick="changeAdmissionTab('iti', this)"><i class="fa-solid fa-gear"></i> ITI</button><button class="modal-tab-btn" onclick="changeAdmissionTab('diploma', this)"><i class="fa-solid fa-scroll"></i> Diploma</button><button class="modal-tab-btn" onclick="changeAdmissionTab('college', this)"><i class="fa-solid fa-building-columns"></i> College</button>`;
     changeAdmissionTab('iti', tabs.querySelector('.modal-tab-btn'));
   }
   else if (type === 'scholarship') {
-    title.innerHTML = '<i class="fa-solid fa-sack-dollar" style="color:var(--primary)"></i> ' + getText("Scholarship Portal", "Scholarship Portal");
+    title.innerHTML = '<i class="fa-solid fa-sack-dollar" style="color:var(--primary)"></i> ' + getText("સ્કોલરશિપ પોર્ટલ", "Scholarship Portal");
     tabs.style.display = "flex"; banner.style.display = "block"; docs.style.display = "flex";
     tabs.innerHTML = `<button class="modal-tab-btn active" onclick="changeScholarshipTab('digitalgujarat', this)"><i class="fa-solid fa-laptop"></i> Digital Gujarat</button><button class="modal-tab-btn" onclick="changeScholarshipTab('mysy', this)"><i class="fa-solid fa-graduation-cap"></i> MYSY</button><button class="modal-tab-btn" onclick="changeScholarshipTab('nsp', this)"><i class="fa-solid fa-building-columns"></i> NSP</button>`;
     changeScholarshipTab('digitalgujarat', tabs.querySelector('.modal-tab-btn'));
@@ -1657,10 +1749,18 @@ function openDynamicModal(type, serviceName = null) {
   else if (type === 'kuvarbai') {
     title.innerHTML = '<i class="fa-solid fa-ring" style="color:var(--primary)"></i> ' + getText("કુંવરબાઈનું મામેરું", "Kuvarbai Nu Mameru");
     banner.style.display = "block"; docs.style.display = "flex";
-    banner.innerHTML = `<h3>લગ્ન સહાય યોજના</h3><p>ગુજરાત સરકાર દ્વારા આર્થિક સહાય</p>`;
-    const k_docs = ["કન્યા અને યુવકનું આધાર કાર્ડ ([Aadhaar Redacted])","કન્યાના પિતાનું આધાર કાર્ડ ([Aadhaar Redacted])","કન્યાના પિતાનો આવકનો દાખલો","કન્યાની બેંક પાસબુક (Bank Passbook)","કન્યાનો પાસપોર્ટ સાઇઝ ફોટો","મેરેજ સર્ટિફિકેટ (લગ્ન પ્રમાણપત્ર)","રેશનકાર્ડ (Ration Card)"];
+    banner.innerHTML = `<h3>${getText("લગ્ન સહાય યોજના", "Marriage Assistance Scheme")}</h3><p>${getText("ગુજરાત સરકાર દ્વારા આર્થિક સહાય", "Financial Help by Gujarat Govt")}</p>`;
+    const k_docs = [
+      getDocText("કન્યા અને યુવકનું આધાર કાર્ડ ([Aadhaar Redacted])", "Bride & Groom's Aadhaar Card ([Aadhaar Redacted])"),
+      getDocText("કન્યાના પિતાનું આધાર કાર્ડ ([Aadhaar Redacted])", "Bride's Father's Aadhaar Card ([Aadhaar Redacted])"),
+      getDocText("કન્યાના પિતાનો આવકનો દાખલો", "Bride's Father's Income Certificate"),
+      getDocText("કન્યાની બેંક પાસબુક", "Bride's Bank Passbook"),
+      getDocText("કન્યાનો પાસપોર્ટ સાઇઝ ફોટો", "Bride's Passport Size Photo"),
+      getDocText("મેરેજ સર્ટિફિકેટ (લગ્ન પ્રમાણપત્ર)", "Marriage Certificate"),
+      getDocText("રેશનકાર્ડ", "Ration Card")
+    ];
     docs.innerHTML = buildDocsHtml(k_docs);
-    btn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+    btn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
     btn.onclick = () => { sendWhatsAppInquiry(getText("કુંવરબાઈનું મામેરું", "Kuvarbai Nu Mameru")); };
   }
 
@@ -1681,15 +1781,25 @@ function changeRationTab(tab, btn) {
   banner.style.display = "block"; docs.style.display = "flex";
   
   if(tab === 'add') {
-    banner.innerHTML = `<h3>રેશનકાર્ડમાં નામ ઉમેરો</h3><p>નવા સભ્યનું નામ ચડાવવા માટે પુરાવા</p>`;
-    const d = [{text: "મુખ્ય વ્યક્તિ તેમજ અરજદારનું આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},{text: "અરજદારનો પાસપોર્ટ સાઇઝ ફોટો", icon: "fa-camera"},{text: "બાળકો માટે: આધાર કાર્ડ અને જન્મનું પ્રમાણપત્ર", icon: "fa-baby"},{text: "લગ્ન બાદ: નામ કમીનો દાખલો અને લગ્ન કંકોત્રી/મેરેજ સર્ટિફિકેટ", icon: "fa-ring"}];
+    banner.innerHTML = `<h3>${getText("રેશનકાર્ડમાં નામ ઉમેરો", "Add Name to Ration Card")}</h3><p>${getText("નવા સભ્યનું નામ ચડાવવા માટે પુરાવા", "Documents required to add a new member")}</p>`;
+    const d = [
+      {text: getDocText("મુખ્ય વ્યક્તિ તેમજ અરજદારનું આધાર કાર્ડ ([Aadhaar Redacted])", "Head & Applicant's Aadhaar Card ([Aadhaar Redacted])"), icon: "fa-id-card"},
+      {text: getDocText("અરજદારનો પાસપોર્ટ સાઇઝ ફોટો", "Applicant's Passport Size Photo"), icon: "fa-camera"},
+      {text: getDocText("બાળકો માટે: આધાર કાર્ડ અને જન્મનું પ્રમાણપત્ર", "For Children: Aadhaar & Birth Certificate"), icon: "fa-baby"},
+      {text: getDocText("લગ્ન બાદ: નામ કમીનો દાખલો અને મેરેજ સર્ટિફિકેટ", "After Marriage: Deletion Cert. & Marriage Cert."), icon: "fa-ring"}
+    ];
     docs.innerHTML = buildDocsHtml(d);
   } else {
-    banner.innerHTML = `<h3>રેશનકાર્ડમાંથી નામ કમી</h3><p>નામ કમી કરવા માટે જરૂરી પુરાવા</p>`;
-    const d = [{text: "ઓરિજિનલ રેશન કાર્ડ", icon: "fa-book"},{text: "જેનું નામ કમી કરવાનું છે તેનું આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},{text: "લગ્ન થયા હોય તો: મેરેજ સર્ટિફિકેટ", icon: "fa-ring"},{text: "મૃત્યુના કિસ્સામાં: મરણનો દાખલો", icon: "fa-file-medical"}];
+    banner.innerHTML = `<h3>${getText("રેશનકાર્ડમાંથી નામ કમી", "Remove Name from Ration Card")}</h3><p>${getText("નામ કમી કરવા માટે જરૂરી પુરાવા", "Documents required to remove a name")}</p>`;
+    const d = [
+      {text: getDocText("ઓરિજિનલ રેશન કાર્ડ", "Original Ration Card"), icon: "fa-book"},
+      {text: getDocText("જેનું નામ કમી કરવાનું છે તેનું આધાર કાર્ડ ([Aadhaar Redacted])", "Aadhaar Card of the person to be removed ([Aadhaar Redacted])"), icon: "fa-id-card"},
+      {text: getDocText("લગ્ન થયા હોય તો: મેરેજ સર્ટિફિકેટ", "If Married: Marriage Certificate"), icon: "fa-ring"},
+      {text: getDocText("મૃત્યુના કિસ્સામાં: મરણનો દાખલો", "In case of death: Death Certificate"), icon: "fa-file-medical"}
+    ];
     docs.innerHTML = buildDocsHtml(d);
   }
-  applyBtn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+  applyBtn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
   applyBtn.onclick = () => { sendWhatsAppInquiry(tab === 'add' ? "રેશનકાર્ડમાં નામ ઉમેરવા" : "રેશનકાર્ડમાંથી નામ કમી કરવા"); };
 }
 
@@ -1701,17 +1811,34 @@ function changePanTab(tab, btn) {
   const optionalDocs = document.getElementById("dynamicModalOptionalDocs");
   const anyOneText = document.getElementById("anyOneText");
   const applyBtn = document.getElementById("dynamicModalBtn");
-  docs.style.display = "flex"; applyBtn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+  docs.style.display = "flex"; 
+  applyBtn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
   
   if(tab === 'new') {
     anyOneText.style.display = "block"; optionalDocs.style.display = "flex";
-    const d = [{text: "આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},{text: "પાસપોર્ટ સાઇઝ ફોટો (Passport Photo)", icon: "fa-camera"},{text: "સહી (Signature)", icon: "fa-pen-nib"},{text: "મોબાઇલ નંબર (Mobile No)", icon: "fa-mobile-screen"},{text: "ઇમેલ આઇડી (Email ID)", icon: "fa-envelope"}];
+    anyOneText.innerHTML = getDocText("અને નીચેનામાંથી કોઈપણ ૧", "And Any One of the following");
+    const d = [
+      {text: getDocText("આધાર કાર્ડ ([Aadhaar Redacted])", "Aadhaar Card ([Aadhaar Redacted])"), icon: "fa-id-card"},
+      {text: getDocText("પાસપોર્ટ સાઇઝ ફોટો", "Passport Photo"), icon: "fa-camera"},
+      {text: getDocText("સહી", "Signature"), icon: "fa-pen-nib"},
+      {text: getDocText("મોબાઇલ નંબર", "Mobile Number"), icon: "fa-mobile-screen"},
+      {text: getDocText("ઇમેલ આઇડી", "Email ID"), icon: "fa-envelope"}
+    ];
     docs.innerHTML = buildDocsHtml(d);
-    const od = ["ચૂંટણી કાર્ડ (Voter ID)","ઇ-શ્રમ કાર્ડ (E-Shram Card)","જન્મનો દાખલો (Birth Certificate)"];
+    const od = [
+      getDocText("ચૂંટણી કાર્ડ", "Voter ID"),
+      getDocText("ઇ-શ્રમ કાર્ડ", "E-Shram Card"),
+      getDocText("જન્મનો દાખલો", "Birth Certificate")
+    ];
     optionalDocs.innerHTML = buildDocsHtml(od, 'fa-caret-right');
   } else {
     anyOneText.style.display = "none"; optionalDocs.style.display = "none";
-    const d = [{text: "આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},{text: "જૂનું પાન કાર્ડ (Old PAN Card)", icon: "fa-id-card-clip"},{text: "પાસપોર્ટ સાઇઝ ફોટો (Passport Photo)", icon: "fa-camera"},{text: "સહી (Signature)", icon: "fa-pen-nib"}];
+    const d = [
+      {text: getDocText("આધાર કાર્ડ ([Aadhaar Redacted])", "Aadhaar Card ([Aadhaar Redacted])"), icon: "fa-id-card"},
+      {text: getDocText("જૂનું પાન કાર્ડ", "Old PAN Card"), icon: "fa-id-card-clip"},
+      {text: getDocText("પાસપોર્ટ સાઇઝ ફોટો", "Passport Photo"), icon: "fa-camera"},
+      {text: getDocText("સહી", "Signature"), icon: "fa-pen-nib"}
+    ];
     docs.innerHTML = buildDocsHtml(d);
   }
   applyBtn.onclick = () => { sendWhatsAppInquiry(tab === 'new' ? "New PAN Card" : "PAN Card Correction"); };
@@ -1725,15 +1852,23 @@ function changeAadhaarTab(tab, btn) {
   const optionalDocs = document.getElementById("dynamicModalOptionalDocs");
   const anyOneText = document.getElementById("anyOneText");
   const applyBtn = document.getElementById("dynamicModalBtn");
-  docs.style.display = "flex"; applyBtn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+  docs.style.display = "flex"; 
+  applyBtn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
   
   if(tab === 'address') {
     anyOneText.style.display = "block"; anyOneText.innerHTML = "નોંધ: સરનામામાં સુધારો કરવા માટે આધાર સાથે મોબાઇલ નંબર લીંક હોવો જરૂરી છે."; optionalDocs.style.display = "none";
-    const d = [{text: "લાઇટ બિલ (Light Bill)", icon: "fa-lightbulb"},{text: "રેશન કાર્ડ (Ration Card)", icon: "fa-book"},{text: "પરિવારના કોઈ પણ સભ્યનું આધાર કાર્ડ", icon: "fa-users"}];
+    const d = [
+      {text: getDocText("લાઇટ બિલ", "Electricity Bill"), icon: "fa-lightbulb"},
+      {text: getDocText("રેશન કાર્ડ", "Ration Card"), icon: "fa-book"},
+      {text: getDocText("પરિવારના કોઈ પણ સભ્યનું આધાર કાર્ડ ([Aadhaar Redacted])", "Family Member's Aadhaar Card ([Aadhaar Redacted])"), icon: "fa-users"}
+    ];
     docs.innerHTML = buildDocsHtml(d);
   } else {
     anyOneText.style.display = "none"; optionalDocs.style.display = "none";
-    const d = [{text: "જૂનું આધાર કાર્ડ અથવા આધાર નંબર", icon: "fa-id-card"},{text: "આધાર સાથે લિંક મોબાઇલ નંબર", icon: "fa-mobile-screen"}];
+    const d = [
+      {text: getDocText("જૂનું આધાર કાર્ડ અથવા આધાર નંબર", "Old Aadhaar Card or Number"), icon: "fa-id-card"},
+      {text: getDocText("આધાર સાથે લિંક મોબાઇલ નંબર", "Aadhaar Linked Mobile Number"), icon: "fa-mobile-screen"}
+    ];
     docs.innerHTML = buildDocsHtml(d);
   }
   applyBtn.onclick = () => { sendWhatsAppInquiry(tab === 'address' ? "Aadhaar Address Change" : "Aadhaar Download"); };
@@ -1751,15 +1886,30 @@ function changeVoterTab(tab, btn) {
   banner.style.display = "block"; docs.style.display = "flex"; anyOneText.style.display = "none"; optionalDocs.style.display = "none";
   
   if(tab === 'new') {
-    banner.innerHTML = `<h3>નવું ચૂંટણી કાર્ડ (New Voter ID)</h3><p>નવું ચૂંટણી કાર્ડ કઢાવવા માટે જરૂરી પુરાવા</p>`;
-    const d = [{text: "આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},{text: "પાસપોર્ટ સાઇઝ ફોટો (Passport Photo)", icon: "fa-camera"},{text: "જન્મ તારીખનો દાખલો (Birth Certificate)", icon: "fa-file-lines"},{text: "લાઇટ બિલ (Light Bill)", icon: "fa-lightbulb"},{text: "LC (શાળા છોડ્યાનું પ્રમાણપત્ર)", icon: "fa-school"},{text: "મોબાઇલ નંબર (Mobile No.)", icon: "fa-mobile-screen"}];
+    banner.innerHTML = `<h3>${getText("નવું ચૂંટણી કાર્ડ", "New Voter ID")}</h3><p>${getText("નવું ચૂંટણી કાર્ડ કઢાવવા માટે જરૂરી પુરાવા", "Documents required for New Voter ID")}</p>`;
+    const d = [
+      {text: getDocText("આધાર કાર્ડ ([Aadhaar Redacted])", "Aadhaar Card ([Aadhaar Redacted])"), icon: "fa-id-card"},
+      {text: getDocText("પાસપોર્ટ સાઇઝ ફોટો", "Passport Photo"), icon: "fa-camera"},
+      {text: getDocText("જન્મ તારીખનો દાખલો", "Birth Certificate"), icon: "fa-file-lines"},
+      {text: getDocText("લાઇટ બિલ", "Electricity Bill"), icon: "fa-lightbulb"},
+      {text: getDocText("LC (શાળા છોડ્યાનું પ્રમાણપત્ર)", "School Leaving Certificate (LC)"), icon: "fa-school"},
+      {text: getDocText("મોબાઇલ નંબર", "Mobile Number"), icon: "fa-mobile-screen"}
+    ];
     docs.innerHTML = buildDocsHtml(d);
   } else {
-    banner.innerHTML = `<h3>ચૂંટણી કાર્ડમાં સુધારો</h3><p>ચૂંટણી કાર્ડમાં ભૂલ સુધારવા માટે જરૂરી ડોક્યુમેન્ટ્સ</p>`;
-    const d = [{text: "આધાર કાર્ડ ([Aadhaar Redacted])", icon: "fa-id-card"},{text: "જૂનું ચૂંટણી કાર્ડ (Old Voter ID)", icon: "fa-check-to-slot"},{text: "પાસપોર્ટ સાઇઝ ફોટો", icon: "fa-camera"},{text: "જન્મ તારીખનો દાખલો", icon: "fa-file-lines"},{text: "લાઇટ બિલ (Light Bill)", icon: "fa-lightbulb"},{text: "LC (શાળા છોડ્યાનું પ્રમાણપત્ર)", icon: "fa-school"},{text: "મોબાઇલ નંબર", icon: "fa-mobile-screen"}];
+    banner.innerHTML = `<h3>${getText("ચૂંટણી કાર્ડમાં સુધારો", "Voter ID Correction")}</h3><p>${getText("ચૂંટણી કાર્ડમાં ભૂલ સુધારવા માટે જરૂરી ડોક્યુમેન્ટ્સ", "Documents required to correct Voter ID")}</p>`;
+    const d = [
+      {text: getDocText("આધાર કાર્ડ ([Aadhaar Redacted])", "Aadhaar Card ([Aadhaar Redacted])"), icon: "fa-id-card"},
+      {text: getDocText("જૂનું ચૂંટણી કાર્ડ", "Old Voter ID"), icon: "fa-check-to-slot"},
+      {text: getDocText("પાસપોર્ટ સાઇઝ ફોટો", "Passport Photo"), icon: "fa-camera"},
+      {text: getDocText("જન્મ તારીખનો દાખલો", "Birth Certificate"), icon: "fa-file-lines"},
+      {text: getDocText("લાઇટ બિલ", "Electricity Bill"), icon: "fa-lightbulb"},
+      {text: getDocText("LC (શાળા છોડ્યાનું પ્રમાણપત્ર)", "School Leaving Certificate (LC)"), icon: "fa-school"},
+      {text: getDocText("મોબાઇલ નંબર", "Mobile Number"), icon: "fa-mobile-screen"}
+    ];
     docs.innerHTML = buildDocsHtml(d);
   }
-  applyBtn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
+  applyBtn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
   applyBtn.onclick = () => { sendWhatsAppInquiry(tab === 'new' ? "New Voter ID" : "Voter ID Correction"); };
 }
 
@@ -1771,14 +1921,41 @@ function changeAdmissionTab(tab, btn) {
   const applyBtn = document.getElementById("dynamicModalBtn");
   
   if(tab === 'iti') {
-    banner.innerHTML = `<h3>ITI Admission 2026</h3><p>10th Pass / 8th Pass Admission</p>`; applyBtn.innerHTML = "Apply for ITI on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
-    const d = ["૧૦મા / ૮મા ધોરણની માર્કશીટ (Marksheet)","શાળા છોડ્યાનું પ્રમાણપત્ર (School L.C.)","આધાર કાર્ડ ([Aadhaar Redacted])","બેંક પાસબુક (Bank Passbook)","જાતિનો દાખલો (જો લાગુ પડે)","પાસપોર્ટ સાઇઝ ફોટો અને સહી"]; docs.innerHTML = buildDocsHtml(d);
+    banner.innerHTML = `<h3>ITI Admission 2026</h3><p>10th Pass / 8th Pass Admission</p>`; 
+    applyBtn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply for ITI on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
+    const d = [
+      getDocText("૧૦મા / ૮મા ધોરણની માર્કશીટ", "10th / 8th Marksheet"),
+      getDocText("શાળા છોડ્યાનું પ્રમાણપત્ર (L.C.)", "School Leaving Certificate (L.C.)"),
+      getDocText("આધાર કાર્ડ ([Aadhaar Redacted])", "Aadhaar Card ([Aadhaar Redacted])"),
+      getDocText("બેંક પાસબુક", "Bank Passbook"),
+      getDocText("જાતિનો દાખલો (જો લાગુ પડે)", "Caste Certificate (If applicable)"),
+      getDocText("પાસપોર્ટ સાઇઝ ફોટો અને સહી", "Passport Photo & Signature")
+    ]; 
+    docs.innerHTML = buildDocsHtml(d);
   } else if(tab === 'diploma') {
-    banner.innerHTML = `<h3>Diploma Admission 2026</h3><p>Polytechnic Admission After 10th / 12th</p>`; applyBtn.innerHTML = "Apply for Diploma on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
-    const d = ["૧૦મા / ૧૨મા ધોરણની માર્કશીટ","શાળા છોડ્યાનું પ્રમાણપત્ર (School L.C.)","આધાર કાર્ડ ([Aadhaar Redacted])","આવકનો દાખલો (Income Certificate)","જાતિનો દાખલો / Non-Creamy Layer","પાસપોર્ટ સાઇઝ ફોટો અને સહી"]; docs.innerHTML = buildDocsHtml(d);
+    banner.innerHTML = `<h3>Diploma Admission 2026</h3><p>Polytechnic Admission After 10th / 12th</p>`; 
+    applyBtn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply for Diploma on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
+    const d = [
+      getDocText("૧૦મા / ૧૨મા ધોરણની માર્કશીટ", "10th / 12th Marksheet"),
+      getDocText("શાળા છોડ્યાનું પ્રમાણપત્ર (L.C.)", "School Leaving Certificate (L.C.)"),
+      getDocText("આધાર કાર્ડ ([Aadhaar Redacted])", "Aadhaar Card ([Aadhaar Redacted])"),
+      getDocText("આવકનો દાખલો", "Income Certificate"),
+      getDocText("જાતિનો દાખલો / નોન-ક્રિમી લેયર", "Caste Certificate / Non-Creamy Layer"),
+      getDocText("પાસપોર્ટ સાઇઝ ફોટો અને સહી", "Passport Photo & Signature")
+    ]; 
+    docs.innerHTML = buildDocsHtml(d);
   } else if(tab === 'college') {
-    banner.innerHTML = `<h3>College Admission 2026</h3><p>BA / B.Com / B.Sc / BCA / BBA</p>`; applyBtn.innerHTML = "Apply for College on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
-    const d = ["૧૨મા ધોરણની માર્કશીટ (12th Marksheet)","શાળા છોડ્યાનું પ્રમાણપત્ર (School L.C.)","આધાર કાર્ડ ([Aadhaar Redacted])","બેંક પાસબુક (Bank Passbook)","જાતિ અને આવકનો દાખલો (જો લાગુ પડે)","પાસપોર્ટ સાઇઝ ફોટો અને સહી"]; docs.innerHTML = buildDocsHtml(d);
+    banner.innerHTML = `<h3>College Admission 2026</h3><p>BA / B.Com / B.Sc / BCA / BBA</p>`; 
+    applyBtn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply for College on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
+    const d = [
+      getDocText("૧૨મા ધોરણની માર્કશીટ", "12th Marksheet"),
+      getDocText("શાળા છોડ્યાનું પ્રમાણપત્ર (L.C.)", "School Leaving Certificate (L.C.)"),
+      getDocText("આધાર કાર્ડ ([Aadhaar Redacted])", "Aadhaar Card ([Aadhaar Redacted])"),
+      getDocText("બેંક પાસબુક", "Bank Passbook"),
+      getDocText("જાતિ અને આવકનો દાખલો (જો લાગુ પડે)", "Caste & Income Certificate (If applicable)"),
+      getDocText("પાસપોર્ટ સાઇઝ ફોટો અને સહી", "Passport Photo & Signature")
+    ]; 
+    docs.innerHTML = buildDocsHtml(d);
   }
   applyBtn.onclick = () => { const tabName = tab === 'iti' ? "ITI Admission" : tab === 'diploma' ? "Diploma Admission" : "College Admission"; sendWhatsAppInquiry(tabName); };
 }
@@ -1790,20 +1967,35 @@ function changeScholarshipTab(tab, btn) {
   const docs = document.getElementById("dynamicModalDocs");
   const applyBtn = document.getElementById("dynamicModalBtn");
   
+  const d_schol = [
+      getDocText("ધો. 10, 11 અને 12 ની માર્કશીટ", "Std. 10, 11 & 12 Marksheet"),
+      getDocText("પાસપોર્ટ સાઇઝ ફોટો", "Passport Photo"),
+      getDocText("જાતિનો દાખલો (OBC, SC, ST માટે)", "Caste Certificate (For OBC, SC, ST)"),
+      getDocText("આવકનો દાખલો", "Income Certificate"),
+      getDocText("આધાર કાર્ડ ([Aadhaar Redacted])", "Aadhaar Card ([Aadhaar Redacted])"),
+      getDocText("બેંક પાસબુક", "Bank Passbook"),
+      getDocText("ફી ભર્યાની પહોંચ", "Fee Receipt"),
+      getDocText("LC (શાળા છોડ્યાનું પ્રમાણપત્ર)", "School Leaving Certificate (LC)"),
+      getDocText("રેશનકાર્ડ", "Ration Card")
+  ];
+
   if(tab === 'digitalgujarat') {
-    banner.innerHTML = `<h3>Digital Gujarat Scholarship</h3><p>Gujarat State Government Scholarship</p>`; applyBtn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
-    const d = ["ધો. 10, 11 અને 12 ની કોલેજ માર્કશીટ","પાસપોર્ટ સાઇઝ ફોટો","જાતિનો દાખલો (OBC, SC, ST માટે)","આવકનો દાખલો","આધાર કાર્ડ ([Aadhaar Redacted])","બેંક પાસબુક","ફી ભર્યાની પહોંચ","LC (શાળા છોડ્યાનું પ્રમાણપત્ર)","રેશનકાર્ડ"]; docs.innerHTML = buildDocsHtml(d, 'fa-file-invoice');
+    banner.innerHTML = `<h3>Digital Gujarat Scholarship</h3><p>Gujarat State Government Scholarship</p>`; 
+    applyBtn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
+    docs.innerHTML = buildDocsHtml(d_schol, 'fa-file-invoice');
   } else if(tab === 'mysy') {
-    banner.innerHTML = `<h3>MYSY Scholarship</h3><p>Mukhyamantri Yuva Swavalamban Yojana</p>`; applyBtn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
-    const d = ["ધો. 10, 11 અને 12 ની કોલેજ માર્કશીટ","પાસપોર્ટ સાઇઝ ફોટો","જાતિનો દાખલો (OBC, SC, ST માટે)","આવકનો દાખલો","આધાર કાર્ડ ([Aadhaar Redacted])","બેંક પાસબુક","ફી ભર્યાની પહોંચ","LC (શાળા છોડ્યાનું પ્રમાણપત્ર)","રેશનકાર્ડ"]; docs.innerHTML = buildDocsHtml(d, 'fa-file-invoice');
+    banner.innerHTML = `<h3>MYSY Scholarship</h3><p>Mukhyamantri Yuva Swavalamban Yojana</p>`; 
+    applyBtn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
+    docs.innerHTML = buildDocsHtml(d_schol, 'fa-file-invoice');
   } else if(tab === 'nsp') {
-    banner.innerHTML = `<h3>NSP Scholarship</h3><p>National Scholarship Portal (Central Govt)</p>`; applyBtn.innerHTML = "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>";
-    const d = ["ધો. 10, 11 અને 12 ની કોલેજ માર્કશીટ","પાસપોર્ટ સાઇઝ ફોટો","જાતિનો દાખલો (OBC, SC, ST માટે)","આવકનો દાખલો","આધાર કાર્ડ ([Aadhaar Redacted])","બેંક પાસબુક","ફી ભર્યાની પહોંચ","LC (શાળા છોડ્યાનું પ્રમાણપત્ર)","રેશનકાર્ડ"]; docs.innerHTML = buildDocsHtml(d, 'fa-file-invoice');
+    banner.innerHTML = `<h3>NSP Scholarship</h3><p>National Scholarship Portal (Central Govt)</p>`; 
+    applyBtn.innerHTML = getText("WhatsApp પર રિકવેસ્ટ મોકલો <i class='fa-brands fa-whatsapp'></i>", "Apply on WhatsApp <i class='fa-brands fa-whatsapp'></i>");
+    docs.innerHTML = buildDocsHtml(d_schol, 'fa-file-invoice');
   }
   applyBtn.onclick = () => { const tabName = tab === 'digitalgujarat' ? "Digital Gujarat Scholarship" : tab === 'mysy' ? "MYSY Scholarship" : "NSP Scholarship"; sendWhatsAppInquiry(tabName); };
 }
 
-// 🌟 FORCE HIDE LOADER (100% WORKS)
+// 🌟 FORCE HIDE LOADER
 document.addEventListener("DOMContentLoaded", function() {
   setTimeout(function() {
     var loader = document.getElementById("welcomeLoader");
@@ -1812,7 +2004,7 @@ document.addEventListener("DOMContentLoaded", function() {
       loader.style.opacity = "0";
       setTimeout(function() { loader.style.display = "none"; }, 500);
     }
-  }, 1200); // Exact 1.2s delay for perfect loading screen
+  }, 1200); 
 });
 
 document.addEventListener('DOMContentLoaded', () => {
