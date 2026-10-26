@@ -16,7 +16,7 @@
 
 <style>
 /* =============================================================
-   ULTRA PREMIUM "MIXED DARK" & GRADIENT VARIABLES
+   ULTRA PREMIUM "MIXED DARK" & GRADIENT VARIABLES (ORIGINAL)
 ============================================================= */
 :root {
   --primary: #2563eb;
@@ -220,10 +220,202 @@ body.dark-theme .news-ticker { background: #020617; }
 
 section { padding: 90px 5%; }
 .container { max-width: 1300px; margin: auto; }
-.section-head { margin-bottom: 60px; text-align: center; }
-.section-head small { background: var(--primary-light); color: #8b5cf6; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; font-size: 12px; padding: 8px 24px; border-radius: 30px; display: inline-block; margin-bottom: 15px; border: 1px solid var(--border-color);}
-body.dark-theme .section-head small { background: rgba(139, 92, 246, 0.15); border-color: rgba(139, 92, 246, 0.3);}
-.section-head h2 { color: var(--text-main); font-size: 40px; margin: 0; font-weight: 800; letter-spacing: -1px; }
+
+/* =============================================================
+   🌟 PREMIUM SECTION HEADERS (Animated with Original Colors)
+============================================================= */
+.section-head { 
+  margin-bottom: 50px; 
+  text-align: center; 
+  position: relative;
+}
+
+/* The Top Pill */
+.section-head small { 
+  background: rgba(139, 92, 246, 0.1); 
+  color: #8b5cf6; 
+  font-weight: 800; 
+  letter-spacing: 2px; 
+  text-transform: uppercase; 
+  font-size: 13px; 
+  padding: 10px 28px; 
+  border-radius: 50px; 
+  display: inline-block; 
+  margin-bottom: 20px; 
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shiny effect on hover */
+.section-head small::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 50%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+  transition: 0.5s;
+}
+.section-head small:hover::before {
+  left: 150%;
+}
+.section-head small:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+  background: rgba(139, 92, 246, 0.15);
+}
+
+body.dark-theme .section-head small { 
+  background: rgba(139, 92, 246, 0.15); 
+  border-color: rgba(139, 92, 246, 0.4);
+}
+
+/* The Main Title */
+.section-head h2 { 
+  color: var(--text-main); 
+  font-size: clamp(32px, 4vw, 46px); 
+  margin: 0; 
+  font-weight: 800; 
+  letter-spacing: -1px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  line-height: 1.2;
+}
+
+.section-head p {
+  color: var(--text-muted);
+  font-size: 17px;
+  font-weight: 600;
+  margin: 10px 0 20px;
+}
+
+/* Animated Underline for H2 */
+.section-divider {
+  width: 60px;
+  height: 4px;
+  background: var(--nav-active-grad);
+  margin: 15px auto 0;
+  border-radius: 10px;
+  transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.section-head:hover .section-divider {
+  width: 100px;
+}
+
+
+/* =============================================================
+   🌟 PREMIUM SEARCH BAR (With Original Theme Colors)
+============================================================= */
+.search-container-box {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 32px;
+  padding: 15px 20px;
+  max-width: 800px;
+  margin: 0 auto 50px;
+  box-shadow: var(--shadow-md);
+}
+
+.search-area { 
+  display: flex; 
+  gap: 15px; 
+}
+
+.search-area input { 
+  flex: 1; 
+  padding: 16px 20px; 
+  border: 2px solid transparent; 
+  border-radius: 50px; 
+  background: var(--bg-color); 
+  color: var(--text-main); 
+  outline: none; 
+  font-size: 16px; 
+  font-weight: 600; 
+  transition: all 0.3s ease; 
+}
+
+.search-area input:focus { 
+  border-color: #8b5cf6; 
+  background: var(--card-bg); 
+  box-shadow: 0 0 0 5px var(--primary-light); 
+}
+
+.search-btn {
+  background: var(--nav-active-grad);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 0 35px;
+  font-weight: 800;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+}
+
+.search-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+  filter: brightness(1.1);
+}
+
+@media(max-width: 600px) {
+    .search-area { flex-direction: column; }
+    .search-btn { padding: 15px; }
+}
+
+
+/* =============================================================
+   🌟 PREMIUM FILTER BUTTONS (Original Vibrant Colors)
+============================================================= */
+.updates-filter-container { 
+  display: flex; 
+  justify-content: center; 
+  gap: 12px; 
+  margin-bottom: 50px; 
+  flex-wrap: wrap; 
+}
+
+.update-filter-btn { 
+  background: var(--card-bg); 
+  border: 1px solid var(--border-color); 
+  color: var(--text-muted); 
+  padding: 12px 26px; 
+  border-radius: 50px; 
+  font-weight: 800; 
+  font-size: 15px; 
+  cursor: pointer; 
+  transition: all 0.3s ease; 
+  display: flex; 
+  align-items: center; 
+  gap: 10px; 
+  box-shadow: var(--shadow-sm);
+}
+
+.update-filter-btn i { color: var(--text-muted); transition: 0.3s; }
+
+.update-filter-btn:hover { 
+  border-color: #8b5cf6; 
+  color: #8b5cf6; 
+  transform: translateY(-2px); 
+  box-shadow: var(--shadow-md);
+}
+
+.update-filter-btn:hover i { color: #8b5cf6; }
+
+.update-filter-btn.active { 
+  background: var(--nav-active-grad); 
+  color: white; 
+  border-color: transparent; 
+  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+}
+
+.update-filter-btn.active i { color: white; }
+
 
 /* -------------------------------------------------------------
    HORIZONTAL SCROLL GALLERY
@@ -257,8 +449,9 @@ body.dark-theme .section-head small { background: rgba(139, 92, 246, 0.15); bord
 body.dark-theme .main-tab-btn:hover { background: rgba(255,255,255,0.05); }
 .main-tab-btn.active { background: var(--nav-active-grad); color: white; box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3); }
 
+
 /* -------------------------------------------------------------
-   🌟 ULTRA VIP CARDS (3D, Glowing Icon & Pill Button)
+   🌟 ULTRA VIP CARDS (Original Vibrant Colors)
 ------------------------------------------------------------- */
 .universal-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 30px; align-items: stretch; }
 .universal-card { 
@@ -277,7 +470,7 @@ body.dark-theme .main-tab-btn:hover { background: rgba(255,255,255,0.05); }
 .universal-card:hover { transform: translateY(-10px); box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.5), var(--shadow-hover); border-color: transparent; }
 .universal-card:hover::after { opacity: 1; }
 
-/* Vibrant Gradient Icons */
+/* Vibrant Gradient Icons (ORIGINAL) */
 .universal-icon { 
   width: 60px; height: 60px; background: var(--nav-active-grad); color: white; 
   display: flex; align-items: center; justify-content: center; border-radius: 18px; 
@@ -293,7 +486,7 @@ body.dark-theme .main-tab-btn:hover { background: rgba(255,255,255,0.05); }
 .universal-card h3 { margin: 0 0 12px; font-size: 20px; font-weight: 800; color: var(--text-main); line-height: 1.3; letter-spacing: -0.5px;}
 .universal-card p { font-size: 15px; color: var(--text-muted); margin: 0 0 30px; flex: 1; font-weight: 600; line-height: 1.6;}
 
-/* Modern Pill-Shaped Outline Button */
+/* Modern Pill-Shaped Outline Button (ORIGINAL) */
 .universal-link { 
   color: var(--text-main); font-size: 14.5px; font-weight: 800; transition: 0.4s ease; 
   display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: auto; 
@@ -311,26 +504,8 @@ body.dark-theme .main-tab-btn:hover { background: rgba(255,255,255,0.05); }
 .card-header-tags { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 20px; }
 .update-tag { background: var(--primary-light); color: #8b5cf6; font-size: 11px; font-weight: 800; padding: 6px 14px; border-radius: 8px; letter-spacing: 1px; text-transform: uppercase; border: 1px solid var(--border-color);}
 .update-date { color: var(--text-muted); font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;}
-
-/* Search Box (Floating Pill Style) */
-.search-area { display: flex; gap: 10px; margin: 0 auto 50px; max-width: 800px; position: relative;}
-.search-area input { 
-  flex: 1; min-width: 0; padding: 22px 30px 22px 60px; border: 2px solid transparent; 
-  border-radius: 50px; background: var(--card-bg); color: var(--text-main); outline: none; 
-  font-size: 17px; font-weight: 600; box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
-  transition: all 0.3s ease; 
-}
-body.dark-theme .search-area input { box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid var(--border-color); }
-.search-area::before { content: '\f002'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; left: 25px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 20px; z-index: 2; transition: 0.3s;}
-.search-area input:focus { border-color: #8b5cf6; box-shadow: 0 0 0 6px var(--primary-light), var(--shadow-md); }
-.search-area input:focus + ::before { color: #8b5cf6; }
-
-.updates-filter-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 60px; flex-wrap: wrap; }
-.update-filter-btn { background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-muted); padding: 12px 26px; border-radius: 50px; font-weight: 800; font-size: 15px; cursor: pointer; transition: all 0.3s ease; display:flex; align-items:center; gap:10px; box-shadow: var(--shadow-sm); }
-.update-filter-btn:hover { border-color: #8b5cf6; color: #8b5cf6; transform: translateY(-2px); box-shadow: var(--shadow-md);}
-.update-filter-btn.active { background: var(--nav-active-grad); color: white; border-color: transparent; box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);}
-
 .empty { grid-column: 1/-1; background: var(--card-bg); padding: 60px; border-radius: 24px; text-align: center; font-weight: 800; border: 2px dashed var(--border-color); font-size: 20px; color: var(--text-muted); }
+
 
 /* -------------------------------------------------------------
    ABOUT US PAGE 
@@ -365,15 +540,15 @@ body.dark-theme .search-area input { box-shadow: 0 10px 30px rgba(0,0,0,0.5); bo
 
 
 /* -------------------------------------------------------------
-   CONTACT SECTION 
+   CONTACT SECTION (4 Cards with Call & Location)
 ------------------------------------------------------------- */
-.contact-3-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 60px; }
-.c-card { background: var(--card-bg); padding: 40px 25px; border-radius: 24px; text-align: center; border: 1px solid var(--border-color); box-shadow: var(--shadow-md); transition: 0.4s ease;}
+.contact-4-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; margin-bottom: 60px; }
+.c-card { background: var(--card-bg); padding: 40px 20px; border-radius: 24px; text-align: center; border: 1px solid var(--border-color); box-shadow: var(--shadow-md); transition: 0.4s ease; display: block; text-decoration: none; color: inherit;}
 .c-card:hover { transform: translateY(-8px); border-color: #8b5cf6; box-shadow: var(--shadow-hover); }
 .c-card i { font-size: 32px; color: #8b5cf6; background: var(--primary-light); width: 75px; height: 75px; line-height: 75px; border-radius: 20px; margin-bottom: 25px; display: inline-block; transition: 0.4s; border: 1px solid var(--border-color);}
 .c-card:hover i { background: var(--nav-active-grad); color: white; transform: rotateY(180deg) scale(1.1); box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3); border-color: transparent;}
-.c-card h4 { font-size: 15px; font-weight: 800; color: var(--text-muted); margin: 0 0 8px; text-transform: uppercase; letter-spacing: 1px; }
-.c-card p { font-size: 19px; font-weight: 800; color: var(--text-main); margin: 0; }
+.c-card h4 { font-size: 14.5px; font-weight: 800; color: var(--text-muted); margin: 0 0 8px; text-transform: uppercase; letter-spacing: 1px; }
+.c-card p { font-size: 17px; font-weight: 800; color: var(--text-main); margin: 0; line-height: 1.4;}
 
 .social-links-area { text-align: center; margin-bottom: 60px; background: var(--card-bg); padding: 50px; border-radius: 32px; box-shadow: var(--shadow-md); border: 1px solid var(--border-color);}
 .social-links-area h4 { font-size: 26px; font-weight: 800; color: var(--text-main); margin: 0 0 30px; display: flex; align-items: center; justify-content: center; gap: 15px; letter-spacing: -0.5px;}
@@ -395,7 +570,7 @@ body.dark-theme .search-area input { box-shadow: 0 10px 30px rgba(0,0,0,0.5); bo
 .cb-images { display: flex; gap: 15px; z-index: 2; align-items: center; justify-content: center;}
 .cb-images i { font-size: 140px; color: rgba(255,255,255,0.9); text-shadow: 0 15px 30px rgba(0,0,0,0.2); transition: 0.3s; animation: floatOrb 5s ease-in-out infinite alternate; }
 
-@media(max-width: 950px) { .contact-3-cards { grid-template-columns: 1fr; } .contact-banner { flex-direction: column; text-align: center; padding: 50px 25px;} .cb-text h3 { justify-content: center; font-size: 30px;} .cb-images i { font-size: 110px;} }
+@media(max-width: 950px) { .contact-4-cards { grid-template-columns: repeat(2, 1fr); } .contact-banner { flex-direction: column; text-align: center; padding: 50px 25px;} .cb-text h3 { justify-content: center; font-size: 30px;} .cb-images i { font-size: 110px;} }
 
 /* -------------------------------------------------------------
    CLEAN APP-STYLE REGISTRATION SPLIT LAYOUT
@@ -441,15 +616,29 @@ body.dark-theme .modal-tab-btn.active { background: #8b5cf6; color: white;}
 .modal-banner::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.15) 10%, transparent 60%); opacity: 0.5; pointer-events: none; }
 .modal-banner h3 { margin: 0 0 8px; font-size: 24px; font-weight: 800; letter-spacing: 0.5px; position: relative; z-index: 2;}
 .modal-banner p { margin: 0; font-size: 15px; font-weight: 600; opacity: 0.95; position: relative; z-index: 2; }
-.document-list { padding-left: 0; list-style: none; margin-bottom: 35px; display: flex; flex-direction: column; gap: 12px; }
-.document-list li { margin: 0; padding: 16px 20px; background: var(--card-bg); border-radius: 16px; display: flex; align-items: center; gap: 18px; transition: 0.3s ease; border: 1px solid var(--border-color); position: relative; overflow: hidden; box-shadow: inset 0 2px 5px rgba(0,0,0,0.02);}
-.document-list li:hover { transform: translateX(5px); box-shadow: var(--shadow-sm); border-color: #8b5cf6; background: var(--card-bg);}
-.doc-icon { width: 45px; height: 45px; border-radius: 12px; background: var(--primary-light); color: #8b5cf6; display: grid; place-items: center; font-size: 20px; transition: 0.4s; flex-shrink: 0; border: 1px solid var(--border-color);}
-.document-list li:hover .doc-icon { background: var(--nav-active-grad); color: white; transform: scale(1.1) rotate(5deg); border-color: transparent;}
-.doc-text { font-weight: 700; font-size: 16.5px; color: var(--text-main); flex: 1; line-height: 1.4; }
-.doc-check { color: #10b981; font-size: 20px; opacity: 0; transform: scale(0.5); transition: 0.3s; }
-.document-list li:hover .doc-check { opacity: 1; transform: scale(1); }
+
+/* 🌟 PREMIUM DOCUMENT LIST (Original Gradient Colors) */
+.document-list { padding-left: 0; list-style: none; margin-bottom: 35px; display: flex; flex-direction: column; gap: 14px; }
+.document-list li { margin: 0; padding: 18px 22px; background: var(--card-bg); border-radius: 16px; display: flex; align-items: center; gap: 18px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 1px solid var(--border-color); position: relative; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.03); animation: slideInDoc 0.5s ease backwards; }
+.document-list li:nth-child(1) { animation-delay: 0.1s; }
+.document-list li:nth-child(2) { animation-delay: 0.2s; }
+.document-list li:nth-child(3) { animation-delay: 0.3s; }
+.document-list li:nth-child(4) { animation-delay: 0.4s; }
+.document-list li:nth-child(5) { animation-delay: 0.5s; }
+.document-list li:nth-child(6) { animation-delay: 0.6s; }
+.document-list li:nth-child(7) { animation-delay: 0.7s; }
+.document-list li:nth-child(8) { animation-delay: 0.8s; }
+@keyframes slideInDoc { from { opacity: 0; transform: translateY(20px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+.document-list li:hover { transform: translateX(8px) translateY(-2px); box-shadow: 0 12px 25px rgba(139, 92, 246, 0.15); border-color: #8b5cf6; background: linear-gradient(145deg, var(--card-bg) 0%, var(--primary-light) 100%); }
+body.dark-theme .document-list li:hover { background: linear-gradient(145deg, rgba(30, 41, 59, 1) 0%, rgba(139, 92, 246, 0.1) 100%); }
 body.dark-theme .document-list li { background: rgba(0,0,0,0.2); }
+.doc-icon { width: 48px; height: 48px; border-radius: 14px; background: var(--primary-light); color: #8b5cf6; display: grid; place-items: center; font-size: 22px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); flex-shrink: 0; border: 1px solid rgba(139, 92, 246, 0.2); }
+.document-list li:hover .doc-icon { background: var(--nav-active-grad); color: white; transform: scale(1.15) rotate(10deg); border-color: transparent; box-shadow: 0 8px 15px rgba(139, 92, 246, 0.3); }
+.doc-text { font-family: "Plus Jakarta Sans", sans-serif; font-weight: 700; font-size: 16.5px; color: var(--text-main); flex: 1; line-height: 1.5; letter-spacing: 0.3px; transition: color 0.3s ease; }
+.document-list li:hover .doc-text { color: #8b5cf6; }
+.doc-check { color: #10b981; font-size: 22px; opacity: 0.3; transform: scale(0.7); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+.document-list li:hover .doc-check { opacity: 1; transform: scale(1.2); text-shadow: 0 4px 10px rgba(16, 185, 129, 0.4); }
+
 .any-one-text { font-weight: 800; color: var(--gold); margin: 25px 0 15px; font-size: 15px; background: rgba(245, 158, 11, 0.1); padding: 14px 20px; border-radius: 14px; border-left: 5px solid var(--gold); }
 .jobs-grid { display: none; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 30px; }
 .jobs-grid.active { display: grid; animation: slideIn 0.4s ease; }
@@ -477,7 +666,7 @@ footer a { display: inline-block; margin: 10px 0; }
 footer a:hover { color: white; transform: translateX(5px); }
 .copyright { max-width: 1300px; margin: 50px auto 0; padding-top: 25px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 14.5px; color: #64748b; text-align: center; font-weight: 500;}
 
-/* 🌟 VIP SCROLL TO TOP BUTTON (As requested in photo) */
+/* 🌟 VIP SCROLL TO TOP BUTTON */
 #scrollToTopBtn {
   position: fixed; left: 25px; bottom: 25px; z-index: 980;
   width: 50px; height: 50px; border-radius: 50%;
@@ -519,7 +708,6 @@ body.dark-theme #scrollToTopBtn { background: var(--card-bg); color: var(--text-
 @media(max-width: 1080px) {
   .header-wrapper { margin: 0; padding: 0;}
   
-  /* 🌟 MOBILE HEADER FIX (No Text Wrapping, Menu Button always visible) */
   .floating-nav-container { padding: 10px 15px; flex-wrap: nowrap; display: flex; align-items: center; justify-content: space-between; gap: 10px;}
   .right-menu-group { display: none; } 
   
@@ -545,7 +733,6 @@ body.dark-theme #scrollToTopBtn { background: var(--card-bg); color: var(--text-
   
   .nav-btn-whatsapp-mobile { width: 100%; padding: 15px 18px; font-size: 15px; border-radius: 12px; display: flex; justify-content: flex-start; align-items: center; gap: 10px; margin-top: 5px; background: var(--nav-active-grad); color: white; font-weight: 800; text-decoration: none; box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);}
   
-  /* 🌟 PERFECT MOBILE LANG BOX PLACEMENT (Right under Registration) */
   .mobile-lang-box { display: flex; width: 100%; justify-content: space-between; align-items: center; margin-top: 15px; padding-top: 15px; border-top: 1px solid var(--border-color); }
   .theme-toggle-mobile { width: 40px; height: 40px; border-radius: 12px; border: 1px solid var(--border-color); background: var(--bg-color); color: #8b5cf6; display: grid; place-items: center; font-size: 16px; cursor: pointer;}
 }
@@ -554,12 +741,10 @@ body.dark-theme #scrollToTopBtn { background: var(--card-bg); color: var(--text-
 
 /* 🌟 MOBILE PHONES ONLY (1 COLUMN PERFECT LAYOUT) */
 @media(max-width:650px) {
-  /* Ensure Header Logo stays visible */
   .logo { flex: 0 0 40px; width: 40px; height: 40px; border-radius: 10px; display: flex;}
   .brand h2 { font-size: 15px; line-height: 1.2; letter-spacing: -0.5px;}
   .brand h2 span { display: inline; } 
 
-  /* 🌟 EXACT PHOTO MATCH: CENTERED HERO & OVERLAPPING LOGO */
   .hero { padding: 60px 5% 80px; border-radius: 0 0 25px 25px;}
   .hero h1 { font-size: 32px;}
   
@@ -567,7 +752,6 @@ body.dark-theme #scrollToTopBtn { background: var(--card-bg); color: var(--text-
   .typing-container { font-size: 16px; padding: 8px 20px; margin: 0 auto 30px; display: inline-flex; border-radius: 50px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.15);}
   .hero-buttons { display: flex; justify-content: center; width: 100%; position: relative; z-index: 25;}
   
-  /* 🌟 OVERLAPPING LOGO FIX */
   .hero-image-wrapper { margin-top: 10px; display: flex; justify-content: center; width: 100%; z-index: 20; transform: translateY(60px); }
   .hero-logo-box { max-width: 250px; padding: 12px; border: 6px solid #ffffff; background: #ffffff; margin: 0 auto;}
   .hero-image-wrapper::before { width: 280px; height: 280px; z-index: -1;}
@@ -575,22 +759,18 @@ body.dark-theme #scrollToTopBtn { background: var(--card-bg); color: var(--text-
   
   .hero-wave { z-index: 10; bottom: -2px; }
 
-  /* Stats - Keep 2 columns but tighter & pushed down */
   .stats { margin-top: 60px; grid-template-columns: repeat(2, 1fr); gap: 10px; position: relative; z-index: 5;}
   .stat { padding: 15px 10px; border-radius: 14px;}
   .stat strong { font-size: 24px;}
   .stat span { font-size: 12px; }
   
-  /* 🌟 MOBILE FIX: Services 1 Column! No squeezing! */
   .universal-grid { grid-template-columns: 1fr; gap: 20px; }
   .universal-card { padding: 25px 20px; border-radius: 20px;}
   .universal-icon { width: 50px; height: 50px; font-size: 22px; margin-bottom: 15px;}
   
-  /* Quick Tabs */
   .main-tab-container { width: 100%; flex-direction: row; flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; margin-left: 0; transform: none; border-radius: 15px; padding: 5px; gap: 5px;}
   .main-tab-btn { flex: 1; min-width: max-content; padding: 10px 15px; font-size: 14px;}
   
-  /* Modals perfectly scaled */
   .modal-box { padding: 25px 15px; border-radius: 20px;}
   .modal-header h2 { font-size: 22px; }
   .document-list li { padding: 12px 15px; gap: 12px;}
@@ -598,7 +778,8 @@ body.dark-theme #scrollToTopBtn { background: var(--card-bg); color: var(--text-
   .doc-text { font-size: 14.5px; }
   
   .about-modern-wrapper { flex-direction: column; border-radius: 20px;} .about-creative-visual { min-height: 250px;} .about-content { padding: 30px 20px;} .vision-mission-grid { grid-template-columns: 1fr; gap: 15px;}
-  .contact-3-cards { grid-template-columns: 1fr; gap: 15px;} .contact-banner { flex-direction: column; text-align: center; padding: 40px 20px; border-radius: 20px;} .cb-text h3 { justify-content: center; font-size: 24px;} .cb-images i { font-size: 80px;}
+  
+  .contact-banner { flex-direction: column; text-align: center; padding: 40px 20px; border-radius: 20px;} .cb-text h3 { justify-content: center; font-size: 24px;} .cb-images i { font-size: 80px;}
   .reg-split-container { grid-template-columns: 1fr; border-radius: 20px;} 
   .contact-info-panel, .registration-form-panel { padding: 30px 15px; }
   
@@ -610,8 +791,10 @@ body.dark-theme #scrollToTopBtn { background: var(--card-bg); color: var(--text-
   
   .news-ticker { font-size: 12px; padding: 6px 0;}
   
-  /* Left Float adjustment on mobile to not overlap with text */
   #scrollToTopBtn { width: 45px; height: 45px; font-size: 16px; left: 15px; bottom: 15px;}
+  
+  /* 🌟 4 Cards responsive fixing */
+  .contact-4-cards { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -845,7 +1028,7 @@ body.dark-theme #scrollToTopBtn { background: var(--card-bg); color: var(--text-
 
 
   <!-- ==============================================
-       CONTACT PAGE SECTION 
+       CONTACT PAGE SECTION (WITH 4 CARDS LOCATION & CALL)
        ============================================== -->
   <div id="contactPageSection" style="display: none; padding-top: 40px; padding-bottom: 60px;">
     <section id="contactSection">
@@ -854,25 +1037,33 @@ body.dark-theme #scrollToTopBtn { background: var(--card-bg); color: var(--text-
           <small data-en="GET IN TOUCH" data-gu="અમારો સંપર્ક કરો">અમારો સંપર્ક કરો</small>
           <h2 data-en="Contact Us" data-gu="સંપર્ક કરો (Contact Us)">સંપર્ક કરો (Contact Us)</h2>
           <p style="color: var(--text-muted); font-weight: 600;" data-en="Contact for Digital Services" data-gu="Digital Services માટે સંપર્ક કરો">Digital Services માટે સંપર્ક કરો</p>
+          <div class="section-divider"></div>
         </div>
 
-        <!-- Contact Cards -->
-        <div class="contact-3-cards">
+        <!-- Contact Cards (Now 4 Cards including Location & clickable Call) -->
+        <div class="contact-4-cards">
           <div class="c-card">
             <i class="fa-solid fa-user-tie"></i>
-            <h4 data-en="Founder" data-gu="સંચાલક (Founder)">સંચાલક (Founder)</h4>
+            <h4 data-en="Founder" data-gu="સંચાલક (FOUNDER)">સંચાલક (FOUNDER)</h4>
             <p data-en="JADAV JAYDIP" data-gu="JADAV JAYDIP">JADAV JAYDIP</p>
           </div>
           <div class="c-card">
             <i class="fa-solid fa-building"></i>
-            <h4 data-en="Company" data-gu="સંસ્થા (Company)">સંસ્થા (Company)</h4>
+            <h4 data-en="Company" data-gu="સંસ્થા (COMPANY)">સંસ્થા (COMPANY)</h4>
             <p style="font-size: 15px;" data-en="DWARKADHISH COMPUTER CENTER" data-gu="DWARKADHISH COMPUTER CENTER">DWARKADHISH COMPUTER CENTER</p>
           </div>
-          <div class="c-card">
+          <!-- Clickable Call Card -->
+          <a href="tel:+919537362607" class="c-card" style="display: block; text-decoration: none; color: inherit;">
             <i class="fa-solid fa-phone-volume"></i>
-            <h4 data-en="Call Us" data-gu="કોલ કરો (Call Us)">કોલ કરો (Call Us)</h4>
+            <h4 data-en="Call Us" data-gu="કોલ કરો (CALL US)">કોલ કરો (CALL US)</h4>
             <p>+91 9537362607</p>
-          </div>
+          </a>
+          <!-- Clickable Location Card -->
+          <a href="https://share.google/Xef6X6rHLhar2ufUX" target="_blank" class="c-card" style="display: block; text-decoration: none; color: inherit;">
+            <i class="fa-solid fa-location-dot"></i>
+            <h4 data-en="Location" data-gu="લોકેશન (LOCATION)">લોકેશન (LOCATION)</h4>
+            <p style="font-size: 14px; line-height: 1.3;" data-en="DWARKADHISH COMPUTER CENTRE" data-gu="DWARKADHISH COMPUTER CENTRE">DWARKADHISH COMPUTER CENTRE</p>
+          </a>
         </div>
 
         <!-- Social Media Area -->
@@ -901,7 +1092,7 @@ body.dark-theme #scrollToTopBtn { background: var(--card-bg); color: var(--text-
   </div>
 
   <!-- ==============================================
-       REGISTRATION PAGE SECTION (PREMIUM SPLIT)
+       REGISTRATION PAGE SECTION 
        ============================================== -->
   <div id="registrationPageSection" style="display: none; padding-top: 40px; padding-bottom: 60px;">
     <section id="registrationSection">
@@ -991,13 +1182,24 @@ body.dark-theme #scrollToTopBtn { background: var(--card-bg); color: var(--text-
   <div id="servicesSection" style="display: none; padding-top: 40px;">
     <section id="services-page">
       <div class="container">
+        
+        <!-- 🌟 PREMIUM SECTION HEADER (WITH EMOJI) -->
         <div class="section-head animate-up">
-          <small data-en="OUR SERVICES" data-gu="અમારી સેવાઓ">અમારી સેવાઓ</small>
-          <h2 data-en="Digital Services" data-gu="ડિજિટલ સેવાઓ">ડિજિટલ સેવાઓ</h2>
+          <small data-en="SMART SEARCH" data-gu="SMART SEARCH">SMART SEARCH</small>
+          <h2>
+            <span style="font-size: 40px; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">🔍</span> 
+            <span data-en="Search Information" data-gu="Search Information">Search Information</span>
+          </h2>
+          <p data-en="Search for Job, Form, Scheme or Scholarship" data-gu="Job, Form, Scheme અથવા Scholarship શોધો">Job, Form, Scheme અથવા Scholarship શોધો</p>
+          <div class="section-divider"></div>
         </div>
 
-        <div class="search-area animate-up">
-          <input type="search" id="serviceSearch" oninput="renderServices()" placeholder="PAN, Aadhaar..." data-en-placeholder="Search Services..." data-gu-placeholder="PAN, આધાર શોધો...">
+        <!-- 🌟 PREMIUM SEARCH BAR (WITH ORIGINAL COLORS) -->
+        <div class="search-container-box animate-up">
+            <div class="search-area">
+                <input type="search" id="serviceSearch" oninput="renderServices()" placeholder="PAN, Aadhaar, PF, Voter ID, Passport..." data-en-placeholder="PAN, Aadhaar, PF, Voter ID, Passport..." data-gu-placeholder="PAN, આધાર, PF, ચૂંટણી કાર્ડ શોધો...">
+                <button class="search-btn" onclick="renderServices()" data-en="Search" data-gu="Search">Search</button>
+            </div>
         </div>
 
         <div class="universal-grid" id="servicesGrid"></div>
@@ -1009,17 +1211,24 @@ body.dark-theme #scrollToTopBtn { background: var(--card-bg); color: var(--text-
   <div id="updatesSection" style="display: none; padding-top: 40px;">
     <section id="updates-page">
       <div class="container">
+        
+        <!-- 🌟 PREMIUM SECTION HEADER (WITH EMOJI) -->
         <div class="section-head animate-up">
-          <small data-en="LATEST NEWS" data-gu="તાજા સમાચાર">તાજા સમાચાર</small>
-          <h2 data-en="Latest Updates & Jobs" data-gu="અગત્યના અપડેટ્સ">અગત્યના અપડેટ્સ</h2>
+          <small data-en="LATEST NEWS" data-gu="LATEST NEWS">LATEST NEWS</small>
+          <h2>
+            <span style="font-size: 40px; text-shadow: 2px 2px 4px rgba(0,0,0,0.1);">📢</span> 
+            <span data-en="Latest Updates" data-gu="Latest Updates">Latest Updates</span>
+          </h2>
+          <div class="section-divider" style="margin-top: 20px;"></div>
         </div>
         
+        <!-- 🌟 PREMIUM FILTER BUTTONS (WITH ORIGINAL COLORS) -->
         <div class="updates-filter-container animate-up">
-          <button class="update-filter-btn active" onclick="setUpdateFilter('All', this)" data-en="All" data-gu="બધા">બધા</button>
-          <button class="update-filter-btn" onclick="setUpdateFilter('Jobs', this)" data-en="<i class='fa-solid fa-briefcase'></i> Jobs" data-gu="<i class='fa-solid fa-briefcase'></i> જોબ્સ"><i class="fa-solid fa-briefcase"></i> જોબ્સ</button>
-          <button class="update-filter-btn" onclick="setUpdateFilter('Education', this)" data-en="<i class='fa-solid fa-graduation-cap'></i> Education" data-gu="<i class='fa-solid fa-graduation-cap'></i> શિક્ષણ"><i class="fa-solid fa-graduation-cap"></i> શિક્ષણ</button>
-          <button class="update-filter-btn" onclick="setUpdateFilter('Scheme', this)" data-en="<i class='fa-solid fa-landmark'></i> Scheme" data-gu="<i class='fa-solid fa-landmark'></i> યોજના"><i class="fa-solid fa-landmark"></i> યોજના</button>
-          <button class="update-filter-btn" onclick="setUpdateFilter('Forms', this)" data-en="<i class='fa-solid fa-file-lines'></i> Forms" data-gu="<i class='fa-solid fa-file-lines'></i> ફોર્મ્સ"><i class="fa-solid fa-file-lines"></i> ફોર્મ્સ</button>
+          <button class="update-filter-btn active" onclick="setUpdateFilter('All', this)" data-en="All" data-gu="All">All</button>
+          <button class="update-filter-btn" onclick="setUpdateFilter('Jobs', this)" data-en="<i class='fa-solid fa-briefcase'></i> Jobs" data-gu="<i class='fa-solid fa-briefcase'></i> Jobs"><i class="fa-solid fa-briefcase"></i> Jobs</button>
+          <button class="update-filter-btn" onclick="setUpdateFilter('Education', this)" data-en="<i class='fa-solid fa-graduation-cap'></i> Education" data-gu="<i class='fa-solid fa-graduation-cap'></i> Education"><i class="fa-solid fa-graduation-cap"></i> Education</button>
+          <button class="update-filter-btn" onclick="setUpdateFilter('Scheme', this)" data-en="<i class='fa-solid fa-landmark'></i> Scheme" data-gu="<i class='fa-solid fa-landmark'></i> Scheme"><i class="fa-solid fa-landmark"></i> Scheme</button>
+          <button class="update-filter-btn" onclick="setUpdateFilter('Forms', this)" data-en="<i class='fa-solid fa-file-lines'></i> Forms" data-gu="<i class='fa-solid fa-file-lines'></i> Forms"><i class="fa-solid fa-file-lines"></i> Forms</button>
         </div>
 
         <div class="universal-grid" id="updatesGrid"></div>
@@ -1207,7 +1416,7 @@ function closeMenu() {
   if (overlay) overlay.classList.remove('show');
 }
 
-/* --- UPDATED FORM SUBMIT FUNCTION (WHATSAPP VIP FORMAT) --- */
+/* --- UPDATED FORM SUBMIT FUNCTION --- */
 function submitRegistration(event) {
   event.preventDefault();
   const name = document.getElementById('regName').value;
@@ -1686,7 +1895,7 @@ function openDynamicModal(type, serviceName = null) {
       docs.style.display = "flex";
       const d = [
         {text: getDocText("શૈક્ષણિક વિગતો", "Education Details"), icon: "fa-graduation-cap"},
-        {text: getDocText("કામનો અનુભવ (જો હોય તો)", "Work Experience (If any)"), icon: "fa-briefcase"},
+        {text: getDocText("કામનો અનુભવ (જો હોયકોઈ માહિતી હોય તો)", "Work Experience (If any)"), icon: "fa-briefcase"},
         {text: getDocText("મોબાઇલ નંબર", "Mobile Number"), icon: "fa-phone"},
         {text: getDocText("ઈમેઇલ ID", "Email ID"), icon: "fa-envelope"},
         {text: getDocText("પાસપોર્ટ સાઇઝ ફોટો (જો જરૂરી હોય)", "Passport Size Photo (If required)"), icon: "fa-image"}
