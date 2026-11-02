@@ -6,10 +6,10 @@
 <meta name="description" content="DWARKADHISH COMPUTER CENTER - Digital Portal, Online Services, Government Forms">
 <title>DWARKADHISH COMPUTER CENTER - Premium Digital Portal</title>
 
-<!-- 🌟 PREMIUM GOOGLE FONTS -->
+<!-- 🌟 PREMIUM GOOGLE FONTS (UPDATED) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hind+Vadodara:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <!-- FontAwesome Icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -58,7 +58,7 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  font-family: 'Outfit', 'Noto Sans Gujarati', sans-serif;
+  font-family: 'Poppins', 'Hind Vadodara', sans-serif;
   background-color: var(--bg-color);
   background-image: 
     radial-gradient(circle at 15% 50%, rgba(37, 99, 235, 0.05), transparent 25%),
@@ -282,27 +282,6 @@ body.dark-theme .main-tab-btn:hover { background: rgba(255,255,255,0.05); }
 .update-date { color: var(--text-muted); font-size: 13.5px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;}
 .empty { grid-column: 1/-1; background: var(--card-bg); padding: 60px; border-radius: 24px; text-align: center; font-weight: 800; border: 2px dashed var(--border-color); font-size: 22px; color: var(--text-muted); }
 
-
-/* -------------------------------------------------------------
-   🌟 FORM DOWNLOAD SECTION (UPDATED PDFS)
-------------------------------------------------------------- */
-.download-section { padding: 20px 5% 80px; }
-.download-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1300px; margin: 0 auto; }
-.download-card { background: var(--card-bg); padding: 25px 20px; border-radius: 20px; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: space-between; gap: 15px; box-shadow: var(--shadow-sm); transition: 0.4s ease; text-decoration: none; color: var(--text-main); }
-.download-card:hover { transform: translateY(-5px); box-shadow: var(--neon-glow); border-color: transparent; background: var(--nav-active-grad); color: white;}
-.dl-icon { width: 50px; height: 50px; background: rgba(239, 68, 68, 0.1); color: #ef4444; border-radius: 14px; display: grid; place-items: center; font-size: 24px; flex-shrink: 0; transition: 0.3s; }
-.download-card:hover .dl-icon { background: white; color: #ef4444; transform: scale(1.1) rotate(-5deg); box-shadow: 0 5px 15px rgba(0,0,0,0.2);}
-.dl-text-wrapper { flex: 1; text-align: left; }
-.dl-text-wrapper h4 { margin: 0 0 5px; font-size: 18px; font-weight: 800; line-height: 1.2; transition: 0.3s;}
-.dl-text-wrapper span { font-size: 13px; color: var(--text-muted); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;}
-.download-card:hover .dl-text-wrapper h4 { color: white; }
-.download-card:hover .dl-text-wrapper span { color: rgba(255,255,255,0.8); }
-.dl-action { color: var(--text-muted); font-size: 20px; transition: 0.3s; }
-.download-card:hover .dl-action { transform: translateY(3px); color: white;}
-@media(max-width: 1080px) { .download-grid { grid-template-columns: repeat(2, 1fr); } }
-@media(max-width: 650px) { .download-grid { grid-template-columns: 1fr; } }
-
-
 /* -------------------------------------------------------------
    ABOUT US PAGE 
 ------------------------------------------------------------- */
@@ -429,7 +408,7 @@ body.dark-theme .testi-card i.quote-icon { color: rgba(255,255,255,0.03); }
 @media(max-width: 950px) { .reg-split-container { grid-template-columns: 1fr; border-radius: 24px;} .contact-info-panel, .registration-form-panel { padding: 40px 25px; } }
 
 /* -------------------------------------------------------------
-   CLEAN UI MODAL 
+   CLEAN UI MODAL
 ------------------------------------------------------------- */
 .modal { display: none; position: fixed; inset: 0; z-index: 10000; background: rgba(15, 23, 42, 0.6); padding: 20px; overflow-y: auto; align-items: center; justify-content: center; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
 .modal.show { display: flex; animation: fadeIn 0.3s ease; }
@@ -456,7 +435,7 @@ body.dark-theme .document-list li:hover { background: linear-gradient(145deg, rg
 body.dark-theme .document-list li { background: rgba(0,0,0,0.2); }
 .doc-icon { width: 48px; height: 48px; border-radius: 14px; background: var(--primary-light); color: #8b5cf6; display: grid; place-items: center; font-size: 22px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); flex-shrink: 0; border: 1px solid rgba(139, 92, 246, 0.2); }
 .document-list li:hover .doc-icon { background: var(--nav-active-grad); color: white; transform: scale(1.15) rotate(10deg); border-color: transparent; box-shadow: 0 8px 15px rgba(139, 92, 246, 0.3); }
-.doc-text { font-family: 'Outfit', 'Noto Sans Gujarati', sans-serif; font-weight: 700; font-size: 18.5px; color: var(--text-main); flex: 1; line-height: 1.5; letter-spacing: 0.3px; transition: color 0.3s ease; }
+.doc-text { font-family: 'Poppins', 'Hind Vadodara', sans-serif; font-weight: 700; font-size: 18.5px; color: var(--text-main); flex: 1; line-height: 1.5; letter-spacing: 0.3px; transition: color 0.3s ease; }
 .document-list li:hover .doc-text { color: #8b5cf6; }
 .doc-check { color: #10b981; font-size: 24px; opacity: 0.3; transform: scale(0.7); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 .document-list li:hover .doc-check { opacity: 1; transform: scale(1.2); text-shadow: 0 4px 10px rgba(16, 185, 129, 0.4); }
@@ -509,15 +488,47 @@ body.dark-theme #scrollToTopBtn { background: var(--card-bg); color: var(--text-
   box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4); 
 }
 
-/* PREMIUM PULSING WHATSAPP FLOAT */
-.whatsapp-float { position: fixed; right: 25px; bottom: 25px; z-index: 990; background: linear-gradient(135deg, #25D366, #128C7E); width: 65px; height: 65px; border-radius: 50%; box-shadow: 0 10px 25px rgba(37,211,102,0.4); display: flex; align-items: center; justify-content: center; transition: 0.3s ease; animation: pulse-green 2.5s infinite; border: 2px solid white;}
+/* 🌟 PREMIUM WHATSAPP WIDGET CSS */
+.whatsapp-widget-container { position: fixed; right: 25px; bottom: 25px; z-index: 9990; }
+.whatsapp-float { 
+  background: linear-gradient(135deg, #25D366, #128C7E); width: 65px; height: 65px; border-radius: 50%; 
+  box-shadow: 0 10px 25px rgba(37,211,102,0.4); display: flex; align-items: center; justify-content: center; 
+  transition: 0.3s ease; animation: pulse-green 2.5s infinite; border: 2px solid white; cursor: pointer; color: white; margin-left: auto;
+}
 .whatsapp-float:hover { transform: scale(1.1) rotate(-5deg); animation: none; box-shadow: 0 15px 30px rgba(37,211,102,0.5);}
-.whatsapp-float i { font-size: 38px; color: white; }
+.whatsapp-float i { font-size: 38px; }
+
+.wa-chat-box {
+  position: absolute; bottom: 85px; right: 0; width: 330px; background: var(--card-bg); border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2); border: 1px solid var(--border-color); overflow: hidden;
+  transform: translateY(20px) scale(0.95); opacity: 0; visibility: hidden; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform-origin: bottom right;
+}
+.wa-chat-box.show { transform: translateY(0) scale(1); opacity: 1; visibility: visible; }
+.wa-header { background: linear-gradient(135deg, #075e54, #128c7e); padding: 20px; color: white; display: flex; justify-content: space-between; align-items: center; }
+.wa-header-info { display: flex; align-items: center; gap: 12px; }
+.wa-header-info i { font-size: 32px; }
+.wa-header-info h4 { margin: 0; font-size: 18px; font-weight: 800; letter-spacing: 0.5px;}
+.wa-header-info p { margin: 0; font-size: 13px; font-weight: 500; opacity: 0.9; }
+.wa-close { background: transparent; border: none; color: white; font-size: 22px; cursor: pointer; transition: 0.3s; display: grid; place-items: center;}
+.wa-close:hover { transform: rotate(90deg) scale(1.1); color: #f87171;}
+.wa-body { padding: 25px 20px; background: var(--bg-color); background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'); background-size: cover; min-height: 150px;}
+.wa-message { background: #ffffff; padding: 12px 18px; border-radius: 0 15px 15px 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); position: relative; max-width: 90%; color: #0f172a;}
+body.dark-theme .wa-message { background: #1e293b; color: #f8fafc; box-shadow: 0 4px 10px rgba(0,0,0,0.3);}
+.wa-message p { margin: 0; font-size: 15px; font-weight: 600; line-height: 1.6; }
+.wa-time { display: block; text-align: right; font-size: 11px; color: #64748b; margin-top: 6px; font-weight: 600;}
+.wa-footer { padding: 20px; background: var(--card-bg); text-align: center; }
+.wa-start-btn { display: inline-block; width: 100%; background: linear-gradient(135deg, #25D366, #128C7E); color: white; padding: 14px; border-radius: 50px; font-weight: 800; font-size: 17px; text-decoration: none; transition: 0.3s; box-shadow: 0 5px 15px rgba(37,211,102,0.3); }
+.wa-start-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(37,211,102,0.4); filter: brightness(1.05); }
 
 @keyframes pulse-green {
   0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
   70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
   100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+@media(max-width: 650px) {
+  .wa-chat-box { width: 300px; bottom: 80px; }
 }
 
 /* 🌟 BUG-FREE SCROLL REVELATIONS (FAILSAFE) */
@@ -598,7 +609,6 @@ body.dark-theme #scrollToTopBtn { background: var(--card-bg); color: var(--text-
   #scrollToTopBtn { width: 45px; height: 45px; font-size: 16px; left: 15px; bottom: 15px;}
   .contact-4-cards { grid-template-columns: 1fr; }
   .testi-grid { grid-template-columns: 1fr; }
-  .download-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -619,14 +629,15 @@ body.dark-theme #scrollToTopBtn { background: var(--card-bg); color: var(--text-
 </div>
 
 <script>
-  /* 🌟 GUARANTEED LOADER HIDE */
+  /* 🌟 GUARANTEED LOADER HIDE - SAFEGUARD */
   setTimeout(function() {
     var loader = document.getElementById("welcomeLoader");
     if (loader) {
+      loader.style.transition = "opacity 0.5s ease";
       loader.style.opacity = "0";
-      setTimeout(function() { loader.style.display = "none"; }, 400);
+      setTimeout(function() { loader.style.display = "none"; }, 500);
     }
-  }, 600);
+  }, 800);
 </script>
 
 <!-- FULL SCREEN IMAGE ZOOM MODAL -->
@@ -788,60 +799,6 @@ body.dark-theme #scrollToTopBtn { background: var(--card-bg); color: var(--text-
       </div>
     </section>
 
-    <!-- 🌟 FORM DOWNLOAD SECTION -->
-    <section class="download-section">
-      <div class="container">
-        <div class="section-head animate-up">
-          <small data-en="DOWNLOADS" data-gu="DOWNLOADS">DOWNLOADS</small>
-          <h2 data-en="Important Blank Forms" data-gu="અગત્યના ફોર્મ ડાઉનલોડ">અગત્યના ફોર્મ ડાઉનલોડ</h2>
-          <p data-en="Download and print blank forms directly from here" data-gu="જરૂરી ફોર્મ અહીથી ડાયરેક્ટ ડાઉનલોડ કરીને પ્રિન્ટ કઢાવો">જરૂરી ફોર્મ અહીથી ડાયરેક્ટ ડાઉનલોડ કરીને પ્રિન્ટ કઢાવો</p>
-          <div class="section-divider"></div>
-        </div>
-
-        <div class="download-grid animate-up">
-          <!-- New PAN Card Form -->
-          <a href="FN093_23.03.2026.pdf" target="_blank" class="download-card">
-            <div class="dl-icon"><i class="fa-solid fa-file-pdf"></i></div>
-            <div class="dl-text-wrapper">
-              <h4 data-en="New PAN Card" data-gu="નવું PAN કાર્ડ">નવું PAN કાર્ડ</h4>
-              <span data-en="Form 49A" data-gu="ફોર્મ 49A">ફોર્મ 49A</span>
-            </div>
-            <div class="dl-action"><i class="fa-solid fa-download"></i></div>
-          </a>
-
-          <!-- PAN Card Correction -->
-          <a href="PAN CARD CORROCTION FORM.pdf" target="_blank" class="download-card">
-            <div class="dl-icon"><i class="fa-solid fa-file-pdf"></i></div>
-            <div class="dl-text-wrapper">
-              <h4 data-en="PAN Card Correction" data-gu="પાન કાર્ડ (સુધારો)">પાન કાર્ડ (સુધારો)</h4>
-              <span data-en="BLANK FORM" data-gu="BLANK FORM">BLANK FORM</span>
-            </div>
-            <div class="dl-action"><i class="fa-solid fa-download"></i></div>
-          </a>
-
-          <!-- Aadhaar Card Address Change -->
-          <a href="Certificate Aadhar Update PDF Edit Form NEW-1[2] (1) (23).pdf" target="_blank" class="download-card">
-            <div class="dl-icon"><i class="fa-solid fa-file-pdf"></i></div>
-            <div class="dl-text-wrapper">
-              <h4 data-en="Aadhaar Address Update" data-gu="આધાર કાર્ડ (સરનામું સુધારો)">આધાર કાર્ડ (સરનામું સુધારો)</h4>
-              <span data-en="BLANK FORM" data-gu="BLANK FORM">BLANK FORM</span>
-            </div>
-            <div class="dl-action"><i class="fa-solid fa-download"></i></div>
-          </a>
-
-          <!-- Kuvarbai Nu Mameru -->
-          <a href="kuvar Bai nu mameru.pdf" target="_blank" class="download-card">
-            <div class="dl-icon"><i class="fa-solid fa-file-pdf"></i></div>
-            <div class="dl-text-wrapper">
-              <h4 data-en="Kuvarbai Nu Mameru" data-gu="કુંવરબાઈનું મામેરું">કુંવરબાઈનું મામેરું</h4>
-              <span data-en="BLANK FORM" data-gu="BLANK FORM">BLANK FORM</span>
-            </div>
-            <div class="dl-action"><i class="fa-solid fa-download"></i></div>
-          </a>
-        </div>
-      </div>
-    </section>
-
     <!-- 🌟 NEW: CUSTOMER REVIEWS -->
     <section class="testimonials">
       <div class="container animate-up">
@@ -875,7 +832,7 @@ body.dark-theme #scrollToTopBtn { background: var(--card-bg); color: var(--text-
               <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
             </div>
             <p data-en="Friendly staff and perfect resolution of all queries. Highly recommended!" data-gu="ખૂબ જ સારો સ્વભાવ અને સાચી માહિતી. હું બધાને અહીં આવવાની સલાહ આપીશ.">ખૂબ જ સારો સ્વભાવ અને સાચી માહિતી. હું બધાને અહીં આવવાની સલાહ આપીશ.</p>
-            <h4 data-en="Amit Makwana" data-gu="અમિત મકવાણા">અમિત Makwana</h4>
+            <h4 data-en="Amit Makwana" data-gu="અમિત મકવાણા">અમિત મકવાણા</h4>
           </div>
         </div>
       </div>
@@ -1187,9 +1144,34 @@ body.dark-theme #scrollToTopBtn { background: var(--card-bg); color: var(--text-
   <i class="fa-solid fa-arrow-up"></i>
 </button>
 
-<a class="whatsapp-float" target="_blank" href="https://wa.me/919537362607" aria-label="WhatsApp">
-  <i class="fa-brands fa-whatsapp"></i>
-</a>
+<!-- 🌟 PREMIUM WHATSAPP CHAT WIDGET -->
+<div class="whatsapp-widget-container animate-up">
+  <div class="wa-chat-box" id="waChatBox">
+    <div class="wa-header">
+      <div class="wa-header-info">
+        <i class="fa-brands fa-whatsapp"></i>
+        <div>
+          <h4>Dwarkadhish Center</h4>
+          <p data-en="Typically replies instantly" data-gu="ઓનલાઈન છે (Online)">ઓનલાઈન છે (Online)</p>
+        </div>
+      </div>
+      <button class="wa-close" onclick="toggleWaChat()"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="wa-body">
+      <div class="wa-message">
+        <p data-en="Hi there! 👋 How can we help you today?" data-gu="નમસ્તે! 👋 અમે તમારી શું મદદ કરી શકીએ?">નમસ્તે! 👋 અમે તમારી શું મદદ કરી શકીએ?</p>
+        <span class="wa-time" id="waTime"></span>
+      </div>
+    </div>
+    <div class="wa-footer">
+      <a href="https://wa.me/919537362607" target="_blank" class="wa-start-btn" data-en="Start Chat" data-gu="મેસેજ કરો (Start Chat)">મેસેજ કરો (Start Chat)</a>
+    </div>
+  </div>
+
+  <button class="whatsapp-float" onclick="toggleWaChat()" aria-label="WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </button>
+</div>
 
 <!-- UNIVERSAL DYNAMIC MODAL -->
 <div class="modal" id="dynamicModal" onclick="if(event.target.id==='dynamicModal') closeDynamicModal()">
@@ -1339,6 +1321,18 @@ function closeMenu() {
   const overlay = document.getElementById('menuOverlay');
   if (nav) nav.classList.remove('open');
   if (overlay) overlay.classList.remove('show');
+}
+
+/* --- PREMIUM WHATSAPP CHAT TOGGLE --- */
+function toggleWaChat() {
+  const chatBox = document.getElementById('waChatBox');
+  chatBox.classList.toggle('show');
+  
+  const timeEl = document.getElementById('waTime');
+  if(timeEl) {
+    const now = new Date();
+    timeEl.innerText = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+  }
 }
 
 /* --- UPDATED FORM SUBMIT FUNCTION --- */
